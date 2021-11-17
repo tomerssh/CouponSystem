@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,7 +28,7 @@ public class Company {
 	private String name;
 	private String email;
 	private String password;
-	@Transient
+	@OneToMany
 	private List<Coupon> coupons;
 
 	public Company(int id) {

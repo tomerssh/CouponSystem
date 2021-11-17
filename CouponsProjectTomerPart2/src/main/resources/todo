@@ -1,2 +1,3 @@
 change application.properties to update before submitting
-add repositories
+admin service - delete company - need to delete company coupons and coupon purchase history
+company respository - need to implement commented methods
