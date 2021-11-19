@@ -51,16 +51,6 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 	Optional<Company> findByNameAndPassword(String name, String password) throws CouponSystemException;
 
 //	/**
-//	 * Find if the company has another coupon with this name
-//	 * 
-//	 * @param companyId The company id
-//	 * @param coupon    The coupon to check
-//	 * @return true if a duplicate was found
-//	 * @throws CouponSystemException If a database access error occurred
-//	 */
-//	boolean existsCouponByDuplicateCoupon(int companyId, Coupon coupon) throws CouponSystemException;
-
-//	/**
 //	 * Return a list of all coupons of the company with given id
 //	 * 
 //	 * @param companyId The company id

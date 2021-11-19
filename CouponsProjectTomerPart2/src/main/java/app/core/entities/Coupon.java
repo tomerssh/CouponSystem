@@ -8,8 +8,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,9 +28,6 @@ public class Coupon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@ManyToOne(targetEntity = Company.class)
-	@JoinColumn(name = "coupon_id", referencedColumnName = "id")
-	private int companyId;
 	@Enumerated(EnumType.STRING)
 	private Category category;
 	private String title;
@@ -48,20 +43,6 @@ public class Coupon {
 		this.id = id;
 	}
 
-	public Coupon(int companyId, Category category, String title, String description, LocalDate startDate,
-			LocalDate endDate, int amount, double price, String image) {
-		super();
-		this.companyId = companyId;
-		this.category = category;
-		this.title = title;
-		this.description = description;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.amount = amount;
-		this.price = price;
-		this.image = image;
-	}
-
 	public Coupon(Category category, String title, String description, LocalDate startDate, LocalDate endDate,
 			int amount, double price, String image) {
 		super();
@@ -75,9 +56,8 @@ public class Coupon {
 		this.image = image;
 	}
 
-	public Coupon(int companyId, String title) {
+	public Coupon(String title) {
 		super();
-		this.companyId = companyId;
 		this.title = title;
 	}
 

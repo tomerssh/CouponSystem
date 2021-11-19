@@ -5,19 +5,49 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import app.core.entities.Company;
 import app.core.exceptions.CouponServiceException;
 import app.core.exceptions.CouponSystemException;
 import app.core.repositories.CompanyRepository;
+import app.core.repositories.CustomerRepository;
 
+/**
+ * Manages administrator interaction with the app.
+ * 
+ * @see ClientFacade
+ */
 @Service
 @Transactional
-public class AdminService {
+@Scope("prototype")
+public class AdminService extends ClientService {
+
+	@Value("${admin.password:admin}")
+	String adminPassword;
 
 	@Autowired
-	CompanyRepository companyRepo;
+	public AdminService(CompanyRepository companyRepo, CustomerRepository customerRepo) {
+		super.companyRepo = companyRepo;
+		super.customerRepo = customerRepo;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean login(String email, String password) throws CouponSystemException {
+		String adminEmail = "admin@admin.com";
+		String adminPassword = this.adminPassword;
+
+		if (adminEmail.equals(email) && adminPassword.equals(password)) {
+			return true;
+		} else {
+			throw new CouponServiceException("invalid username or password");
+		}
+	}
 
 	/**
 	 * Add a company to the data storage.
