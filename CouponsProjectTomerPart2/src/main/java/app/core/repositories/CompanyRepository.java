@@ -18,7 +18,7 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 	 * @return true if the company exists in the data storage.
 	 * @throws CouponSystemException
 	 */
-	boolean existsByEmailAndPassword(String email, String password) throws CouponSystemException;
+	public boolean existsByEmailAndPassword(String email, String password) throws CouponSystemException;
 
 	/**
 	 * Try to find a company with this name and password
@@ -28,7 +28,7 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 	 * @return optional of company
 	 * @throws CouponSystemException
 	 */
-	Optional<Company> findByEmailAndPassword(String email, String password) throws CouponSystemException;
+	public Optional<Company> findByEmailAndPassword(String email, String password) throws CouponSystemException;
 
 	/**
 	 * Try to find a company with this name and email
@@ -38,7 +38,7 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 	 * @return true if company exists
 	 * @throws CouponSystemException
 	 */
-	boolean existsByNameOrEmail(String email, String password) throws CouponSystemException;
+	public boolean existsByNameOrEmail(String email, String password) throws CouponSystemException;
 
 	/**
 	 * Try to find a company with this name and password
@@ -48,34 +48,6 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 	 * @return optional of company
 	 * @throws CouponSystemException
 	 */
-	Optional<Company> findByNameAndPassword(String name, String password) throws CouponSystemException;
+	public Optional<Company> findByNameAndPassword(String name, String password) throws CouponSystemException;
 
-//	/**
-//	 * Return a list of all coupons of the company with given id
-//	 * 
-//	 * @param companyId The company id
-//	 * @return A list of all coupons
-//	 * @throws CouponSystemException If a database access error occurred
-//	 */
-//	List<Coupon> getCompanyCoupons(int companyId) throws CouponSystemException;
-
-//	/**
-//	 * Return a list of all coupons of the company with given category
-//	 * 
-//	 * @param companyId The company id
-//	 * @param category  The coupon category
-//	 * @return A list of all coupons of given category
-//	 * @throws CouponSystemException If a database access error occurred
-//	 */
-//	public List<Coupon> getCompanyCoupons(int companyId, Category category) throws CouponSystemException;
-
-//	/**
-//	 * Return a list of all coupons of the company with given maximum price
-//	 * 
-//	 * @param companyId The company id
-//	 * @param maxPrice  The maximum price
-//	 * @return A list of all coupons of given category
-//	 * @throws CouponSystemException If a database access error occurred
-//	 */
-//	List<Coupon> getCompanyCoupons(int companyId, double maxPrice) throws CouponSystemException;
 }

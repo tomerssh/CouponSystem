@@ -26,7 +26,7 @@ import app.core.repositories.CustomerRepository;
 public class AdminService extends ClientService {
 
 	@Value("${admin.password:admin}")
-	String adminPassword;
+	private String adminPassword;
 
 	@Autowired
 	public AdminService(CompanyRepository companyRepo, CustomerRepository customerRepo) {
@@ -58,7 +58,7 @@ public class AdminService extends ClientService {
 	 */
 	public int addCompany(Company company) throws CouponSystemException {
 		// check if a company with this name or email already exists
-		if (companyRepo.existsByNameOrEmail(company.getName(), company.getEmail())) {
+		if (!companyRepo.existsByNameOrEmail(company.getName(), company.getEmail())) {
 			company = companyRepo.save(company);
 			return company.getId();
 		} else {

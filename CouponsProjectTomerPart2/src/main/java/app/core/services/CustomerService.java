@@ -23,6 +23,8 @@ import app.core.repositories.CustomerRepository;
 public class CustomerService extends ClientService {
 	// the id the the logged in customer
 	private int customerId;
+	// reference to the current customer
+	private Customer customer;
 
 	@Autowired
 	public CustomerService(CustomerRepository customerRepo, CouponRepository couponRepo) {
@@ -35,7 +37,7 @@ public class CustomerService extends ClientService {
 	 */
 	@Override
 	public boolean login(String email, String password) throws CouponSystemException {
-		Customer customer = customerRepo.findByEmailAndPassword(email, password)
+		this.customer = customerRepo.findByEmailAndPassword(email, password)
 				.orElseThrow(() -> new CouponServiceException("invalid username or password"));
 		this.customerId = customer.getId();
 		return true;

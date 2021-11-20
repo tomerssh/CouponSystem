@@ -2,8 +2,9 @@ package app.core.services.login;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
 import app.core.exceptions.CouponServiceException;
@@ -18,16 +19,23 @@ import app.core.services.CustomerService;
  */
 @Service
 @Transactional
-public class LoginManager {
+public class LoginManager implements ApplicationContextAware {
 	public enum ClientType {
 		ADMINISTRATOR, COMPANY, CUSTOMER
 	}
 
-	@Autowired
 	private ApplicationContext ctx;
 	private AdminService adminService;
 	private CompanyService companyService;
 	private CustomerService customerService;
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.ctx = applicationContext;
+		this.adminService = ctx.getBean(AdminService.class);
+		this.companyService = ctx.getBean(CompanyService.class);
+		this.customerService = ctx.getBean(CustomerService.class);
+	}
 
 	/**
 	 * Attempt to login a client to the system

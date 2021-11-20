@@ -18,7 +18,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	 * @return true if the customer exists in the data storage.
 	 * @throws CouponSystemException
 	 */
-	boolean existsByEmailAndPassword(String email, String password) throws CouponSystemException;
+	public boolean existsByEmailAndPassword(String email, String password) throws CouponSystemException;
 
 	/**
 	 * Try to find a customer with this name and password
@@ -28,6 +28,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	 * @return optional of customer
 	 * @throws CouponSystemException
 	 */
-	Optional<Customer> findByEmailAndPassword(String email, String password) throws CouponSystemException;
+	public Optional<Customer> findByEmailAndPassword(String email, String password) throws CouponSystemException;
 
 }

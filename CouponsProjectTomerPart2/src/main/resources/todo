@@ -1,9 +1,6 @@
 change application.properties to update before submitting
 admin service - delete company - need to delete company coupons and coupon purchase history
-company respository - need to implement commented methods
-add id and scope prototype to services
 make daily job as a service with transactional and autowire it in a scheduled method, also in main app class annotate with enable scheduling
 on test implement command line runner interface and mark as @component, maybe give @order with a number
-make all services prototypes and add an id field by login
-maybe autowire in constructors instead of fields
-change methods to public
+change service and repository methods to public
+add coupon and customer repository and service methods
