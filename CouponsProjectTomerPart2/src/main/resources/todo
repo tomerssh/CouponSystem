@@ -1,6 +1,2 @@
 change application.properties to update before submitting
-admin service - delete company - need to delete company coupons and coupon purchase history
-make daily job as a service with transactional and autowire it in a scheduled method, also in main app class annotate with enable scheduling
-on test implement command line runner interface and mark as @component, maybe give @order with a number
-change service and repository methods to public
-add coupon and customer repository and service methods
+on test maybe give @order with a number

@@ -2,6 +2,7 @@ package app.core.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Company {
 	private String name;
 	private String email;
 	private String password;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "company_id")
 	private List<Coupon> coupons;
 

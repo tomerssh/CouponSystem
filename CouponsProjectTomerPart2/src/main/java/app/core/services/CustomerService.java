@@ -15,7 +15,7 @@ import app.core.repositories.CustomerRepository;
 /**
  * Manages customer interaction with the app
  * 
- * @see ClientFacade
+ * @see ClientService
  */
 @Service
 @Transactional
@@ -41,5 +41,17 @@ public class CustomerService extends ClientService {
 				.orElseThrow(() -> new CouponServiceException("invalid username or password"));
 		this.customerId = customer.getId();
 		return true;
+	}
+
+	public void addCouponPurchase(int couponId) throws CouponSystemException {
+		couponRepo.addCouponPurchase(this.customerId, couponId);
+	}
+
+	public void deleteCouponPurchase(int couponId) throws CouponSystemException {
+		couponRepo.deleteCouponPurchase(this.customerId, couponId);
+	}
+
+	public boolean wasCouponPurchased(int couponId) throws CouponSystemException {
+		return couponRepo.wasPurchased(this.customerId, couponId);
 	}
 }

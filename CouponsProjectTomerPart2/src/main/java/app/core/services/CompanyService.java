@@ -19,7 +19,7 @@ import app.core.repositories.CouponRepository;
 /**
  * Manages company interaction with the app
  * 
- * @see ClientFacade
+ * @see ClientService
  */
 @Service
 @Transactional
