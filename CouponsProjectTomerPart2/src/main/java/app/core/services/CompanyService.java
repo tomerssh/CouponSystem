@@ -1,6 +1,7 @@
 package app.core.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -36,9 +37,6 @@ public class CompanyService extends ClientService {
 		super.couponRepo = couponRepo;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean login(String email, String password) throws CouponSystemException {
 		this.company = companyRepo.findByEmailAndPassword(email, password)
@@ -48,55 +46,105 @@ public class CompanyService extends ClientService {
 	}
 
 	/**
+	 * Add a coupon to the data storage for this company
+	 * 
+	 * @param coupon The customer to be added.
+	 * @return The coupon's id.
+	 * @throws CouponSystemException
+	 */
+	public int addCoupon(Coupon coupon) throws CouponSystemException {
+		coupon = couponRepo.save(coupon);
+		return coupon.getId();
+	}
+
+	public void updateCoupon(Coupon coupon) throws CouponSystemException {
+		Optional<Coupon> opt = couponRepo.findById(coupon.getId());
+		if (opt.isPresent()) {
+			Coupon couponInDb = opt.get();
+			couponInDb.setCategory(coupon.getCategory());
+			couponInDb.setTitle(coupon.getTitle());
+			couponInDb.setDescription(coupon.getDescription());
+			couponInDb.setStartDate(coupon.getStartDate());
+			couponInDb.setEndDate(coupon.getEndDate());
+			couponInDb.setAmount(coupon.getAmount());
+			couponInDb.setPrice(coupon.getPrice());
+			couponInDb.setImage(coupon.getImage());
+		} else {
+			throw new CouponServiceException("coupon with id " + coupon.getId() + " not found");
+		}
+	}
+
+	public void deleteCoupon(int couponId) throws CouponSystemException {
+		Optional<Coupon> opt = couponRepo.findById(couponId);
+		if (opt.isPresent()) {
+			couponRepo.delete(opt.get());
+		} else {
+			throw new CouponServiceException("coupon with id " + couponId + " not found");
+		}
+	}
+
+	/**
+	 * Takes a coupon id and returns the amount value
+	 * 
+	 * @param couponId The coupon id
+	 * @return The amount value
+	 * @throws CouponSystemException
+	 */
+	public int getAmount(int couponId) throws CouponSystemException {
+		return couponRepo.getAmount(couponId);
+	}
+
+	/**
 	 * Find if the company has another coupon with this name
 	 * 
 	 * @param coupon The coupon to check
 	 * @return true if a duplicate was found
 	 * @throws CouponSystemException If a database access error occurred
 	 */
-	public boolean findDuplicateCoupon(Coupon coupon) throws CouponSystemException {
-		return couponRepo.existsById(coupon.getId());
+	public boolean findDuplicateCoupon(int couponId) throws CouponSystemException {
+		return couponRepo.existsById(couponId);
 	}
 
 	/**
-	 * Return a list of all coupons of the company with given id
+	 * Return a list of all coupons of this company
 	 * 
-	 * @param companyId The company id
 	 * @return A list of all coupons
 	 * @throws CouponSystemException If a database access error occurred
 	 */
-	public List<Coupon> getCompanyCoupons(int companyId) throws CouponSystemException {
-		return couponRepo.findAllByCompanyId(companyId);
-
-//		List<Integer> ids = new ArrayList<>();
-//		ids.add(companyId);
-//		List<Coupon> coupons = couponRepo.findAllById(ids);
-//		ids = null;
-//		return coupons;
+	public List<Coupon> getCompanyCoupons() throws CouponSystemException {
+		return couponRepo.findAllByCompanyId(this.companyId);
 	}
 
 	/**
 	 * Return a list of all coupons of the company with given category
 	 * 
-	 * @param companyId The company id
-	 * @param category  The coupon category
+	 * @param category The coupon category
 	 * @return A list of all coupons of given category
 	 * @throws CouponSystemException If a database access error occurred
 	 */
-	public List<Coupon> getCompanyCoupons(int companyId, Category category) throws CouponSystemException {
-		return couponRepo.findAllByCompanyIdAndCategory(companyId, category);
+	public List<Coupon> getCompanyCoupons(Category category) throws CouponSystemException {
+		return couponRepo.findAllByCompanyIdAndCategory(this.companyId, category);
 	}
 
 	/**
 	 * Return a list of all coupons of the company with given maximum price
 	 * 
-	 * @param companyId The company id
-	 * @param maxPrice  The maximum price
+	 * @param maxPrice The maximum price
 	 * @return A list of all coupons of given category
 	 * @throws CouponSystemException If a database access error occurred
 	 */
-	public List<Coupon> getCompanyCoupons(int companyId, double maxPrice) throws CouponSystemException {
-		return couponRepo.findAllByCompanyIdAndMaxPrice(companyId, maxPrice);
+	public List<Coupon> getCompanyCoupons(double maxPrice) throws CouponSystemException {
+		return couponRepo.findAllByCompanyIdAndMaxPrice(this.companyId, maxPrice);
+	}
+
+	/**
+	 * Get company details
+	 * 
+	 * @return A company object containing the company details
+	 * @throws CouponSystemException If a database access error occurred
+	 */
+	public Company getCompanyDetails() throws CouponSystemException {
+		return this.company;
 	}
 
 }

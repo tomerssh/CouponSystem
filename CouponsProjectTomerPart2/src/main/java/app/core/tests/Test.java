@@ -15,7 +15,7 @@ import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
 import app.core.services.AdminService;
 import app.core.services.CompanyService;
-import app.core.services.CouponService;
+import app.core.services.CouponCleanupService;
 import app.core.services.CustomerService;
 import app.core.services.login.LoginManager;
 import app.core.services.login.LoginManager.ClientType;
@@ -23,15 +23,18 @@ import app.core.services.login.LoginManager.ClientType;
 @Component
 public class Test implements CommandLineRunner, ApplicationContextAware {
 	private ApplicationContext ctx;
+	private LoginManager lm;
+	private CouponCleanupService couponService;
+	private AdminService adminService;
+	private CompanyService companyService;
+	private CustomerService customerService;
 
 	@Override
 	public void run(String... args) throws Exception {
 		try {
-			LoginManager lm = ctx.getBean(LoginManager.class);
 			adminTests(lm);
 			companyTests(lm);
 			customerTests(lm);
-			couponTests();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -40,26 +43,65 @@ public class Test implements CommandLineRunner, ApplicationContextAware {
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.ctx = applicationContext;
+		this.lm = ctx.getBean(LoginManager.class);
+		this.couponService = ctx.getBean(CouponCleanupService.class);
 	}
 
-	private void adminTests(LoginManager lm) throws CouponSystemException {
-		AdminService adminService = (AdminService) lm.login("admin@admin.com", "admin", ClientType.ADMINISTRATOR);
+	public void adminTests(LoginManager lm) throws CouponSystemException {
+		System.out.println("==================== ADMIN TESTS");
+		adminService = (AdminService) lm.login("admin@admin.com", "admin", ClientType.ADMINISTRATOR);
+		adminCompanyTests();
+		adminCustomerTests();
+		System.out.println("====================");
+	}
+
+	private void adminCompanyTests() throws CouponSystemException {
 		adminService.addCompany(new Company("aaa", "aaa@mail", "1234"));
-		adminService.addCustomer(new Customer("aaa", "bbb", "customer@mail", "1234"));
+		adminService.addCompany(new Company("company", "company@mail", "1234"));
+		adminService.getAllCompanies();
+		adminService.updateCompany(new Company(1, "bbb", "bbb@mail", "5678"));
+		adminService.getCompany(1);
+		adminService.deleteCompany(1);
 	}
 
-	private void companyTests(LoginManager lm) throws CouponSystemException {
-		CompanyService companyService = (CompanyService) lm.login("aaa@mail", "1234", ClientType.COMPANY);
+	private void adminCustomerTests() throws CouponSystemException {
+		adminService.addCustomer(new Customer("aaa", "bbb", "aaa@mail", "1234"));
+		adminService.addCustomer(new Customer("customer", "customer", "customer@mail", "1234"));
+		adminService.getAllCustomers();
+		adminService.updateCustomer(new Customer(1, "ccc", "ddd", "newcustomer@mail", "5678"));
+		adminService.getCustomer(1);
+		adminService.deleteCustomer(1);
 	}
 
-	private void customerTests(LoginManager lm) throws CouponSystemException {
-		CustomerService customerService = (CustomerService) lm.login("customer@mail", "1234", ClientType.CUSTOMER);
+	public void companyTests(LoginManager lm) throws CouponSystemException {
+		System.out.println("==================== COMPANY TESTS");
+		companyService = (CompanyService) lm.login("company@mail", "1234", ClientType.COMPANY);
+		companyService.addCoupon(new Coupon(Category.CAMPING, "tent", "tent description", LocalDate.of(2021, 1, 2),
+				LocalDate.of(2022, 1, 2), 5, 100, "tent image"));
+		companyService.addCoupon(new Coupon(Category.CLOTHING, "tshirt", "tshirt description", LocalDate.of(2021, 1, 2),
+				LocalDate.of(2022, 1, 2), 10, 50, "tshirt image"));
+		companyService.getCompanyCoupons();
+		companyService.getCompanyCoupons(50);
+		companyService.updateCoupon(new Coupon(1, Category.CAMPING, "updated tent", "updated tent description",
+				LocalDate.of(2021, 1, 2), LocalDate.of(2022, 1, 2), 5, 100, "updated tent image"));
+		companyService.getCompanyCoupons(Category.CAMPING);
+		companyService.findDuplicateCoupon(1);
+		companyService.deleteCoupon(1);
+		System.out.println(companyService.getAmount(2));
+		System.out.println("====================");
 	}
 
-	private void couponTests() throws CouponSystemException {
-		CouponService couponService = ctx.getBean(CouponService.class);
-		couponService.addCoupon(new Coupon(Category.CAMPING, "tent", "tent description", LocalDate.now(),
-				LocalDate.of(2019, 1, 2), 5, 100, "tent image"));
+	public void customerTests(LoginManager lm) throws CouponSystemException {
+		System.out.println("==================== CUSTOMER TESTS");
+		customerService = (CustomerService) lm.login("customer@mail", "1234", ClientType.CUSTOMER);
+		customerService.getCustomerDetails();
+		customerService.addCouponPurchase(new Coupon(2));
+		customerService.wasCouponPurchased(2);
+		customerService.getCustomerCouponsById(2);
+		customerService.getCustomerCouponsByIdAndCategory(2, Category.CLOTHING);
+		customerService.getCustomerCouponsByIdAndMaxPrice(2, 20);
+		customerService.deleteCouponPurchase(2);
+		System.out.println("====================");
 	}
 
 }

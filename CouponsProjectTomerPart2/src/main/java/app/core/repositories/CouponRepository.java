@@ -49,6 +49,35 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	List<Coupon> findAllByCompanyIdAndMaxPrice(int companyId, double maxPrice);
 
 	/**
+	 * Get a list of all coupon id's this customer owns
+	 * 
+	 * @param customerId The customer id
+	 * @return A list of coupon id's
+	 */
+	@Query(nativeQuery = true, value = "select coupon_id from customer_coupon where customer_id=:customerId")
+	List<Integer> findCouponIdsByCustomerId(int customerId);
+
+	/**
+	 * Get a list of all coupons this customer owns with this category
+	 * 
+	 * @param customerId The customer id
+	 * @param category   The coupon category
+	 * @return A list of coupons
+	 */
+	@Query(value = "from Coupon where id=:couponId AND category=:category")
+	List<Coupon> findCouponsByIdAndCategory(int couponId, Category category);
+
+	/**
+	 * Get a list of all coupons this customer owns with this max price
+	 * 
+	 * @param customerId The customer id
+	 * @param maxPrice   The maximum price
+	 * @return A list of coupons
+	 */
+	@Query(value = "from Coupon where id=:couponId AND price=:maxPrice")
+	List<Coupon> findCouponsByIdAndMaxPrice(int couponId, double maxPrice);
+
+	/**
 	 * Removes all expired coupons
 	 * 
 	 * @param date To check for expired coupons
@@ -60,17 +89,17 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	@Query(value = "delete from Coupon where end_date<=:date")
 	int deleteAllExpired(LocalDate date);
 
-	/**
-	 * Add a coupon to customer.
-	 * 
-	 * @param customerId The id of the customer to add the coupon to.
-	 * @param couponId   The id of the coupon that was purchased.
-	 * @throws CouponSystemException
-	 */
-	@Transactional
-	@Modifying
-	@Query(nativeQuery = true, value = "insert into customer_coupon values(:customerId, :couponId)")
-	void addCouponPurchase(int customerId, int couponId) throws CouponSystemException;
+//	/**
+//	 * Add a coupon to customer.
+//	 * 
+//	 * @param customerId The id of the customer to add the coupon to.
+//	 * @param couponId   The id of the coupon that was purchased.
+//	 * @throws CouponSystemException
+//	 */
+//	@Transactional
+//	@Modifying
+//	@Query(nativeQuery = true, value = "insert into customer_coupon values(:customerId, :couponId)")
+//	void addCouponPurchase(int customerId, int couponId) throws CouponSystemException;
 
 	/**
 	 * Remove a coupon from customer.
@@ -90,11 +119,11 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * 
 	 * @param couponId   The coupon id
 	 * @param customerId The customer id
-	 * @return true if the coupon was purchased
+	 * @return A list of coupon id's
 	 * @throws CouponSystemException
 	 */
-	@Query(nativeQuery = true, value = "select from customer_coupon where customer_id=:customerId and coupon_id=:couponId")
-	boolean wasPurchased(int customerId, int couponId) throws CouponSystemException;
+	@Query(nativeQuery = true, value = "select coupon_id from customer_coupon where customer_id=:customerId and coupon_id=:couponId")
+	List<Integer> wasPurchased(int customerId, int couponId) throws CouponSystemException;
 
 	/**
 	 * Takes a coupon id and returns the amount value
@@ -103,7 +132,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * @return The amount value
 	 * @throws CouponSystemException
 	 */
-	@Query(nativeQuery = true, value = "select amount from Coupon where id=:couponId")
+	@Query(nativeQuery = true, value = "select amount from coupon where id=:couponId")
 	int getAmount(int couponId) throws CouponSystemException;
 
 	/**

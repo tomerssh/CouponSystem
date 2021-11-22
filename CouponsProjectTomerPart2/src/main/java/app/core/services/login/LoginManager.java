@@ -25,16 +25,10 @@ public class LoginManager implements ApplicationContextAware {
 	}
 
 	private ApplicationContext ctx;
-	private AdminService adminService;
-	private CompanyService companyService;
-	private CustomerService customerService;
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.ctx = applicationContext;
-		this.adminService = ctx.getBean(AdminService.class);
-		this.companyService = ctx.getBean(CompanyService.class);
-		this.customerService = ctx.getBean(CustomerService.class);
 	}
 
 	/**
@@ -49,21 +43,27 @@ public class LoginManager implements ApplicationContextAware {
 	public ClientService login(String email, String password, ClientType clientType) throws CouponSystemException {
 		switch (clientType) {
 		case ADMINISTRATOR:
+			AdminService adminService = ctx.getBean(AdminService.class);
 			if (adminService.login(email, password)) {
-				return ctx.getBean(AdminService.class);
+				return adminService;
 			} else {
+				adminService = null;
 				throw new CouponServiceException("cannot login, invalid admin credentials");
 			}
 		case COMPANY:
+			CompanyService companyService = ctx.getBean(CompanyService.class);
 			if (companyService.login(email, password)) {
-				return ctx.getBean(CompanyService.class);
+				return companyService;
 			} else {
+				companyService = null;
 				throw new CouponServiceException("cannot login, invalid company credentials");
 			}
 		case CUSTOMER:
+			CustomerService customerService = ctx.getBean(CustomerService.class);
 			if (customerService.login(email, password)) {
-				return ctx.getBean(CustomerService.class);
+				return customerService;
 			} else {
+				customerService = null;
 				throw new CouponServiceException("cannot login, invalid customer credentials");
 			}
 		default:

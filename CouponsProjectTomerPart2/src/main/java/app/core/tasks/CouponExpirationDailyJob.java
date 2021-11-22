@@ -9,15 +9,15 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import app.core.exceptions.CouponSystemException;
-import app.core.services.CouponService;
+import app.core.services.CouponCleanupService;
 
 @Transactional
 @Service
 public class CouponExpirationDailyJob {
-	private CouponService couponService;
+	private CouponCleanupService couponService;
 
 	@Autowired
-	public CouponExpirationDailyJob(CouponService couponService) {
+	public CouponExpirationDailyJob(CouponCleanupService couponService) {
 		this.couponService = couponService;
 	}
 

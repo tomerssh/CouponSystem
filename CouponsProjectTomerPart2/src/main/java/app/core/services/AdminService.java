@@ -16,6 +16,7 @@ import app.core.entities.Customer;
 import app.core.exceptions.CouponServiceException;
 import app.core.exceptions.CouponSystemException;
 import app.core.repositories.CompanyRepository;
+import app.core.repositories.CouponRepository;
 import app.core.repositories.CustomerRepository;
 
 /**
@@ -32,14 +33,12 @@ public class AdminService extends ClientService {
 	private String adminPassword;
 
 	@Autowired
-	public AdminService(CompanyRepository companyRepo, CustomerRepository customerRepo) {
+	public AdminService(CompanyRepository companyRepo, CustomerRepository customerRepo, CouponRepository couponRepo) {
 		super.companyRepo = companyRepo;
 		super.customerRepo = customerRepo;
+		super.couponRepo = couponRepo;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean login(String email, String password) throws CouponSystemException {
 		String adminEmail = "admin@admin.com";
