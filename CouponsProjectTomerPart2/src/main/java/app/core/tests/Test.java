@@ -15,7 +15,6 @@ import app.core.entities.Customer;
 import app.core.exceptions.CouponSystemException;
 import app.core.services.AdminService;
 import app.core.services.CompanyService;
-import app.core.services.CouponCleanupService;
 import app.core.services.CustomerService;
 import app.core.services.login.LoginManager;
 import app.core.services.login.LoginManager.ClientType;
@@ -24,7 +23,6 @@ import app.core.services.login.LoginManager.ClientType;
 public class Test implements CommandLineRunner, ApplicationContextAware {
 	private ApplicationContext ctx;
 	private LoginManager lm;
-	private CouponCleanupService couponService;
 	private AdminService adminService;
 	private CompanyService companyService;
 	private CustomerService customerService;
@@ -44,7 +42,6 @@ public class Test implements CommandLineRunner, ApplicationContextAware {
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.ctx = applicationContext;
 		this.lm = ctx.getBean(LoginManager.class);
-		this.couponService = ctx.getBean(CouponCleanupService.class);
 	}
 
 	public void adminTests(LoginManager lm) throws CouponSystemException {

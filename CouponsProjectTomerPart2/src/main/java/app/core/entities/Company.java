@@ -1,13 +1,14 @@
 package app.core.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
@@ -30,9 +31,8 @@ public class Company {
 	private String name;
 	private String email;
 	private String password;
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "company_id")
-	private List<Coupon> coupons;
+	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Coupon> coupons = new ArrayList<Coupon>();
 
 	public Company(int id) {
 		super();

@@ -54,7 +54,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * @param customerId The customer id
 	 * @return A list of coupon id's
 	 */
-	@Query(nativeQuery = true, value = "select coupon_id from customer_coupon where customer_id=:customerId")
+	@Query(nativeQuery = true, value = "select id_coupon from customer_coupon where id_customer=:customerId")
 	List<Integer> findCouponIdsByCustomerId(int customerId);
 
 	/**
@@ -89,17 +89,17 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	@Query(value = "delete from Coupon where end_date<=:date")
 	int deleteAllExpired(LocalDate date);
 
-//	/**
-//	 * Add a coupon to customer.
-//	 * 
-//	 * @param customerId The id of the customer to add the coupon to.
-//	 * @param couponId   The id of the coupon that was purchased.
-//	 * @throws CouponSystemException
-//	 */
-//	@Transactional
-//	@Modifying
-//	@Query(nativeQuery = true, value = "insert into customer_coupon values(:customerId, :couponId)")
-//	void addCouponPurchase(int customerId, int couponId) throws CouponSystemException;
+	/**
+	 * Add a coupon to customer.
+	 * 
+	 * @param customerId The id of the customer to add the coupon to.
+	 * @param couponId   The id of the coupon that was purchased.
+	 * @throws CouponSystemException
+	 */
+	@Transactional
+	@Modifying
+	@Query(nativeQuery = true, value = "insert into customer_coupon values(:customerId, :couponId)")
+	void addCouponPurchase(int customerId, int couponId) throws CouponSystemException;
 
 	/**
 	 * Remove a coupon from customer.
@@ -111,7 +111,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 */
 	@Transactional
 	@Modifying
-	@Query(nativeQuery = true, value = "delete from customer_coupon where customer_id=:customerId and coupon_id=:couponId")
+	@Query(nativeQuery = true, value = "delete from customer_coupon where id_customer=:customerId and id_coupon=:couponId")
 	void deleteCouponPurchase(int customerId, int couponId) throws CouponSystemException;
 
 	/**
@@ -122,7 +122,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * @return A list of coupon id's
 	 * @throws CouponSystemException
 	 */
-	@Query(nativeQuery = true, value = "select coupon_id from customer_coupon where customer_id=:customerId and coupon_id=:couponId")
+	@Query(nativeQuery = true, value = "select id_coupon from customer_coupon where id_customer=:customerId and id_coupon=:couponId")
 	List<Integer> wasPurchased(int customerId, int couponId) throws CouponSystemException;
 
 	/**
@@ -144,7 +144,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 */
 	@Transactional
 	@Modifying
-	@Query(nativeQuery = true, value = "delete from customer_coupon where coupon_id=:couponId")
+	@Query(nativeQuery = true, value = "delete from customer_coupon where id_coupon=:couponId")
 	void deleteCouponHistory(int couponId) throws CouponSystemException;
 
 }

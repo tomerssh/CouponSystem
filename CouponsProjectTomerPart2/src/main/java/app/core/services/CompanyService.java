@@ -54,6 +54,8 @@ public class CompanyService extends ClientService {
 	 */
 	public int addCoupon(Coupon coupon) throws CouponSystemException {
 		coupon = couponRepo.save(coupon);
+		this.company.getCoupons().add(coupon);
+		coupon.setCompany(this.company);
 		return coupon.getId();
 	}
 
