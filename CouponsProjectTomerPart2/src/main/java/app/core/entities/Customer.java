@@ -3,12 +3,15 @@ package app.core.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,8 +25,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(of = "id")
-@Entity(name = "Customer")
-@Table(name = "customer")
+@Entity
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,9 +34,9 @@ public class Customer {
 	private String lastName;
 	private String email;
 	private String password;
-//	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.EAGER)
-//	@JoinTable(name = "customer_coupon", joinColumns = @JoinColumn(name = "id_customer", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "id_coupon", referencedColumnName = "id"))
-	@Transient
+	@ManyToMany(targetEntity = Coupon.class, cascade = { CascadeType.MERGE,
+			CascadeType.PERSIST }, fetch = FetchType.EAGER)
+	@JoinTable(name = "customer_coupon", joinColumns = @JoinColumn(name = "customer_id"), inverseJoinColumns = @JoinColumn(name = "coupon_id"))
 	private Set<Coupon> coupons = new HashSet<>();
 
 	public Customer(int id) {

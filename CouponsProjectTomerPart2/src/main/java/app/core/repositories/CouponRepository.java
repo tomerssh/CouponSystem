@@ -1,6 +1,5 @@
 package app.core.repositories;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -54,7 +53,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * @param customerId The customer id
 	 * @return A list of coupon id's
 	 */
-	@Query(nativeQuery = true, value = "select id_coupon from customer_coupon where id_customer=:customerId")
+	@Query(nativeQuery = true, value = "select coupon_id from customer_coupon where customer_id=:customerId")
 	List<Integer> findCouponIdsByCustomerId(int customerId);
 
 	/**
@@ -107,11 +106,10 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * @param customerId The id of the customer to remove the coupon from.
 	 * @param couponId   The id of the coupon to removed.
 	 * @throws CouponSystemException
-	 * @throws SQLException
 	 */
 	@Transactional
 	@Modifying
-	@Query(nativeQuery = true, value = "delete from customer_coupon where id_customer=:customerId and id_coupon=:couponId")
+	@Query(nativeQuery = true, value = "delete from customer_coupon where customer_id=:customerId and coupon_id=:couponId")
 	void deleteCouponPurchase(int customerId, int couponId) throws CouponSystemException;
 
 	/**
@@ -122,7 +120,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * @return A list of coupon id's
 	 * @throws CouponSystemException
 	 */
-	@Query(nativeQuery = true, value = "select id_coupon from customer_coupon where id_customer=:customerId and id_coupon=:couponId")
+	@Query(nativeQuery = true, value = "select coupon_id from customer_coupon where customer_id=:customerId and coupon_id=:couponId")
 	List<Integer> wasPurchased(int customerId, int couponId) throws CouponSystemException;
 
 	/**

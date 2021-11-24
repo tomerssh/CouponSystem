@@ -93,11 +93,11 @@ public class Test implements CommandLineRunner, ApplicationContextAware {
 		customerService = (CustomerService) lm.login("customer@mail", "1234", ClientType.CUSTOMER);
 		customerService.getCustomerDetails();
 		customerService.addCouponPurchase(new Coupon(2));
-		customerService.wasCouponPurchased(2);
+		System.out.println(customerService.wasCouponPurchased(2));
 		customerService.getCustomerCouponsById(2);
 		customerService.getCustomerCouponsByIdAndCategory(2, Category.CLOTHING);
 		customerService.getCustomerCouponsByIdAndMaxPrice(2, 20);
-		customerService.deleteCouponPurchase(2);
+//		customerService.deleteCouponPurchase(2);
 		System.out.println("====================");
 	}
 

@@ -47,10 +47,9 @@ public class CustomerService extends ClientService {
 	public void addCouponPurchase(Coupon coupon) throws CouponSystemException {
 		coupon = couponRepo.getById(coupon.getId());
 		if (coupon.getAmount() > 0) {
-			couponRepo.addCouponPurchase(this.customerId, coupon.getId());
 			coupon.setAmount(coupon.getAmount() - 1);
-			coupon.getCustomers().add(this.customer);
 			this.customer.getCoupons().add(coupon);
+			couponRepo.addCouponPurchase(this.customerId, coupon.getId());
 		} else {
 			throw new CouponServiceException("no coupons left");
 		}

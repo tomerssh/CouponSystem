@@ -1,8 +1,6 @@
 package app.core.entities;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,8 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,8 +26,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString
-@Entity(name = "Coupon")
-@Table(name = "coupon")
+@Entity
 public class Coupon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,9 +34,6 @@ public class Coupon {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "company_id")
 	private Company company;
-//	@ManyToMany(mappedBy = "coupons", fetch = FetchType.EAGER)
-	@Transient
-	private Set<Customer> customers = new HashSet<>();
 	@Enumerated(EnumType.STRING)
 	private Category category;
 	private String title;
