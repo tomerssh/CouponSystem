@@ -80,6 +80,7 @@ public class CompanyService extends ClientService {
 		Optional<Coupon> opt = couponRepo.findById(couponId);
 		if (opt.isPresent()) {
 			couponRepo.delete(opt.get());
+			this.company.getCoupons().remove(opt.get());
 		} else {
 			throw new CouponServiceException("coupon with id " + couponId + " not found");
 		}

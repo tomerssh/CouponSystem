@@ -56,6 +56,7 @@ public class CustomerService extends ClientService {
 	}
 
 	public void deleteCouponPurchase(int couponId) throws CouponSystemException {
+		this.customer.getCoupons().remove(couponRepo.getById(couponId));
 		couponRepo.deleteCouponPurchase(this.customerId, couponId);
 	}
 
