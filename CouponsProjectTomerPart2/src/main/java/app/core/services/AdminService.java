@@ -47,7 +47,7 @@ public class AdminService extends ClientService {
 		if (adminEmail.equals(email) && adminPassword.equals(password)) {
 			return true;
 		} else {
-			throw new CouponServiceException("invalid username or password");
+			return false;
 		}
 	}
 
@@ -96,13 +96,22 @@ public class AdminService extends ClientService {
 	public void deleteCompany(int companyId) throws CouponSystemException {
 		Optional<Company> opt = companyRepo.findById(companyId);
 		if (opt.isPresent()) {
+			deleteCompanyCoupons(companyId);
+			companyRepo.delete(opt.get());
+		} else {
+			throw new CouponServiceException("company with id " + companyId + " not found");
+		}
+	}
+
+	public void deleteCompanyCoupons(int companyId) throws CouponSystemException {
+		Optional<Company> opt = companyRepo.findById(companyId);
+		if (opt.isPresent()) {
 			List<Coupon> companyCoupons = couponRepo.findAllByCompanyId(companyId);
 			for (Coupon coupon : companyCoupons) {
 				couponRepo.deleteCouponHistory(coupon.getId());
 			}
 			couponRepo.deleteAllInBatch(companyCoupons);
 			companyCoupons = null;
-			companyRepo.delete(opt.get());
 		} else {
 			throw new CouponServiceException("company with id " + companyId + " not found");
 		}
@@ -179,7 +188,19 @@ public class AdminService extends ClientService {
 	public void deleteCustomer(int customerId) throws CouponSystemException {
 		Optional<Customer> opt = customerRepo.findById(customerId);
 		if (opt.isPresent()) {
+			deleteCustomerCoupons(customerId);
 			customerRepo.delete(opt.get());
+		} else {
+			throw new CouponServiceException("customer with id " + customerId + " not found");
+		}
+	}
+
+	public void deleteCustomerCoupons(int customerId) throws CouponSystemException {
+		Optional<Customer> opt = customerRepo.findById(customerId);
+		if (opt.isPresent()) {
+			List<Integer> customerCouponIds = couponRepo.findCouponIdsByCustomerId(customerId);
+			couponRepo.deleteAllByIdInBatch(customerCouponIds);
+			customerCouponIds = null;
 		} else {
 			throw new CouponServiceException("customer with id " + customerId + " not found");
 		}

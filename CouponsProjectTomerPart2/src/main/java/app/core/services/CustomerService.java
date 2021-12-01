@@ -1,6 +1,7 @@
 package app.core.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -38,10 +39,14 @@ public class CustomerService extends ClientService {
 
 	@Override
 	public boolean login(String email, String password) throws CouponSystemException {
-		this.customer = customerRepo.findByEmailAndPassword(email, password)
-				.orElseThrow(() -> new CouponServiceException("invalid username or password"));
-		this.customerId = customer.getId();
-		return true;
+		Optional<Customer> opt = customerRepo.findByEmailAndPassword(email, password);
+		if (opt.isPresent()) {
+			this.customerId = opt.get().getId();
+			this.customer = opt.get();
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public void addCouponPurchase(Coupon coupon) throws CouponSystemException {

@@ -39,10 +39,14 @@ public class CompanyService extends ClientService {
 
 	@Override
 	public boolean login(String email, String password) throws CouponSystemException {
-		this.company = companyRepo.findByEmailAndPassword(email, password)
-				.orElseThrow(() -> new CouponServiceException("invalid username or password"));
-		this.companyId = company.getId();
-		return true;
+		Optional<Company> opt = companyRepo.findByEmailAndPassword(email, password);
+		if (opt.isPresent()) {
+			this.companyId = opt.get().getId();
+			this.company = opt.get();
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
