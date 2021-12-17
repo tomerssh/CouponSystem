@@ -2,10 +2,9 @@ package app.core.services;
 
 import java.time.LocalDate;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import app.core.exceptions.CouponSystemException;
 import app.core.repositories.CouponRepository;
@@ -14,7 +13,7 @@ import app.core.repositories.CouponRepository;
  * Service for cleaning expired coupons
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = CouponSystemException.class)
 public class CouponCleanupService {
 	private CouponRepository couponRepo;
 

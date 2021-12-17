@@ -1,11 +1,9 @@
 package app.core.entities;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +21,7 @@ import lombok.ToString;
  */
 @Data
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "coupons")
 @EqualsAndHashCode(of = "id")
 @Entity
 public class Customer {
@@ -34,10 +32,9 @@ public class Customer {
 	private String lastName;
 	private String email;
 	private String password;
-	@ManyToMany(targetEntity = Coupon.class, cascade = { CascadeType.MERGE,
-			CascadeType.PERSIST }, fetch = FetchType.EAGER)
+	@ManyToMany(targetEntity = Coupon.class, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	@JoinTable(name = "customer_coupon", joinColumns = @JoinColumn(name = "customer_id"), inverseJoinColumns = @JoinColumn(name = "coupon_id"))
-	private Set<Coupon> coupons = new HashSet<>();
+	private List<Coupon> coupons;
 
 	public Customer(int id) {
 		super();

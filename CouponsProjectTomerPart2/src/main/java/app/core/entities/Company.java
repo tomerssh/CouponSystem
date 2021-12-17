@@ -1,11 +1,9 @@
 package app.core.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,8 +29,8 @@ public class Company {
 	private String name;
 	private String email;
 	private String password;
-	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Coupon> coupons = new ArrayList<Coupon>();
+	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+	private List<Coupon> coupons;
 
 	public Company(int id) {
 		super();

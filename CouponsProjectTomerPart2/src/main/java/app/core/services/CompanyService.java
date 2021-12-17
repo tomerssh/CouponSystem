@@ -3,11 +3,10 @@ package app.core.services;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import app.core.entities.Company;
 import app.core.entities.Coupon;
@@ -23,7 +22,7 @@ import app.core.repositories.CouponRepository;
  * @see ClientService
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = CouponServiceException.class)
 @Scope("prototype")
 public class CompanyService extends ClientService {
 	// the id the the logged in company

@@ -3,14 +3,13 @@ package app.core.repositories;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import app.core.entities.Coupon;
 import app.core.entities.Coupon.Category;
@@ -86,7 +85,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	@Modifying
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@Query(value = "delete from Coupon where end_date<=:date")
-	int deleteAllExpired(LocalDate date);
+	int deleteAllExpired(LocalDate date) throws CouponSystemException;
 
 	/**
 	 * Add a coupon to customer.

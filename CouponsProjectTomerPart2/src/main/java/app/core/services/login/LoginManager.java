@@ -1,11 +1,10 @@
 package app.core.services.login;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import app.core.exceptions.CouponServiceException;
 import app.core.exceptions.CouponSystemException;
@@ -18,7 +17,7 @@ import app.core.services.CustomerService;
  * Singleton - Login system
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = CouponServiceException.class)
 public class LoginManager implements ApplicationContextAware {
 	public enum ClientType {
 		ADMINISTRATOR, COMPANY, CUSTOMER
