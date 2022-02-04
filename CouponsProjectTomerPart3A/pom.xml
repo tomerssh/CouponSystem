@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.tomer</groupId>
-	<artifactId>CouponsProjectTomerPart2</artifactId>
+	<artifactId>CouponsProjectTomerPart3A</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>CouponsProjectTomerPart2</name>
+	<name>CouponsProjectTomerPart3A</name>
 	<description>CouponSystem Backend - Spring Implementation</description>
 	<properties>
 		<java.version>11</java.version>
