@@ -33,7 +33,6 @@ public class AdminController extends ClientController {
 	}
 
 	@Override
-//	@RequestMapping("/login")
 	public boolean login(String email, String password) {
 		try {
 			return this.service.login(email, password);
