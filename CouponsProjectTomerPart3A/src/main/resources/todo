@@ -2,8 +2,4 @@ maybe unnecessary when we implement login tokens:
 
 make sure admin has to login to use controller and service methods
 some methods in company service you don't have to login to use
-
-------------------------------------------------------------------------------------------------------------------
-todo:
-
-customer controller
+can't use controllers without logging in

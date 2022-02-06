@@ -53,7 +53,7 @@ public class CustomerService extends ClientService {
 		if (coupon.getAmount() > 0) {
 			coupon.setAmount(coupon.getAmount() - 1);
 			this.customer.getCoupons().add(coupon);
-			couponRepo.addCouponPurchase(this.customerId, coupon.getId());
+//			couponRepo.addCouponPurchase(this.customerId, coupon.getId());
 		} else {
 			throw new CouponServiceException("no coupons left");
 		}
@@ -80,9 +80,13 @@ public class CustomerService extends ClientService {
 	 * @return A list of all coupons
 	 * @throws CouponSystemException If a database access error occurred
 	 */
-	public List<Coupon> getCustomerCouponsById(int customerId) throws CouponSystemException {
+	private List<Coupon> getCustomerCouponsById(int customerId) throws CouponSystemException {
 		List<Integer> ids = couponRepo.findCouponIdsByCustomerId(this.customerId);
 		return couponRepo.findAllById(ids);
+	}
+
+	public List<Coupon> getCustomerCoupons() throws CouponSystemException {
+		return getCustomerCouponsById(this.customerId);
 	}
 
 	/**
@@ -93,9 +97,13 @@ public class CustomerService extends ClientService {
 	 * @return A list of all coupons of given category
 	 * @throws CouponSystemException If a database access error occurred
 	 */
-	public List<Coupon> getCustomerCouponsByIdAndCategory(int customerId, Category category)
+	private List<Coupon> getCustomerCouponsByIdAndCategory(int customerId, Category category)
 			throws CouponSystemException {
 		return couponRepo.findAllByCompanyIdAndCategory(this.customerId, category);
+	}
+
+	public List<Coupon> getCustomerCouponsByCategory(Category category) throws CouponSystemException {
+		return getCustomerCouponsByIdAndCategory(this.customerId, category);
 	}
 
 	/**
@@ -106,9 +114,13 @@ public class CustomerService extends ClientService {
 	 * @return A list of all coupons with given max price
 	 * @throws CouponSystemException If a database access error occurred
 	 */
-	public List<Coupon> getCustomerCouponsByIdAndMaxPrice(int customerId, double maxPrice)
+	private List<Coupon> getCustomerCouponsByIdAndMaxPrice(int customerId, double maxPrice)
 			throws CouponSystemException {
 		return couponRepo.findAllByCompanyIdAndMaxPrice(this.customerId, maxPrice);
+	}
+
+	public List<Coupon> getCustomerCouponsByMaxPrice(double maxPrice) throws CouponSystemException {
+		return getCustomerCouponsByIdAndMaxPrice(this.customerId, maxPrice);
 	}
 
 	/**

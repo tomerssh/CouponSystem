@@ -63,20 +63,20 @@ public class CustomerTest implements CommandLineRunner, ApplicationContextAware 
 	}
 
 	private void customerGetCouponsByIdAndPrice() throws CouponSystemException {
-		System.out.println("--- getCustomerCouponsByIdAndMaxPrice for coupon id 2 and max price 20");
-		System.out.println(customerService.getCustomerCouponsByIdAndMaxPrice(2, 20));
+		System.out.println("--- getCustomerCouponsByMaxPrice for max price 20");
+		System.out.println(customerService.getCustomerCouponsByMaxPrice(20));
 		System.out.println();
 	}
 
 	private void customerGetCoupnosByIdAndCategory() throws CouponSystemException {
-		System.out.println("--- getCustomerCouponsByIdAndCategory for coupon id 2 and category clothing");
-		System.out.println(customerService.getCustomerCouponsByIdAndCategory(2, Category.CLOTHING));
+		System.out.println("--- getCustomerCouponsByCategory for category clothing");
+		System.out.println(customerService.getCustomerCouponsByCategory(Category.CLOTHING));
 		System.out.println();
 	}
 
 	private void customerGetCouponsById() throws CouponSystemException {
-		System.out.println("--- getCustomerCouponsById for coupon id 2");
-		System.out.println(customerService.getCustomerCouponsById(2));
+		System.out.println("--- getCustomerCoupons");
+		System.out.println(customerService.getCustomerCoupons());
 		System.out.println();
 	}
 
