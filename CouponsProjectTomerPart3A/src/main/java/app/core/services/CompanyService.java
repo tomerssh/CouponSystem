@@ -140,7 +140,7 @@ public class CompanyService extends ClientService {
 	 * @throws CouponSystemException If a database access error occurred
 	 */
 	public List<Coupon> getCompanyCoupons(double maxPrice) throws CouponSystemException {
-		return couponRepo.findAllByCompanyIdAndMaxPrice(this.companyId, maxPrice);
+		return couponRepo.findAllByCompanyIdAndPrice(this.companyId, maxPrice);
 	}
 
 	/**

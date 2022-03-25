@@ -116,7 +116,7 @@ public class CustomerService extends ClientService {
 	 */
 	private List<Coupon> getCustomerCouponsByIdAndMaxPrice(int customerId, double maxPrice)
 			throws CouponSystemException {
-		return couponRepo.findAllByCompanyIdAndMaxPrice(this.customerId, maxPrice);
+		return couponRepo.findAllByCompanyIdAndPrice(this.customerId, maxPrice);
 	}
 
 	public List<Coupon> getCustomerCouponsByMaxPrice(double maxPrice) throws CouponSystemException {

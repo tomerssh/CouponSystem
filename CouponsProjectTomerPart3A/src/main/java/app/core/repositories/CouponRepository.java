@@ -23,7 +23,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * @param companyId
 	 * @return A list of all coupons by company id
 	 */
-	@Query(value = "from Coupon where company_id=:companyId")
+//	@Query(value = "from Coupon where company_id=:companyId")
 	List<Coupon> findAllByCompanyId(int companyId);
 
 	/**
@@ -33,7 +33,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * @param category
 	 * @return A list of all coupons by company id and category
 	 */
-	@Query(value = "from Coupon where company_id=:companyId AND category=:category")
+//	@Query(value = "from Coupon where company_id=:companyId AND category=:category")
 	List<Coupon> findAllByCompanyIdAndCategory(int companyId, Category category);
 
 	/**
@@ -43,8 +43,8 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * @param maxPrice
 	 * @return A list of all coupons by company id and max price
 	 */
-	@Query(value = "from Coupon where company_id=:companyId AND price=:maxPrice")
-	List<Coupon> findAllByCompanyIdAndMaxPrice(int companyId, double maxPrice);
+//	@Query(value = "from Coupon where company_id=:companyId AND price=:maxPrice")
+	List<Coupon> findAllByCompanyIdAndPrice(int companyId, double maxPrice);
 
 	/**
 	 * Get a list of all coupon id's this customer owns
@@ -62,8 +62,8 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * @param category   The coupon category
 	 * @return A list of coupons
 	 */
-	@Query(value = "from Coupon where id=:couponId AND category=:category")
-	List<Coupon> findCouponsByIdAndCategory(int couponId, Category category);
+//	@Query(value = "from Coupon where id=:couponId AND category=:category")
+	List<Coupon> findAllByIdAndCategory(int couponId, Category category);
 
 	/**
 	 * Get a list of all coupons this customer owns with this max price
@@ -72,8 +72,8 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * @param maxPrice   The maximum price
 	 * @return A list of coupons
 	 */
-	@Query(value = "from Coupon where id=:couponId AND price=:maxPrice")
-	List<Coupon> findCouponsByIdAndMaxPrice(int couponId, double maxPrice);
+//	@Query(value = "from Coupon where id=:couponId AND price=:maxPrice")
+	List<Coupon> findAllByIdAndPrice(int couponId, double maxPrice);
 
 	/**
 	 * Removes all expired coupons
@@ -84,8 +84,8 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	@Transactional
 	@Modifying
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@Query(value = "delete from Coupon where end_date<=:date")
-	int deleteAllExpired(LocalDate date) throws CouponSystemException;
+//	@Query(value = "delete from Coupon where end_date<=:date")
+	int deleteAllByEndDateBefore(LocalDate date) throws CouponSystemException;
 
 	/**
 	 * Add a coupon to customer.
@@ -129,7 +129,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * @return The amount value
 	 * @throws CouponSystemException
 	 */
-	@Query(nativeQuery = true, value = "select amount from coupon where id=:couponId")
+	@Query(value = "select amount from Coupon where id=:couponId")
 	int getAmount(int couponId) throws CouponSystemException;
 
 	/**

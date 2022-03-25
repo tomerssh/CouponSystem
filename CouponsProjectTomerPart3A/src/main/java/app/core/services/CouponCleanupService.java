@@ -29,7 +29,7 @@ public class CouponCleanupService {
 	 * @return The count of deleted coupons
 	 */
 	public int cleanExpiredCoupons() throws CouponSystemException {
-		return couponRepo.deleteAllExpired(LocalDate.now());
+		return couponRepo.deleteAllByEndDateBefore(LocalDate.now());
 	}
 
 }
