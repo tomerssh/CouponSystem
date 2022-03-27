@@ -98,11 +98,7 @@ public class CompanyController extends ClientController {
 
 	@GetMapping
 	public Company getCompanyDetails() {
-		try {
-			return this.service.getCompanyDetails();
-		} catch (CouponSystemException e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
+		return this.service.getCompanyDetails();
 	}
 
 }

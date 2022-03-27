@@ -147,9 +147,8 @@ public class CompanyService extends ClientService {
 	 * Get company details
 	 * 
 	 * @return A company object containing the company details
-	 * @throws CouponSystemException If a database access error occurred
 	 */
-	public Company getCompanyDetails() throws CouponSystemException {
+	public Company getCompanyDetails() {
 		return this.company;
 	}
 

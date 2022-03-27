@@ -78,11 +78,7 @@ public class CustomerController extends ClientController {
 
 	@GetMapping
 	public Customer getCustomerDetails() {
-		try {
-			return this.service.getCustomerDetails();
-		} catch (CouponSystemException e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		}
+		return this.service.getCustomerDetails();
 	}
 
 }
