@@ -127,8 +127,9 @@ public class CustomerService extends ClientService {
 	 * Get the logged in customer's details
 	 * 
 	 * @return The logged in customer
+	 * @throws CouponSystemException If a database access error occurred
 	 */
-	public Customer getCustomerDetails() {
+	public Customer getCustomerDetails() throws CouponSystemException {
 		return this.customer;
 	}
 

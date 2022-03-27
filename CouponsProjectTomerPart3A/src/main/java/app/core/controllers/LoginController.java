@@ -45,10 +45,18 @@ public class LoginController {
 	private int extractId(ClientService service) {
 		if (service instanceof CompanyService) {
 			CompanyService companyService = (CompanyService) service;
-			return companyService.getCompanyDetails().getId();
+			try {
+				return companyService.getCompanyDetails().getId();
+			} catch (CouponSystemException e) {
+				throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+			}
 		} else if (service instanceof CustomerService) {
 			CustomerService customerService = (CustomerService) service;
-			return customerService.getCustomerDetails().getId();
+			try {
+				return customerService.getCustomerDetails().getId();
+			} catch (CouponSystemException e) {
+				throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+			}
 		}
 		// in case service is an instance of AdminService return 0, if the login
 		// credentials are wrong or the client type is null
