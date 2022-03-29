@@ -40,8 +40,8 @@ public class LoginManager implements ApplicationContextAware {
 	 * @throws CouponSystemException If the client does not exist
 	 */
 	public ClientService login(String email, String password, ClientType clientType) throws CouponSystemException {
-		if (email == null || password == null || clientType == null) {
-			throw new CouponServiceException("cannot login, one or more empty credentials");
+		if (clientType == null) {
+			throw new CouponServiceException("cannot login, invalid ClientType");
 		}
 		switch (clientType) {
 		case ADMINISTRATOR:
@@ -69,7 +69,8 @@ public class LoginManager implements ApplicationContextAware {
 				throw new CouponServiceException("cannot login, invalid customer credentials");
 			}
 		default:
-			throw new CouponServiceException("cannot login, invalid ClientType");
+			throw new CouponServiceException("login failed");
 		}
 	}
+
 }
