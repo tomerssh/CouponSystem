@@ -22,7 +22,7 @@ import app.core.repositories.CouponRepository;
  * @see ClientService
  */
 @Service
-@Transactional(rollbackFor = CouponServiceException.class)
+@Transactional
 @Scope("prototype")
 public class CompanyService extends ClientService {
 	// the id the the logged in company

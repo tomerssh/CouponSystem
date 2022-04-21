@@ -13,7 +13,7 @@ import app.core.repositories.CouponRepository;
  * Service for cleaning expired coupons
  */
 @Service
-@Transactional(rollbackFor = CouponSystemException.class)
+@Transactional
 public class CouponCleanupService {
 	private CouponRepository couponRepo;
 

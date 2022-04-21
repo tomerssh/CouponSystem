@@ -3,7 +3,7 @@ package app.core.exceptions;
 /**
  * System wide exception.
  */
-public class CouponSystemException extends Exception {
+public class CouponSystemException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 

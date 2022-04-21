@@ -17,7 +17,7 @@ import app.core.services.CustomerService;
  * Singleton - Login system
  */
 @Service
-@Transactional(rollbackFor = CouponServiceException.class)
+@Transactional
 public class LoginManager implements ApplicationContextAware {
 	public enum ClientType {
 		ADMINISTRATOR, COMPANY, CUSTOMER

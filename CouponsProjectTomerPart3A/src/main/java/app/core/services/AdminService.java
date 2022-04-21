@@ -24,7 +24,7 @@ import app.core.repositories.CustomerRepository;
  * @see ClientService
  */
 @Service
-@Transactional(rollbackFor = CouponServiceException.class)
+@Transactional
 @Scope("prototype")
 public class AdminService extends ClientService {
 
