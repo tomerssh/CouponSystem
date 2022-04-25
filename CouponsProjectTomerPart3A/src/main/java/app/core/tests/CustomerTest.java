@@ -7,7 +7,6 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import app.core.entities.Coupon;
 import app.core.entities.Coupon.Category;
 import app.core.exceptions.CouponSystemException;
 import app.core.services.CustomerService;
@@ -48,7 +47,7 @@ public class CustomerTest implements CommandLineRunner, ApplicationContextAware 
 
 		customerGetCouponsById();
 
-		customerGetCoupnosByIdAndCategory();
+		customerGetCouponsByIdAndCategory();
 
 		customerGetCouponsByIdAndPrice();
 
@@ -68,7 +67,7 @@ public class CustomerTest implements CommandLineRunner, ApplicationContextAware 
 		System.out.println();
 	}
 
-	private void customerGetCoupnosByIdAndCategory() throws CouponSystemException {
+	private void customerGetCouponsByIdAndCategory() throws CouponSystemException {
 		System.out.println("--- getCustomerCouponsByCategory for category clothing");
 		System.out.println(customerService.getCustomerCouponsByCategory(Category.CLOTHING));
 		System.out.println();
@@ -88,7 +87,7 @@ public class CustomerTest implements CommandLineRunner, ApplicationContextAware 
 
 	private void customerAddCouponPurchase() throws CouponSystemException {
 		System.out.println("--- addCouponPurchase for coupon with id 2");
-		customerService.addCouponPurchase(new Coupon(2));
+		customerService.addCouponPurchase(2);
 		System.out.println("added coupon purchase");
 		System.out.println();
 	}

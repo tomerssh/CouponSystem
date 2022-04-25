@@ -35,7 +35,7 @@ public class Customer {
 	private String email;
 	private String password;
 	@ManyToMany(targetEntity = Coupon.class, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
-	@JoinTable(name = "customer_coupon", joinColumns = @JoinColumn(name = "customer_id"), inverseJoinColumns = @JoinColumn(name = "coupon_id"))
+	@JoinTable(name = "customer_coupon", joinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "coupon_id", referencedColumnName = "id"))
 	@JsonIgnore
 	private List<Coupon> coupons;
 

@@ -48,29 +48,41 @@ public class CustomerService extends ClientService {
 		}
 	}
 
-	public void addCouponPurchase(Coupon coupon) throws CouponSystemException {
-		coupon = couponRepo.getById(coupon.getId());
+//	public void addCouponPurchase(Coupon coupon) throws CouponSystemException {
+//		coupon = couponRepo.getById(coupon.getId());
+//		if (coupon.getAmount() > 0) {
+//			coupon.setAmount(coupon.getAmount() - 1);
+//			this.customer.getCoupons().add(coupon);
+//			customerRepo.save(customer);
+//		} else {
+//			throw new CouponServiceException("no coupons left");
+//		}
+//	}
+	public void addCouponPurchase(int couponId) throws CouponSystemException {
+		Coupon coupon = couponRepo.getById(couponId);
 		if (coupon.getAmount() > 0) {
 			coupon.setAmount(coupon.getAmount() - 1);
 			this.customer.getCoupons().add(coupon);
-//			couponRepo.addCouponPurchase(this.customerId, coupon.getId());
+			couponRepo.saveAndFlush(coupon);
+			customerRepo.saveAndFlush(this.customer);
 		} else {
 			throw new CouponServiceException("no coupons left");
 		}
 	}
 
+	// doesn't work without native query in couponRepo
 	public void deleteCouponPurchase(int couponId) throws CouponSystemException {
-		this.customer.getCoupons().remove(couponRepo.getById(couponId));
+		Coupon coupon = couponRepo.getById(couponId);
+		coupon.setAmount(coupon.getAmount() + 1);
 		couponRepo.deleteCouponPurchase(this.customerId, couponId);
+		this.customer.getCoupons().remove(coupon);
+		couponRepo.saveAndFlush(coupon);
+		customerRepo.saveAndFlush(this.customer);
 	}
 
 	public boolean wasCouponPurchased(int couponId) throws CouponSystemException {
 		List<Integer> couponIdList = couponRepo.wasPurchased(this.customerId, couponId);
-		if (couponIdList.isEmpty()) {
-			return false;
-		} else {
-			return true;
-		}
+		return !couponIdList.isEmpty();
 	}
 
 	/**

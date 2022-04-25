@@ -41,9 +41,9 @@ public class CustomerController extends ClientController {
 	}
 
 	@PostMapping
-	public void purchaseCoupon(@RequestBody Coupon coupon) {
+	public void purchaseCoupon(@RequestBody Integer couponId) {
 		try {
-			this.service.addCouponPurchase(coupon);
+			this.service.addCouponPurchase(couponId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
