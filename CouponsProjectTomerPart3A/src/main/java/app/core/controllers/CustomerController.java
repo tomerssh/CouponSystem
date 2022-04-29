@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -41,7 +42,7 @@ public class CustomerController extends ClientController {
 	}
 
 	@PostMapping
-	public void purchaseCoupon(@RequestBody Integer couponId) {
+	public void purchaseCoupon(@RequestBody Integer couponId, @RequestHeader String token) {
 		try {
 			this.service.addCouponPurchase(couponId);
 		} catch (CouponSystemException e) {
@@ -50,7 +51,7 @@ public class CustomerController extends ClientController {
 	}
 
 	@GetMapping("/all")
-	public List<Coupon> getCustomerCoupons() {
+	public List<Coupon> getCustomerCoupons(@RequestHeader String token) {
 		try {
 			return this.service.getCustomerCoupons();
 		} catch (CouponSystemException e) {
@@ -59,7 +60,7 @@ public class CustomerController extends ClientController {
 	}
 
 	@GetMapping("/category/{category}")
-	public List<Coupon> getCustomerCouponsByCategory(@PathVariable Category category) {
+	public List<Coupon> getCustomerCouponsByCategory(@PathVariable Category category, @RequestHeader String token) {
 		try {
 			return this.service.getCustomerCouponsByCategory(category);
 		} catch (CouponSystemException e) {
@@ -68,7 +69,7 @@ public class CustomerController extends ClientController {
 	}
 
 	@GetMapping("/price/{maxPrice}")
-	public List<Coupon> getCustomerCouponsByMaxPrice(@PathVariable double maxPrice) {
+	public List<Coupon> getCustomerCouponsByMaxPrice(@PathVariable double maxPrice, @RequestHeader String token) {
 		try {
 			return this.service.getCustomerCouponsByMaxPrice(maxPrice);
 		} catch (CouponSystemException e) {
@@ -77,7 +78,7 @@ public class CustomerController extends ClientController {
 	}
 
 	@GetMapping
-	public Customer getCustomerDetails() {
+	public Customer getCustomerDetails(@RequestHeader String token) {
 		try {
 			return this.service.getCustomerDetails();
 		} catch (CouponSystemException e) {

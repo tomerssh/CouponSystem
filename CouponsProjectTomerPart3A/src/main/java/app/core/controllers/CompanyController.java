@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -43,7 +44,7 @@ public class CompanyController extends ClientController {
 	}
 
 	@PostMapping
-	public void addCoupon(@RequestBody Coupon coupon) {
+	public void addCoupon(@RequestBody Coupon coupon, @RequestHeader String token) {
 		try {
 			this.service.addCoupon(coupon);
 		} catch (CouponSystemException e) {
@@ -52,7 +53,7 @@ public class CompanyController extends ClientController {
 	}
 
 	@PutMapping
-	public void updateCoupon(@RequestBody Coupon coupon) {
+	public void updateCoupon(@RequestBody Coupon coupon, @RequestHeader String token) {
 		try {
 			this.service.updateCoupon(coupon);
 		} catch (CouponSystemException e) {
@@ -61,7 +62,7 @@ public class CompanyController extends ClientController {
 	}
 
 	@DeleteMapping("/{couponId}")
-	public void deleteCoupon(@PathVariable int couponId) {
+	public void deleteCoupon(@PathVariable int couponId, @RequestHeader String token) {
 		try {
 			this.service.deleteCoupon(couponId);
 		} catch (CouponSystemException e) {
@@ -70,7 +71,7 @@ public class CompanyController extends ClientController {
 	}
 
 	@GetMapping("/all")
-	public List<Coupon> getCompanyCoupons() {
+	public List<Coupon> getCompanyCoupons(@RequestHeader String token) {
 		try {
 			return this.service.getCompanyCoupons();
 		} catch (CouponSystemException e) {
@@ -79,7 +80,7 @@ public class CompanyController extends ClientController {
 	}
 
 	@GetMapping("/category/{category}")
-	public List<Coupon> getCompanyCoupons(@PathVariable Category category) {
+	public List<Coupon> getCompanyCoupons(@PathVariable Category category, @RequestHeader String token) {
 		try {
 			return this.service.getCompanyCoupons(category);
 		} catch (CouponSystemException e) {
@@ -88,7 +89,7 @@ public class CompanyController extends ClientController {
 	}
 
 	@GetMapping("/price/{maxPrice}")
-	public List<Coupon> getCompanyCoupons(@PathVariable double maxPrice) {
+	public List<Coupon> getCompanyCoupons(@PathVariable double maxPrice, @RequestHeader String token) {
 		try {
 			return this.service.getCompanyCoupons(maxPrice);
 		} catch (CouponSystemException e) {
@@ -97,7 +98,7 @@ public class CompanyController extends ClientController {
 	}
 
 	@GetMapping
-	public Company getCompanyDetails() {
+	public Company getCompanyDetails(@RequestHeader String token) {
 		try {
 			return this.service.getCompanyDetails();
 		} catch (CouponSystemException e) {
