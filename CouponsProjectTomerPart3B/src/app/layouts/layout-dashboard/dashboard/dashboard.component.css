@@ -1,0 +1,16 @@
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+  background-color: #e6e6e6;
+}
+
+p {
+  font-size: large;
+  margin: 10px;
+}
