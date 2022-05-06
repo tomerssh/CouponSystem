@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
       next: (token) => {
         console.log(token);
         sessionStorage.setItem('token', token.toString());
-        this.router.navigate(['/admin', '/company', '/customer']);
+        this.router.navigate([this.navigate(clientType)]);
       },
       error: (e) => {
         console.log(e.error);
@@ -32,5 +32,18 @@ export class LoginComponent implements OnInit {
         obs.unsubscribe();
       },
     });
+  }
+
+  private navigate(clientType: string) {
+    let route = '/admin';
+    switch (clientType) {
+      case 'COMPANY':
+        route = '/company';
+        break;
+      case 'CUSTOMER':
+        route = '/customer';
+        break;
+    }
+    return route;
   }
 }

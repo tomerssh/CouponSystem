@@ -10,7 +10,7 @@ export class LoginService {
   public login(email: string, password: string, clientType: string) {
     let url = 'http://localhost:8080/login';
     let body =
-      'email=' + email + '&password=' + password + '&clientType=' + clientType;
+      'clientType=' + clientType + '&email=' + email + '&password=' + password;
     let httpHeaders = new HttpHeaders().set(
       'Content-Type',
       'application/x-www-form-urlencoded'
