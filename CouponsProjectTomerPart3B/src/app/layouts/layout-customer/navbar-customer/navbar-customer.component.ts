@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-navbar-customer',
   templateUrl: './navbar-customer.component.html',
-  styleUrls: ['./navbar-customer.component.css']
+  styleUrls: ['./navbar-customer.component.css'],
 })
 export class NavbarCustomerComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  public logout() {
+    sessionStorage.removeItem('token');
   }
-
 }

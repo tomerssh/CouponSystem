@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { LayoutAdminComponent } from './layouts/layout-admin/layout-admin.component';
 import { LayoutCompanyComponent } from './layouts/layout-company/layout-company.component';
 import { LayoutCustomerComponent } from './layouts/layout-customer/layout-customer.component';
@@ -11,9 +12,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: LayoutDashboardComponent },
   { path: 'login', component: LayoutLoginComponent },
-  { path: 'admin', component: LayoutAdminComponent },
-  { path: 'company', component: LayoutCompanyComponent },
-  { path: 'customer', component: LayoutCustomerComponent },
+  { path: 'admin', component: LayoutAdminComponent, canActivate: [AuthGuard] },
+  { path: 'company', component: LayoutCompanyComponent, canActivate: [AuthGuard] },
+  { path: 'customer', component: LayoutCustomerComponent, canActivate: [AuthGuard] },
   { path: '**', component: LayoutPage404Component },
 ];
 
