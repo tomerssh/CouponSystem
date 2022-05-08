@@ -5,3 +5,7 @@ a {
   padding: 14px 16px;
   text-decoration: none;
 }
+
+a:hover {
+  text-decoration: underline;
+}

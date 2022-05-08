@@ -1,0 +1,85 @@
+.head {
+  display: flex;
+  justify-content: center;
+  background-color: #e6e6e6;
+  flex: 0 1 auto;
+}
+
+.main {
+  display: flex;
+}
+
+.sidenav {
+  height: 85vh;
+  width: 10vw;
+}
+
+mat-sidenav-container {
+  height: 85vh;
+  width: 10vw;
+}
+
+mat-sidenav {
+  top: 50px;
+}
+
+mat-sidenav-content mat-toolbar {
+  position: relative;
+  top: 10px;
+}
+
+mat-toolbar span {
+  padding: 5px;
+  font-size: larger;
+  font-weight: 500;
+}
+
+mat-toolbar span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+mat-nav-list a {
+  font-size: larger;
+  font-weight: 500;
+  display: inline-block;
+  word-break: break-all;
+}
+
+mat-nav-list a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  padding: 15px;
+  display: flex;
+  flex: 1 1 auto;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    width: 75vw;
+  }
+
+  .sidenav {
+    width: 25vw;
+  }
+
+  mat-sidenav-container {
+    width: 25vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .content {
+    width: 50vw;
+  }
+
+  .sidenav {
+    width: 50vw;
+  }
+
+  mat-sidenav-container {
+    width: 50vw;
+  }
+}
