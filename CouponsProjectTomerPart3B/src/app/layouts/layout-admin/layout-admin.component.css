@@ -11,6 +11,10 @@ section {
   header {
     flex-direction: column;
   }
+
+  nav {
+    margin-left: auto;
+  }
 }
 header {
   display: flex;
@@ -24,8 +28,7 @@ header {
 img {
   padding: 10px;
 }
-/* main {
-} */
+
 footer {
   overflow: hidden;
   display: flex;

@@ -20,17 +20,6 @@ import { NavbarDashboardComponent } from './layouts/layout-dashboard/navbar-dash
 import { LayoutPage404Component } from './layouts/layout-page404/layout-page404.component';
 import { NavbarLoginComponent } from './layouts/layout-login/navbar-login/navbar-login.component';
 import { AdminComponent } from './layouts/layout-admin/admin/admin.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -51,24 +40,8 @@ import { MatListModule } from '@angular/material/list';
     LayoutPage404Component,
     NavbarLoginComponent,
     AdminComponent,
-    SidenavComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatSidenavModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

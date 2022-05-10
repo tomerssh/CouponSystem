@@ -1,52 +1,79 @@
 .head {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   background-color: #e6e6e6;
   flex: 0 1 auto;
+}
+
+div h3 {
+  position: relative;
+  right: 1.5%;
 }
 
 .main {
   display: flex;
 }
 
-.sidenav {
-  height: 85vh;
+.btnNav {
+  width: 3vw;
+  border: none;
+  background: none;
+  font-size: x-large;
+}
+
+.btnNav:hover {
+  cursor: pointer;
+  background-color: #868686;
+  color: white;
+}
+
+aside {
+  display: none;
+  height: 85.6vh;
   width: 10vw;
+  background-color: #e6e6e6;
+  position: absolute;
 }
 
-mat-sidenav-container {
-  height: 85vh;
-  width: 10vw;
+.sidenavFlexContainer {
+  display: flex;
+  flex-direction: column;
 }
 
-mat-sidenav {
-  top: 50px;
-}
-
-mat-sidenav-content mat-toolbar {
-  position: relative;
-  top: 10px;
-}
-
-mat-toolbar span {
+.btnNav span {
   padding: 5px;
   font-size: larger;
   font-weight: 500;
 }
 
-mat-toolbar span:hover {
+.btnNav span:hover {
   cursor: pointer;
   text-decoration: underline;
 }
 
-mat-nav-list a {
+aside span {
+  text-align: center;
+  padding: 5%;
+  text-decoration: none;
+  color: white;
+  background-color: #868686;
   font-size: larger;
   font-weight: 500;
   display: inline-block;
-  word-break: break-all;
+  word-wrap: break-word;
 }
 
-mat-nav-list a:hover {
+aside a {
+  padding: 5%;
+  text-decoration: none;
+  color: black;
+  font-size: larger;
+  font-weight: 500;
+  display: inline-block;
+  word-wrap: break-word;
+}
+
+aside a:hover {
   text-decoration: underline;
 }
 
@@ -61,12 +88,13 @@ mat-nav-list a:hover {
     width: 75vw;
   }
 
-  .sidenav {
+  aside {
     width: 25vw;
+    height: 75vh;
   }
 
-  mat-sidenav-container {
-    width: 25vw;
+  .btnNav {
+    width: 10vw;
   }
 }
 
@@ -75,11 +103,11 @@ mat-nav-list a:hover {
     width: 50vw;
   }
 
-  .sidenav {
+  aside {
     width: 50vw;
   }
 
-  mat-sidenav-container {
-    width: 50vw;
+  .btnNav {
+    width: 15vw;
   }
 }
