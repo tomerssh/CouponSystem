@@ -7,7 +7,7 @@
 
 div h3 {
   position: relative;
-  right: 1.5%;
+  right: 1.5vw;
 }
 
 .main {
@@ -38,17 +38,6 @@ aside {
 .sidenavFlexContainer {
   display: flex;
   flex-direction: column;
-}
-
-.btnNav span {
-  padding: 5px;
-  font-size: larger;
-  font-weight: 500;
-}
-
-.btnNav span:hover {
-  cursor: pointer;
-  text-decoration: underline;
 }
 
 aside span {
@@ -96,6 +85,10 @@ aside a:hover {
   .btnNav {
     width: 10vw;
   }
+
+  div h3 {
+    right: 5vw;
+  }
 }
 
 @media (max-width: 500px) {
@@ -109,5 +102,9 @@ aside a:hover {
 
   .btnNav {
     width: 15vw;
+  }
+
+  div h3 {
+    right: 7.5vw;
   }
 }

@@ -8,11 +8,14 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  isFormInvalid: boolean = false;
+  invalidFormMsg: string = '';
+
   constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {}
 
-  public login(email: string, password: string, clientType: string) {
+  handleLogin(email: string, password: string, clientType: string) {
     let obs = this.loginService.login(email, password, clientType).subscribe({
       next: (token) => {
         sessionStorage.setItem('token', token.toString());
@@ -20,10 +23,12 @@ export class LoginComponent implements OnInit {
       },
       error: (e) => {
         let errAsObject = JSON.parse(e.error);
-        console.log(errAsObject.error);
-        console.log(errAsObject.message);
+        this.isFormInvalid = true;
+        this.invalidFormMsg = errAsObject.message;
       },
       complete: () => {
+        this.isFormInvalid = false;
+        this.invalidFormMsg = '';
         obs.unsubscribe();
       },
     });

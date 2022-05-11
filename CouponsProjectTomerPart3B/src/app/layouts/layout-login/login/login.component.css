@@ -1,6 +1,5 @@
 .content {
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
 
 .head {
@@ -10,13 +9,13 @@
 }
 
 fieldset {
-  border: none;
   display: inline-block;
+  border: none;
 }
 
 label {
   display: inline-block;
-  padding: 5px;
+  margin: 5px auto;
 }
 
 select {
@@ -29,7 +28,8 @@ button {
   width: 50%;
 }
 
-.button {
+.btn {
   display: flex;
   justify-content: center;
+  padding: 10%;
 }
