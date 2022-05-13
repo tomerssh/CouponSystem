@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   background-color: #e6e6e6;
-  flex: 0 1 auto;
 }
 
 div h3 {
@@ -29,10 +28,8 @@ div h3 {
 
 aside {
   display: none;
-  height: 85.6vh;
   width: 10vw;
   background-color: #e6e6e6;
-  position: absolute;
 }
 
 .sidenavFlexContainer {
@@ -67,19 +64,15 @@ aside a:hover {
 }
 
 .content {
-  padding: 15px;
   display: flex;
-  flex: 1 1 auto;
+  flex-wrap: wrap;
+  padding: 15px;
+  width: stretch;
 }
 
 @media (max-width: 1024px) {
-  .content {
-    width: 75vw;
-  }
-
   aside {
     width: 25vw;
-    height: 75vh;
   }
 
   .btnNav {
@@ -92,10 +85,6 @@ aside a:hover {
 }
 
 @media (max-width: 500px) {
-  .content {
-    width: 50vw;
-  }
-
   aside {
     width: 50vw;
   }
