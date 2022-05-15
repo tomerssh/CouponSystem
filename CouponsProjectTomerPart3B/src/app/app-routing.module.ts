@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { AddCompanyComponent } from './layouts/layout-admin/admin/services/add-company/add-company.component';
+import { DashboardAdminComponent } from './layouts/layout-admin/dashboard-admin/dashboard-admin.component';
 import { LayoutAdminComponent } from './layouts/layout-admin/layout-admin.component';
 import { LayoutCompanyComponent } from './layouts/layout-company/layout-company.component';
 import { LayoutCustomerComponent } from './layouts/layout-customer/layout-customer.component';
@@ -12,9 +14,35 @@ const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: LayoutDashboardComponent },
   { path: 'login', component: LayoutLoginComponent },
-  { path: 'admin', component: LayoutAdminComponent, canActivate: [AuthGuard] },
-  { path: 'company', component: LayoutCompanyComponent, canActivate: [AuthGuard] },
-  { path: 'customer', component: LayoutCustomerComponent, canActivate: [AuthGuard] },
+  {
+    path: 'admin',
+    component: LayoutAdminComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'dashboard',
+        children: [
+          { path: '', component: DashboardAdminComponent, outlet: 'admin' },
+        ],
+      },
+      {
+        path: 'add/company',
+        children: [
+          { path: '', component: AddCompanyComponent, outlet: 'admin' },
+        ],
+      },
+    ],
+  },
+  {
+    path: 'company',
+    component: LayoutCompanyComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'customer',
+    component: LayoutCustomerComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '**', component: LayoutPage404Component },
 ];
 
