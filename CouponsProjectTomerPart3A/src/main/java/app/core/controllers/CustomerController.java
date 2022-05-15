@@ -21,7 +21,7 @@ import app.core.exceptions.CouponSystemException;
 import app.core.services.CustomerService;
 
 @RestController
-@RequestMapping("/rest/customer")
+@RequestMapping("/customer")
 @CrossOrigin
 public class CustomerController extends ClientController {
 
