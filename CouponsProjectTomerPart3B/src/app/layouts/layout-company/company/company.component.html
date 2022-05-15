@@ -1,19 +1,18 @@
 <div class="head">
   <button class="btnNav" (click)="navToggle()">☰</button>
-  <h3>Admin</h3>
+  <h3>Company</h3>
   <div></div>
 </div>
 
 <div class="main">
   <aside #sidenav>
     <div class="sidenavFlexContainer">
-      <span>Admin Menu</span>
-      <a routerLink="/admin/dashboard">Dashboard</a>
-      <a routerLink="/admin/add/company">Add Company</a>
+      <span>Company Menu</span>
+      <a routerLink="#">Service</a>
     </div>
   </aside>
 
   <div class="content">
-    <router-outlet name="admin"></router-outlet>
+    <p>content</p>
   </div>
 </div>

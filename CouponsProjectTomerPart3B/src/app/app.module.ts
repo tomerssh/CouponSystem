@@ -20,6 +20,9 @@ import { NavbarDashboardComponent } from './layouts/layout-dashboard/navbar-dash
 import { LayoutPage404Component } from './layouts/layout-page404/layout-page404.component';
 import { NavbarLoginComponent } from './layouts/layout-login/navbar-login/navbar-login.component';
 import { AdminComponent } from './layouts/layout-admin/admin/admin.component';
+import { CompanyComponent } from './layouts/layout-company/company/company.component';
+import { CustomerComponent } from './layouts/layout-customer/customer/customer.component';
+import { DashboardAdminComponent } from './layouts/layout-admin/dashboard-admin/dashboard-admin.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { AdminComponent } from './layouts/layout-admin/admin/admin.component';
     LayoutPage404Component,
     NavbarLoginComponent,
     AdminComponent,
+    CompanyComponent,
+    CustomerComponent,
+    DashboardAdminComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
