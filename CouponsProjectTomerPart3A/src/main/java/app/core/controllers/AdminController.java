@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ import app.core.services.AdminService;
 
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin
+@CrossOrigin("http://localhost:4200")
 public class AdminController extends ClientController {
 
 	private AdminService service;
@@ -42,7 +43,7 @@ public class AdminController extends ClientController {
 		}
 	}
 
-	@PostMapping("add/company")
+	@PostMapping(path = "add/company", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void addCompany(@RequestBody Company company, @RequestHeader String token) {
 		try {
 			this.service.addCompany(company);
