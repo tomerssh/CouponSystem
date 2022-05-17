@@ -22,7 +22,7 @@ import app.core.exceptions.CouponSystemException;
 import app.core.services.AdminService;
 
 @RestController
-@RequestMapping("/rest/admin")
+@RequestMapping("/admin")
 @CrossOrigin
 public class AdminController extends ClientController {
 
@@ -42,7 +42,7 @@ public class AdminController extends ClientController {
 		}
 	}
 
-	@PostMapping("/company")
+	@PostMapping("add/company")
 	public void addCompany(@RequestBody Company company, @RequestHeader String token) {
 		try {
 			this.service.addCompany(company);
@@ -51,7 +51,7 @@ public class AdminController extends ClientController {
 		}
 	}
 
-	@PutMapping("/company")
+	@PutMapping("update/company")
 	public void updateCompany(@RequestBody Company company, @RequestHeader String token) {
 		try {
 			this.service.updateCompany(company);
@@ -60,7 +60,7 @@ public class AdminController extends ClientController {
 		}
 	}
 
-	@DeleteMapping("/company/{companyId}")
+	@DeleteMapping("remove/company/{companyId}")
 	public void deleteCompany(@PathVariable int companyId, @RequestHeader String token) {
 		try {
 			this.service.deleteCompany(companyId);
@@ -69,7 +69,7 @@ public class AdminController extends ClientController {
 		}
 	}
 
-	@GetMapping("/company")
+	@GetMapping("get/company")
 	public List<Company> getAllCompanies(@RequestHeader String token) {
 		try {
 			return this.service.getAllCompanies();
@@ -78,7 +78,7 @@ public class AdminController extends ClientController {
 		}
 	}
 
-	@GetMapping("/company/{companyId}")
+	@GetMapping("get/company/{companyId}")
 	public Company getOneCompany(@PathVariable int companyId, @RequestHeader String token) {
 		try {
 			return this.service.getCompany(companyId);
@@ -87,7 +87,7 @@ public class AdminController extends ClientController {
 		}
 	}
 
-	@PostMapping("/customer")
+	@PostMapping("add/customer")
 	public void addCustomer(@RequestBody Customer customer, @RequestHeader String token) {
 		try {
 			this.service.addCustomer(customer);
@@ -96,7 +96,7 @@ public class AdminController extends ClientController {
 		}
 	}
 
-	@PutMapping("/customer")
+	@PutMapping("update/customer")
 	public void updateCustomer(@RequestBody Customer customer, @RequestHeader String token) {
 		try {
 			this.service.updateCustomer(customer);
@@ -105,7 +105,7 @@ public class AdminController extends ClientController {
 		}
 	}
 
-	@DeleteMapping("/customer/{customerId}")
+	@DeleteMapping("remove/customer/{customerId}")
 	public void deleteCustomer(@PathVariable int customerId, @RequestHeader String token) {
 		try {
 			this.service.deleteCustomer(customerId);
@@ -114,7 +114,7 @@ public class AdminController extends ClientController {
 		}
 	}
 
-	@GetMapping("/customer")
+	@GetMapping("get/customer")
 	public List<Customer> getAllCustomers(@RequestHeader String token) {
 		try {
 			return this.service.getAllCustomers();
@@ -123,7 +123,7 @@ public class AdminController extends ClientController {
 		}
 	}
 
-	@GetMapping("/customer/{customerId}")
+	@GetMapping("get/customer/{customerId}")
 	public Customer getOneCustomer(@PathVariable int customerId, @RequestHeader String token) {
 		try {
 			return this.service.getCustomer(customerId);
