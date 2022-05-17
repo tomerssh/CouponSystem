@@ -1,1 +1,27 @@
-<p>add-company works!</p>
+<div class="head">
+  <h3>Add Company</h3>
+</div>
+<div class="content">
+  <form>
+    <fieldset>
+      <label for="name">Name</label>
+      <br>
+      <input #name type="text" id="name" required>
+      <br>
+      <label for="email">Email</label>
+      <br>
+      <input #email type="email" id="email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required>
+      <br>
+      <label for="password">Password</label>
+      <br>
+      <input #password type="password" id="password" (keydown.enter)="handleAddCompany(email.value, name.value, password.value)" required>
+      <br>
+      <div class="btn">
+        <button (click)="handleAddCompany(email.value, name.value, password.value)">Add Company</button>
+      </div>
+    </fieldset>
+  </form>
+  <div>
+    {{msg}}
+  </div>
+</div>

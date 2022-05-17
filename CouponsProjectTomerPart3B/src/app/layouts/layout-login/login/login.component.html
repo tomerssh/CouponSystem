@@ -2,27 +2,29 @@
   <h3>Login</h3>
 </div>
 <div class="content">
-  <fieldset>
-    <label for="type">Client Type</label>
-    <br>
-    <select #clientType id="type">
-      <option value="ADMINISTRATOR">Administrator</option>
-      <option value="COMPANY">Company</option>
-      <option value="CUSTOMER">Customer</option>
-    </select>
-    <label for="email">Email</label>
-    <br>
-    <input #email type="text">
-    <br>
-    <label for="password">Password</label>
-    <br>
-    <input #password type="password" (keydown.enter)="handleLogin(email.value, password.value, clientType.value)">
-    <br>
-    <div class="btn">
-      <button (click)="handleLogin(email.value, password.value, clientType.value)">Login</button>
-    </div>
-  </fieldset>
-  <div class="invalidMsg" *ngIf="isFormInvalid">
+  <form #formInfo="ngForm">
+    <fieldset>
+      <label for="type">Client Type</label>
+      <br>
+      <select #clientType name="type" id="type" [(ngModel)]="client.clientType" required>
+        <option value="ADMINISTRATOR">Administrator</option>
+        <option value="COMPANY">Company</option>
+        <option value="CUSTOMER">Customer</option>
+      </select>
+      <label for="email">Email</label>
+      <br>
+      <input #email name="email" type="email" id="email" [(ngModel)]="client.email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required>
+      <br>
+      <label for="password">Password</label>
+      <br>
+      <input #password name="password" type="password" id="password" [(ngModel)]="client.password" (keydown.enter)="handleLogin(email.value, password.value, clientType.value)" required>
+      <br>
+      <div class="btn">
+        <button [disabled]="formInfo.invalid" (click)="handleLogin(email.value, password.value, clientType.value)">Login</button>
+      </div>
+    </fieldset>
+  </form>
+  <div *ngIf="isFormInvalid">
     {{invalidFormMsg}}
   </div>
 </div>

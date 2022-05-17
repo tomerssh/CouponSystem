@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Client } from 'src/app/models/client.model';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  public client = new Client(undefined, undefined, 'ADMINISTRATOR');
   isFormInvalid: boolean = false;
   invalidFormMsg: string = '';
 

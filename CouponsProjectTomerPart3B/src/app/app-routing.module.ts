@@ -19,6 +19,7 @@ const routes: Routes = [
     component: LayoutAdminComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
         children: [
