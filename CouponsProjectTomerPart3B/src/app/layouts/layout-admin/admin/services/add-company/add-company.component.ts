@@ -8,6 +8,7 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./add-company.component.css'],
 })
 export class AddCompanyComponent implements OnInit {
+  public company = new Company();
   msg: string = '';
 
   constructor(private adminService: AdminService) {}
@@ -15,7 +16,7 @@ export class AddCompanyComponent implements OnInit {
   ngOnInit(): void {}
 
   handleAddCompany(email: string, name: string, password: string) {
-    let company = new Company(email, 0, name, password);
+    let company = new Company(email, undefined, name, password);
     let obs = this.adminService.addCompany(company).subscribe({
       next: (id) => {
         company.id = parseInt(id.toString());

@@ -23,6 +23,7 @@ import { AdminComponent } from './layouts/layout-admin/admin/admin.component';
 import { CompanyComponent } from './layouts/layout-company/company/company.component';
 import { CustomerComponent } from './layouts/layout-customer/customer/customer.component';
 import { DashboardAdminComponent } from './layouts/layout-admin/dashboard-admin/dashboard-admin.component';
+import { AddCompanyComponent } from './layouts/layout-admin/admin/services/add-company/add-company.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { DashboardAdminComponent } from './layouts/layout-admin/dashboard-admin/
     CompanyComponent,
     CustomerComponent,
     DashboardAdminComponent,
+    AddCompanyComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

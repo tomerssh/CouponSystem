@@ -2,22 +2,22 @@
   <h3>Add Company</h3>
 </div>
 <div class="content">
-  <form>
+  <form #form="ngForm">
     <fieldset>
       <label for="name">Name</label>
       <br>
-      <input #name type="text" id="name" required>
+      <input #name name="name" type="text" id="name" [(ngModel)]="company.name" required>
       <br>
       <label for="email">Email</label>
       <br>
-      <input #email type="email" id="email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required>
+      <input #email name="email" type="email" id="email" [(ngModel)]="company.email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required>
       <br>
       <label for="password">Password</label>
       <br>
-      <input #password type="password" id="password" (keydown.enter)="handleAddCompany(email.value, name.value, password.value)" required>
+      <input #password name="password" type="password" id="password" [(ngModel)]="company.password" (keydown.enter)="handleAddCompany(email.value, name.value, password.value)" required>
       <br>
       <div class="btn">
-        <button (click)="handleAddCompany(email.value, name.value, password.value)">Add Company</button>
+        <button [disabled]="form.invalid" (click)="handleAddCompany(email.value, name.value, password.value)">Add Company</button>
       </div>
     </fieldset>
   </form>
