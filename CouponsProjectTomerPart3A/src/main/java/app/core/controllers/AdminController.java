@@ -44,9 +44,9 @@ public class AdminController extends ClientController {
 	}
 
 	@PostMapping(path = "add/company", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void addCompany(@RequestBody Company company, @RequestHeader String token) {
+	public int addCompany(@RequestBody Company company, @RequestHeader String token) {
 		try {
-			this.service.addCompany(company);
+			return this.service.addCompany(company);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}

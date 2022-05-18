@@ -1,5 +1,6 @@
 package app.core.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -26,7 +27,8 @@ import lombok.ToString;
 @ToString(exclude = "coupons")
 @EqualsAndHashCode(of = "id")
 @Entity
-public class Customer {
+public class Customer implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
