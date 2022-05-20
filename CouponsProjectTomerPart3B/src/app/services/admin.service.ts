@@ -19,4 +19,16 @@ export class AdminService {
     let options: any = { headers: httpHeaders, responseType: 'text' };
     return this.httpClient.post(url, body, options);
   }
+
+  public updateCompany(company: Company) {
+    let url = 'http://localhost:8080/admin/update/company';
+    let companyAsJson = JSON.stringify(company);
+    let body = companyAsJson;
+    let token: any = sessionStorage.getItem('token');
+    let httpHeaders = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('token', token);
+    let options: any = { headers: httpHeaders, responseType: 'text' };
+    return this.httpClient.put(url, body, options);
+  }
 }

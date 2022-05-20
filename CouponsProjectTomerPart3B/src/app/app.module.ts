@@ -24,6 +24,7 @@ import { CompanyComponent } from './layouts/layout-company/company/company.compo
 import { CustomerComponent } from './layouts/layout-customer/customer/customer.component';
 import { DashboardAdminComponent } from './layouts/layout-admin/dashboard-admin/dashboard-admin.component';
 import { AddCompanyComponent } from './layouts/layout-admin/admin/services/add-company/add-company.component';
+import { UpdateCompanyComponent } from './layouts/layout-admin/admin/services/update-company/update-company.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { AddCompanyComponent } from './layouts/layout-admin/admin/services/add-c
     CustomerComponent,
     DashboardAdminComponent,
     AddCompanyComponent,
+    UpdateCompanyComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

@@ -3,11 +3,11 @@ import { Company } from 'src/app/models/company.model';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
-  selector: 'app-add-company',
-  templateUrl: './add-company.component.html',
-  styleUrls: ['./add-company.component.css'],
+  selector: 'app-update-company',
+  templateUrl: './update-company.component.html',
+  styleUrls: ['./update-company.component.css'],
 })
-export class AddCompanyComponent implements OnInit {
+export class UpdateCompanyComponent implements OnInit {
   public company = new Company();
   msg: string = '';
 
@@ -15,15 +15,18 @@ export class AddCompanyComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleAddCompany(email: string, name: string, password: string) {
-    let company = new Company(email, undefined, name, password);
-    let obs = this.adminService.addCompany(company).subscribe({
+  handleUpdateCompany(email: string, id: string, password: string) {
+    let company = new Company(email, id, undefined, password);
+    let obs = this.adminService.updateCompany(company).subscribe({
+      next: (name) => {
+        company.name = name.toString();
+      },
       error: (e) => {
         let errAsObject = JSON.parse(e.error);
         this.msg = errAsObject.message;
       },
       complete: () => {
-        this.msg = company.name + ' added';
+        this.msg = company.name + ' updated';
         obs.unsubscribe();
       },
     });

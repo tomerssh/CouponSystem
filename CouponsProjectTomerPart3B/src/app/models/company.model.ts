@@ -1,7 +1,7 @@
 export class Company {
   constructor(
     public email?: string,
-    public id?: number,
+    public id?: string,
     public name?: string,
     public password?: string
   ) {}

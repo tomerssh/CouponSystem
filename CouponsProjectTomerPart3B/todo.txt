@@ -1,2 +1,1 @@
-add company form validation broken
-make sure add company form cannot be empty and is valid before submitting
+allow updating coupons in update company
