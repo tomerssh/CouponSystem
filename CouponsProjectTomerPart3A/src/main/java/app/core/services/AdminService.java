@@ -69,15 +69,16 @@ public class AdminService extends ClientService {
 	 * @param company The new company.
 	 * @throws CouponSystemException
 	 */
-	public void updateCompany(Company company) throws CouponSystemException {
+	public String updateCompany(Company company) throws CouponSystemException {
 		Optional<Company> opt = companyRepo.findById(company.getId());
 		if (opt.isPresent()) {
 			Company companyInDb = opt.get();
 			companyInDb.setEmail(company.getEmail());
 			companyInDb.setPassword(company.getPassword());
 			companyInDb.setCoupons(company.getCoupons());
+			return companyInDb.getName();
 		} else {
-			throw new CouponServiceException("company with id " + company.getId() + " not found");
+			throw new CouponServiceException("company not found");
 		}
 	}
 
