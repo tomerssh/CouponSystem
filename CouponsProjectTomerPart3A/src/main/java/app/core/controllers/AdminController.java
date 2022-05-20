@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +23,7 @@ import app.core.services.AdminService;
 
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin
 public class AdminController extends ClientController {
 
 	private AdminService service;
@@ -43,7 +42,7 @@ public class AdminController extends ClientController {
 		}
 	}
 
-	@PostMapping(path = "add/company", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping("add/company")
 	public int addCompany(@RequestBody Company company, @RequestHeader String token) {
 		try {
 			return this.service.addCompany(company);
@@ -53,9 +52,9 @@ public class AdminController extends ClientController {
 	}
 
 	@PutMapping("update/company")
-	public void updateCompany(@RequestBody Company company, @RequestHeader String token) {
+	public String updateCompany(@RequestBody Company company, @RequestHeader String token) {
 		try {
-			this.service.updateCompany(company);
+			return this.service.updateCompany(company);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}

@@ -49,6 +49,12 @@ public class Company implements Serializable {
 		this.password = password;
 	}
 
+	public Company(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
+
 	public Company(int id, String name, String email, String password) {
 		super();
 		this.id = id;
