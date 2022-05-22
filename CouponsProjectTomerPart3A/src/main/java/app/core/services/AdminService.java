@@ -88,11 +88,12 @@ public class AdminService extends ClientService {
 	 * @param companyId The company's id.
 	 * @throws CouponSystemException
 	 */
-	public void deleteCompany(int companyId) throws CouponSystemException {
+	public String deleteCompany(int companyId) throws CouponSystemException {
 		Optional<Company> opt = companyRepo.findById(companyId);
 		if (opt.isPresent()) {
 			deleteCompanyCoupons(companyId);
 			companyRepo.delete(opt.get());
+			return opt.get().getName();
 		} else {
 			throw new CouponServiceException("company with id " + companyId + " not found");
 		}

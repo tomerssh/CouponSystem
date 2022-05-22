@@ -61,9 +61,9 @@ public class AdminController extends ClientController {
 	}
 
 	@DeleteMapping("remove/company/{companyId}")
-	public void deleteCompany(@PathVariable int companyId, @RequestHeader String token) {
+	public String deleteCompany(@PathVariable int companyId, @RequestHeader String token) {
 		try {
-			this.service.deleteCompany(companyId);
+			return this.service.deleteCompany(companyId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
