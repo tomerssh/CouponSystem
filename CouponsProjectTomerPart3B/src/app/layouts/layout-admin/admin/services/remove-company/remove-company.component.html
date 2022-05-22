@@ -1,0 +1,19 @@
+<div class="head">
+  <h3>Remove Company</h3>
+</div>
+<div class="content">
+  <form #form="ngForm">
+    <fieldset>
+      <label for="id">Id</label>
+      <br>
+      <input #id name="id" type="number" id="id" [(ngModel)]="company.id" required>
+      <br>
+      <div class="btn">
+        <button [disabled]="form.invalid" (click)="handleRemoveCompany(id.value)">Remove Company</button>
+      </div>
+    </fieldset>
+  </form>
+  <div>
+    {{msg}}
+  </div>
+</div>

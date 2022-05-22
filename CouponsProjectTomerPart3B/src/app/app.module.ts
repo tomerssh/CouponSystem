@@ -25,6 +25,8 @@ import { CustomerComponent } from './layouts/layout-customer/customer/customer.c
 import { DashboardAdminComponent } from './layouts/layout-admin/dashboard-admin/dashboard-admin.component';
 import { AddCompanyComponent } from './layouts/layout-admin/admin/services/add-company/add-company.component';
 import { UpdateCompanyComponent } from './layouts/layout-admin/admin/services/update-company/update-company.component';
+import { RemoveCompanyComponent } from './layouts/layout-admin/admin/services/remove-company/remove-company.component';
+import { GetCompaniesComponent } from './layouts/layout-admin/admin/services/get-companies/get-companies.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { UpdateCompanyComponent } from './layouts/layout-admin/admin/services/up
     DashboardAdminComponent,
     AddCompanyComponent,
     UpdateCompanyComponent,
+    RemoveCompanyComponent,
+    GetCompaniesComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
