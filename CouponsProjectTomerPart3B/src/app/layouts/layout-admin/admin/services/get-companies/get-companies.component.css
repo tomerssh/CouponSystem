@@ -16,6 +16,8 @@ th {
   padding: 6px;
   border: 1px solid #ccc;
   text-align: left;
+  font-size: larger;
+  font-weight: 500;
 }
 
 /* ---------- */
@@ -28,5 +30,13 @@ fieldset {
 legend {
   margin: 0 auto;
   font-size: larger;
-  font-weight: 500;
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  td,
+  th {
+    font-size: medium;
+    font-weight: 400;
+  }
 }
