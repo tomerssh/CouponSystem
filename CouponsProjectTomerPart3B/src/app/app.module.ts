@@ -27,6 +27,7 @@ import { AddCompanyComponent } from './layouts/layout-admin/admin/services/add-c
 import { UpdateCompanyComponent } from './layouts/layout-admin/admin/services/update-company/update-company.component';
 import { RemoveCompanyComponent } from './layouts/layout-admin/admin/services/remove-company/remove-company.component';
 import { GetCompaniesComponent } from './layouts/layout-admin/admin/services/get-companies/get-companies.component';
+import { GetCompanyComponent } from './layouts/layout-admin/admin/services/get-company/get-company.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { GetCompaniesComponent } from './layouts/layout-admin/admin/services/get
     UpdateCompanyComponent,
     RemoveCompanyComponent,
     GetCompaniesComponent,
+    GetCompanyComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

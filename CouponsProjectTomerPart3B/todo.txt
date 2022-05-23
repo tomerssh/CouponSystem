@@ -1,1 +1,0 @@
-allow updating coupons in update company

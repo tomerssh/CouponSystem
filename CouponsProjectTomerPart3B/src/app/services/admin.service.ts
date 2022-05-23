@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { Company } from '../models/company.model';
 
 @Injectable({
@@ -49,5 +49,13 @@ export class AdminService {
     let httpHeaders = new HttpHeaders().set('token', token);
     let options: any = { headers: httpHeaders };
     return this.httpClient.get<Company[]>(url, <Object>options);
+  }
+
+  public getCompany(id: number) {
+    let url = this.mainUrl + 'get/company/' + id;
+    let token: any = sessionStorage.getItem('token');
+    let httpHeaders = new HttpHeaders().set('token', token);
+    let options: any = { headers: httpHeaders };
+    return this.httpClient.get<Company>(url, <Object>options);
   }
 }

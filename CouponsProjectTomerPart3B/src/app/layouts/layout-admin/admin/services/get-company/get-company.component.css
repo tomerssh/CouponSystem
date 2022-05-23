@@ -1,3 +1,45 @@
+/* form */
+
+.content {
+  text-align: center;
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+}
+
+fieldset {
+  display: inline-block;
+  border: none;
+}
+
+label {
+  display: inline-block;
+  margin: 5px auto;
+}
+
+label:hover {
+  cursor: pointer;
+}
+
+select {
+  min-width: 100%;
+}
+
+button {
+  text-align: center;
+  padding: 10px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+/* table */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -33,21 +75,9 @@ legend {
   font-weight: 600;
 }
 
-.empty {
-  display: flex;
-  justify-content: center;
-}
-
-.empty span {
-  margin-bottom: 10px;
-  font-size: larger;
-  font-weight: 500;
-}
-
 @media (max-width: 1024px) {
   td,
-  th,
-  .empty span {
+  th {
     font-size: medium;
     font-weight: 400;
   }

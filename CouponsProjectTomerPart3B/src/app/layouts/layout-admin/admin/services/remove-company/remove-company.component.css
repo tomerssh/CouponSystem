@@ -28,7 +28,7 @@ select {
 button {
   text-align: center;
   padding: 10px;
-  width: 100%;
+  width: min-content;
 }
 
 .btn {

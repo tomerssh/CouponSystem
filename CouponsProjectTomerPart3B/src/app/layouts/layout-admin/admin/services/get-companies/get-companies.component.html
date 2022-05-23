@@ -1,6 +1,6 @@
 <fieldset>
   <legend>Companies</legend>
-  <table *ngIf="companies">
+  <table *ngIf="companies && companies.length != 0">
     <thead>
       <tr>
         <th>Id</th>
@@ -18,4 +18,7 @@
       </tr>
     </tbody>
   </table>
+  <div class="empty" *ngIf="companies && companies.length == 0">
+    <span>You Have No Companies</span>
+  </div>
 </fieldset>

@@ -1,0 +1,36 @@
+<div class="head">
+  <h3>Get Company</h3>
+</div>
+<div class="content">
+  <form #form="ngForm">
+    <label for="id">Id</label>
+    <br>
+    <input #id name="id" type="number" id="id" [(ngModel)]="company.id" required>
+    <br>
+    <div class="btn">
+      <button [disabled]="form.invalid" (click)="handleGetCompany(id.value)">Get Company</button>
+    </div>
+  </form>
+  <div>
+    {{msg}}
+  </div>
+
+  <table *ngIf="result.name && !msg">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{result.id}}</td>
+        <td>{{result.name}}</td>
+        <td>{{result.email}}</td>
+        <td>{{result.password}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

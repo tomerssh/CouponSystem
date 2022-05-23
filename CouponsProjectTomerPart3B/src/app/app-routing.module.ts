@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { AddCompanyComponent } from './layouts/layout-admin/admin/services/add-company/add-company.component';
+import { GetCompanyComponent } from './layouts/layout-admin/admin/services/get-company/get-company.component';
 import { RemoveCompanyComponent } from './layouts/layout-admin/admin/services/remove-company/remove-company.component';
 import { UpdateCompanyComponent } from './layouts/layout-admin/admin/services/update-company/update-company.component';
 import { DashboardAdminComponent } from './layouts/layout-admin/dashboard-admin/dashboard-admin.component';
@@ -44,6 +45,12 @@ const routes: Routes = [
         path: 'remove/company',
         children: [
           { path: '', component: RemoveCompanyComponent, outlet: 'admin' },
+        ],
+      },
+      {
+        path: 'get/company',
+        children: [
+          { path: '', component: GetCompanyComponent, outlet: 'admin' },
         ],
       },
     ],
