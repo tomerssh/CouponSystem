@@ -1,0 +1,26 @@
+<fieldset>
+  <legend>Customers</legend>
+  <table *ngIf="customers && customers.length != 0">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of customers">
+        <td>{{c.id}}</td>
+        <td>{{c.firstName}}</td>
+        <td>{{c.lastName}}</td>
+        <td>{{c.email}}</td>
+        <td>{{c.password}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="empty" *ngIf="customers && customers.length == 0">
+    <span>You Have No Customers</span>
+  </div>
+</fieldset>

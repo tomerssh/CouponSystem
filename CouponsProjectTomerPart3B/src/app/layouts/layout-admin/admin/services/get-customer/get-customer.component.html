@@ -1,0 +1,38 @@
+<div class="head">
+  <h3>Get Customer</h3>
+</div>
+<div class="content">
+  <form #form="ngForm">
+    <label for="id">Id</label>
+    <br>
+    <input #id name="id" type="number" id="id" [(ngModel)]="customer.id" required>
+    <br>
+    <div class="btn">
+      <button [disabled]="form.invalid" (click)="handleGetCustomer(id.value)">Get Customer</button>
+    </div>
+  </form>
+  <div>
+    {{msg}}
+  </div>
+
+  <table *ngIf="result.email && !msg">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{result.id}}</td>
+        <td>{{result.firstName}}</td>
+        <td>{{result.lastName}}</td>
+        <td>{{result.email}}</td>
+        <td>{{result.password}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

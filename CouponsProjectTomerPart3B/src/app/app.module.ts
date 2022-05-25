@@ -28,6 +28,11 @@ import { UpdateCompanyComponent } from './layouts/layout-admin/admin/services/up
 import { RemoveCompanyComponent } from './layouts/layout-admin/admin/services/remove-company/remove-company.component';
 import { GetCompaniesComponent } from './layouts/layout-admin/admin/services/get-companies/get-companies.component';
 import { GetCompanyComponent } from './layouts/layout-admin/admin/services/get-company/get-company.component';
+import { GetCustomersComponent } from './layouts/layout-admin/admin/services/get-customers/get-customers.component';
+import { AddCustomerComponent } from './layouts/layout-admin/admin/services/add-customer/add-customer.component';
+import { UpdateCustomerComponent } from './layouts/layout-admin/admin/services/update-customer/update-customer.component';
+import { RemoveCustomerComponent } from './layouts/layout-admin/admin/services/remove-customer/remove-customer.component';
+import { GetCustomerComponent } from './layouts/layout-admin/admin/services/get-customer/get-customer.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +61,11 @@ import { GetCompanyComponent } from './layouts/layout-admin/admin/services/get-c
     RemoveCompanyComponent,
     GetCompaniesComponent,
     GetCompanyComponent,
+    GetCustomersComponent,
+    AddCustomerComponent,
+    UpdateCustomerComponent,
+    RemoveCustomerComponent,
+    GetCustomerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

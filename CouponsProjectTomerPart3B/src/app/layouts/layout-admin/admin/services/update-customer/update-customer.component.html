@@ -1,0 +1,27 @@
+<div class="head">
+  <h3>Update Customer</h3>
+</div>
+<div class="content">
+  <form #form="ngForm">
+    <fieldset>
+      <label for="id">Id</label>
+      <br>
+      <input #id name="id" type="number" id="id" [(ngModel)]="customer.id" required>
+      <br>
+      <label for="email">Email</label>
+      <br>
+      <input #email name="email" type="email" id="email" [(ngModel)]="customer.email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required>
+      <br>
+      <label for="password">Password</label>
+      <br>
+      <input #password name="password" type="password" id="password" [(ngModel)]="customer.password" (keydown.enter)="handleUpdateCustomer(id.value, email.value, password.value)" required>
+      <br>
+      <div class="btn">
+        <button [disabled]="form.invalid" (click)="handleUpdateCustomer(id.value, email.value, password.value)">Update Customer</button>
+      </div>
+    </fieldset>
+  </form>
+  <div>
+    {{msg}}
+  </div>
+</div>

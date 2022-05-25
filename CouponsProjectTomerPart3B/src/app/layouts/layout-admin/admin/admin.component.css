@@ -65,7 +65,6 @@ aside a:hover {
 
 .content {
   display: flex;
-  flex-wrap: wrap;
   width: stretch;
   justify-content: center;
 }

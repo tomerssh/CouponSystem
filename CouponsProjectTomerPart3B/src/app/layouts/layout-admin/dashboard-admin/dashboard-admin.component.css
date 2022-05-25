@@ -6,3 +6,11 @@ p {
   font-size: large;
   margin: 10px;
 }
+
+.flex-container {
+  display: flex;
+}
+
+.flex-container * {
+  flex: 1;
+}

@@ -1,0 +1,31 @@
+<div class="head">
+  <h3>Add Customer</h3>
+</div>
+<div class="content">
+  <form #form="ngForm">
+    <fieldset>
+      <label for="firstName">First Name</label>
+      <br>
+      <input #firstName name="firstName" type="text" id="firstName" [(ngModel)]="customer.firstName" required>
+      <br>
+      <label for="lastName">Last Name</label>
+      <br>
+      <input #lastName name="lastName" type="text" id="lastName" [(ngModel)]="customer.lastName" required>
+      <br>
+      <label for="email">Email</label>
+      <br>
+      <input #email name="email" type="email" id="email" [(ngModel)]="customer.email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required>
+      <br>
+      <label for="password">Password</label>
+      <br>
+      <input #password name="password" type="password" id="password" [(ngModel)]="customer.password" (keydown.enter)="handleAddCustomer(firstName.value, lastName.value, email.value, password.value)" required>
+      <br>
+      <div class="btn">
+        <button [disabled]="form.invalid" (click)="handleAddCustomer(firstName.value, lastName.value, email.value, password.value)">Add customer</button>
+      </div>
+    </fieldset>
+  </form>
+  <div>
+    {{msg}}
+  </div>
+</div>
