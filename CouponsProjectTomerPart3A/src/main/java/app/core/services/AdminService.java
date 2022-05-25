@@ -158,15 +158,17 @@ public class AdminService extends ClientService {
 	 * @throws CouponSystemException If an exception was caught while updating
 	 *                               customer
 	 */
-	public void updateCustomer(Customer customer) throws CouponSystemException {
+	public String updateCustomer(Customer customer) throws CouponSystemException {
 		Optional<Customer> opt = customerRepo.findById(customer.getId());
 		if (opt.isPresent()) {
-			Customer other = opt.get();
-			other.setEmail(customer.getEmail());
-			other.setPassword(customer.getPassword());
-			other.setCoupons(customer.getCoupons());
+			Customer customerInDb = opt.get();
+			customerInDb.setEmail(customer.getEmail());
+			customerInDb.setPassword(customer.getPassword());
+			customerInDb.setCoupons(customer.getCoupons());
+			return customerInDb.getFirstName() + " " + customerInDb.getLastName();
 		} else {
-			throw new CouponServiceException("customer with id " + customer.getId() + " not found");
+			throw new CouponServiceException(
+					"customer " + customer.getFirstName() + " " + customer.getLastName() + " not found");
 		}
 	}
 
@@ -177,11 +179,12 @@ public class AdminService extends ClientService {
 	 * @throws CouponSystemException If an exception was caught while removing
 	 *                               customer
 	 */
-	public void deleteCustomer(int customerId) throws CouponSystemException {
+	public String deleteCustomer(int customerId) throws CouponSystemException {
 		Optional<Customer> opt = customerRepo.findById(customerId);
 		if (opt.isPresent()) {
 			deleteCustomerCoupons(customerId);
 			customerRepo.delete(opt.get());
+			return opt.get().getFirstName() + " " + opt.get().getLastName();
 		} else {
 			throw new CouponServiceException("customer with id " + customerId + " not found");
 		}

@@ -97,18 +97,18 @@ public class AdminController extends ClientController {
 	}
 
 	@PutMapping("update/customer")
-	public void updateCustomer(@RequestBody Customer customer, @RequestHeader String token) {
+	public String updateCustomer(@RequestBody Customer customer, @RequestHeader String token) {
 		try {
-			this.service.updateCustomer(customer);
+			return this.service.updateCustomer(customer);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 	}
 
 	@DeleteMapping("remove/customer/{customerId}")
-	public void deleteCustomer(@PathVariable int customerId, @RequestHeader String token) {
+	public String deleteCustomer(@PathVariable int customerId, @RequestHeader String token) {
 		try {
-			this.service.deleteCustomer(customerId);
+			return this.service.deleteCustomer(customerId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
