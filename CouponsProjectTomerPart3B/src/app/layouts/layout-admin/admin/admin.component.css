@@ -65,8 +65,8 @@ aside a:hover {
 
 .content {
   display: flex;
-  width: stretch;
   justify-content: center;
+  width: stretch;
 }
 
 @media (max-width: 1024px) {

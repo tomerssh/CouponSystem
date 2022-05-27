@@ -11,6 +11,12 @@ import { UpdateCompanyComponent } from './layouts/layout-admin/admin/services/up
 import { UpdateCustomerComponent } from './layouts/layout-admin/admin/services/update-customer/update-customer.component';
 import { DashboardAdminComponent } from './layouts/layout-admin/dashboard-admin/dashboard-admin.component';
 import { LayoutAdminComponent } from './layouts/layout-admin/layout-admin.component';
+import { AddCouponComponent } from './layouts/layout-company/company/services/add-coupon/add-coupon.component';
+import { GetCouponsCategoryComponent } from './layouts/layout-company/company/services/get-coupons-category/get-coupons-category.component';
+import { GetCouponsPriceComponent } from './layouts/layout-company/company/services/get-coupons-price/get-coupons-price.component';
+import { RemoveCouponComponent } from './layouts/layout-company/company/services/remove-coupon/remove-coupon.component';
+import { UpdateCouponComponent } from './layouts/layout-company/company/services/update-coupon/update-coupon.component';
+import { DashboardCompanyComponent } from './layouts/layout-company/dashboard-company/dashboard-company.component';
 import { LayoutCompanyComponent } from './layouts/layout-company/layout-company.component';
 import { LayoutCustomerComponent } from './layouts/layout-customer/layout-customer.component';
 import { LayoutDashboardComponent } from './layouts/layout-dashboard/layout-dashboard.component';
@@ -87,6 +93,49 @@ const routes: Routes = [
     path: 'company',
     component: LayoutCompanyComponent,
     canActivate: [AuthGuard],
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        children: [
+          { path: '', component: DashboardCompanyComponent, outlet: 'company' },
+        ],
+      },
+      {
+        path: 'add/coupon',
+        children: [
+          { path: '', component: AddCouponComponent, outlet: 'company' },
+        ],
+      },
+      {
+        path: 'update/coupon',
+        children: [
+          { path: '', component: UpdateCouponComponent, outlet: 'company' },
+        ],
+      },
+      {
+        path: 'remove/coupon',
+        children: [
+          { path: '', component: RemoveCouponComponent, outlet: 'company' },
+        ],
+      },
+      {
+        path: 'get/coupon/category',
+        children: [
+          {
+            path: '',
+            component: GetCouponsCategoryComponent,
+            outlet: 'company',
+          },
+        ],
+      },
+      {
+        path: 'get/coupon/price',
+        children: [
+          { path: '', component: GetCouponsPriceComponent, outlet: 'company' },
+        ],
+      },
+    ],
   },
   {
     path: 'customer',

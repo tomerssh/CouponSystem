@@ -33,6 +33,14 @@ import { AddCustomerComponent } from './layouts/layout-admin/admin/services/add-
 import { UpdateCustomerComponent } from './layouts/layout-admin/admin/services/update-customer/update-customer.component';
 import { RemoveCustomerComponent } from './layouts/layout-admin/admin/services/remove-customer/remove-customer.component';
 import { GetCustomerComponent } from './layouts/layout-admin/admin/services/get-customer/get-customer.component';
+import { DashboardCompanyComponent } from './layouts/layout-company/dashboard-company/dashboard-company.component';
+import { AddCouponComponent } from './layouts/layout-company/company/services/add-coupon/add-coupon.component';
+import { UpdateCouponComponent } from './layouts/layout-company/company/services/update-coupon/update-coupon.component';
+import { GetCouponsComponent } from './layouts/layout-company/company/services/get-coupons/get-coupons.component';
+import { GetCouponsCategoryComponent } from './layouts/layout-company/company/services/get-coupons-category/get-coupons-category.component';
+import { GetCouponsPriceComponent } from './layouts/layout-company/company/services/get-coupons-price/get-coupons-price.component';
+import { RemoveCouponComponent } from './layouts/layout-company/company/services/remove-coupon/remove-coupon.component';
+import { GetCompanyDetailsComponent } from './layouts/layout-company/company/services/get-company-details/get-company-details.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +74,14 @@ import { GetCustomerComponent } from './layouts/layout-admin/admin/services/get-
     UpdateCustomerComponent,
     RemoveCustomerComponent,
     GetCustomerComponent,
+    DashboardCompanyComponent,
+    AddCouponComponent,
+    UpdateCouponComponent,
+    GetCouponsComponent,
+    GetCouponsCategoryComponent,
+    GetCouponsPriceComponent,
+    RemoveCouponComponent,
+    GetCompanyDetailsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

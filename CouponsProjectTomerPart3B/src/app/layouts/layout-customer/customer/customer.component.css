@@ -65,7 +65,7 @@ aside a:hover {
 
 .content {
   display: flex;
-  padding: 15px;
+  justify-content: center;
   width: stretch;
 }
 
