@@ -40,7 +40,7 @@ public class CompanyTest implements CommandLineRunner, ApplicationContextAware {
 
 	public void mainCompanyTests(LoginManager lm) throws CouponSystemException {
 		System.out.println("==================== COMPANY TESTS");
-		companyService = (CompanyService) lm.login("company@mail", "1234", ClientType.COMPANY);
+		companyService = (CompanyService) lm.login("company@mail.com", "1234", ClientType.COMPANY);
 
 		companyAddCoupon();
 

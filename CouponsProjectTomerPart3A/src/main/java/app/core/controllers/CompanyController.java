@@ -1,6 +1,9 @@
 package app.core.controllers;
 
+import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import app.core.entities.Company;
 import app.core.entities.Coupon;
@@ -43,16 +50,38 @@ public class CompanyController extends ClientController {
 		}
 	}
 
-	@PostMapping
+	private void initCompany(String token) {
+		String[] chunks = token.split("\\.");
+
+		Base64.Decoder decoder = Base64.getUrlDecoder();
+
+		String header = new String(decoder.decode(chunks[0]));
+		String payload = new String(decoder.decode(chunks[1]));
+
+		Map<String, Object> result = new HashMap<>();
+		try {
+			result = new ObjectMapper().readValue(payload, HashMap.class);
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		int id = (int) result.get("id");
+		this.service.setCompanyId(id);
+		this.service.setCompanyById(id);
+	}
+
+	@PostMapping("add/coupon")
 	public void addCoupon(@RequestBody Coupon coupon, @RequestHeader String token) {
 		try {
+			this.initCompany(token);
 			this.service.addCoupon(coupon);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 	}
 
-	@PutMapping
+	@PutMapping("update/coupon")
 	public void updateCoupon(@RequestBody Coupon coupon, @RequestHeader String token) {
 		try {
 			this.service.updateCoupon(coupon);
@@ -61,7 +90,7 @@ public class CompanyController extends ClientController {
 		}
 	}
 
-	@DeleteMapping("/{couponId}")
+	@DeleteMapping("remove/coupon/{couponId}")
 	public void deleteCoupon(@PathVariable int couponId, @RequestHeader String token) {
 		try {
 			this.service.deleteCoupon(couponId);
@@ -70,7 +99,7 @@ public class CompanyController extends ClientController {
 		}
 	}
 
-	@GetMapping("/all")
+	@GetMapping("get/coupon")
 	public List<Coupon> getCompanyCoupons(@RequestHeader String token) {
 		try {
 			return this.service.getCompanyCoupons();
@@ -79,7 +108,7 @@ public class CompanyController extends ClientController {
 		}
 	}
 
-	@GetMapping("/category/{category}")
+	@GetMapping("get/coupon/category/{category}")
 	public List<Coupon> getCompanyCoupons(@PathVariable Category category, @RequestHeader String token) {
 		try {
 			return this.service.getCompanyCoupons(category);
@@ -88,7 +117,7 @@ public class CompanyController extends ClientController {
 		}
 	}
 
-	@GetMapping("/price/{maxPrice}")
+	@GetMapping("get/coupon/price/{maxPrice}")
 	public List<Coupon> getCompanyCoupons(@PathVariable double maxPrice, @RequestHeader String token) {
 		try {
 			return this.service.getCompanyCoupons(maxPrice);
@@ -97,7 +126,7 @@ public class CompanyController extends ClientController {
 		}
 	}
 
-	@GetMapping
+	@GetMapping("get/company")
 	public Company getCompanyDetails(@RequestHeader String token) {
 		try {
 			return this.service.getCompanyDetails();

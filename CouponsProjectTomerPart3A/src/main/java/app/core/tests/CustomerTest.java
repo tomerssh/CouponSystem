@@ -37,7 +37,7 @@ public class CustomerTest implements CommandLineRunner, ApplicationContextAware 
 
 	public void mainCustomerTests(LoginManager lm) throws CouponSystemException {
 		System.out.println("==================== CUSTOMER TESTS");
-		customerService = (CustomerService) lm.login("customer@mail", "1234", ClientType.CUSTOMER);
+		customerService = (CustomerService) lm.login("customer@mail.com", "1234", ClientType.CUSTOMER);
 
 		customerGetDetails();
 
