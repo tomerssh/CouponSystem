@@ -36,6 +36,23 @@ public class CompanyService extends ClientService {
 		super.couponRepo = couponRepo;
 	}
 
+	public int getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
+	}
+
+
+	public void setCompanyById(int id) {
+		this.setCompany(id, this.companyRepo);
+	}
+
+	private void setCompany(int id, CompanyRepository companyRepo) {
+		this.company = this.companyRepo.findById(id).get();
+	}
+
 	@Override
 	public boolean login(String email, String password) throws CouponSystemException {
 		Optional<Company> opt = companyRepo.findByEmailAndPassword(email, password);

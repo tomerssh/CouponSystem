@@ -94,7 +94,7 @@ public class AdminTest implements CommandLineRunner, ApplicationContextAware {
 	private void adminAddCompany() throws CouponSystemException {
 		System.out.println("--- addCompany");
 		System.out.println(adminService.addCompany(new Company("aaa", "aaa@mail", "1234")));
-		System.out.println(adminService.addCompany(new Company("company", "company@mail", "1234")));
+		System.out.println(adminService.addCompany(new Company("company", "company@mail.com", "1234")));
 		System.out.println();
 	}
 
@@ -147,7 +147,7 @@ public class AdminTest implements CommandLineRunner, ApplicationContextAware {
 	private void adminAddCustomer() throws CouponSystemException {
 		System.out.println("--- addCustomer");
 		System.out.println(adminService.addCustomer(new Customer("aaa", "bbb", "aaa@mail", "1234")));
-		System.out.println(adminService.addCustomer(new Customer("customer", "customer", "customer@mail", "1234")));
+		System.out.println(adminService.addCustomer(new Customer("customer", "customer", "customer@mail.com", "1234")));
 		System.out.println();
 	}
 
