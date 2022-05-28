@@ -1,1 +1,59 @@
-<p>update-coupon works!</p>
+<div class="head">
+  <h3>Update Coupon</h3>
+</div>
+<div class="content">
+  <form #form="ngForm">
+    <fieldset>
+      <label for="id">Id</label>
+      <br>
+      <input #id name="id" type="text" id="id" [(ngModel)]="coupon.id" required>
+      <br>
+      <br>
+      <button (click)="getCouponById(id.value)">Get Coupon</button>
+      <br>
+      <label for="category">Category</label>
+      <select #category name="category" id="category" [(ngModel)]="coupon.category" required>
+        <option value="FOOD">Food</option>
+        <option value="ELECTRONICS">Electronics</option>
+        <option value="HOME">Home</option>
+        <option value="CLOTHING">Clothing</option>
+        <option value="CAMPING">Camping</option>
+        <option value="VACATION">Vacation</option>
+      </select>
+      <label for="title">Title</label>
+      <br>
+      <input #title name="title" type="text" id="title" [(ngModel)]="coupon.title">
+      <br>
+      <label for="description">Description</label>
+      <br>
+      <input #description name="description" type="text" id="description" [(ngModel)]="coupon.description">
+      <br>
+      <label for="startDate">Issue Date</label>
+      <br>
+      <input #startDate name="startDate" type="date" id="startDate" [(ngModel)]="coupon.startDate">
+      <br>
+      <label for="endDate">Expiration Date</label>
+      <br>
+      <input #endDate name="endDate" type="date" id="endDate" [(ngModel)]="coupon.endDate">
+      <br>
+      <label for="amount">Amount</label>
+      <br>
+      <input #amount name="amount" type="text" id="amount" [(ngModel)]="coupon.amount">
+      <br>
+      <label for="price">Price</label>
+      <br>
+      <input #price name="price" type="text" id="price" [(ngModel)]="coupon.price">
+      <br>
+      <label for="image">Image</label>
+      <br>
+      <input #image name="image" type="text" id="image" [(ngModel)]="coupon.image" (keydown.enter)="handleUpdateCoupon(id.value, category.value, title.value, description.value, startDate.value, endDate.value, amount.value, price.value, image.value)">
+      <br>
+      <div class="btn">
+        <button [disabled]="form.invalid" (click)="handleUpdateCoupon(id.value, category.value, title.value, description.value, startDate.value, endDate.value, amount.value, price.value, image.value)">Update Coupon</button>
+      </div>
+    </fieldset>
+  </form>
+  <div>
+    {{msg}}
+  </div>
+</div>
