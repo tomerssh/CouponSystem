@@ -1,1 +1,21 @@
-<p>get-company-details works!</p>
+<fieldset>
+  <legend>Company</legend>
+  <div class="flex">
+    <table *ngIf="company">
+      <tbody>
+        <tr>
+          <th>Name</th>
+        </tr>
+        <tr>
+          <td>{{company.name}}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+        </tr>
+        <tr>
+          <td>{{company.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</fieldset>

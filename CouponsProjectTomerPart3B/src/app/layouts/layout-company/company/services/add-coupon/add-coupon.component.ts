@@ -25,14 +25,16 @@ export class AddCouponComponent implements OnInit {
     price: string,
     image: string
   ) {
+    let startDateDate: Date = new Date(startDate);
+    let endDateDate: Date = new Date(endDate);
     let coupon = new Coupon(
       undefined,
       undefined,
       category,
       title,
       description,
-      startDate,
-      endDate,
+      startDateDate,
+      endDateDate,
       amount,
       price,
       image

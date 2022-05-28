@@ -1,0 +1,47 @@
+table {
+  border-collapse: collapse;
+}
+/* Zebra striping */
+tr:nth-of-type(even) {
+  background: #eee;
+}
+th {
+  width: 50%;
+  background: #333;
+  color: white;
+  font-weight: bold;
+}
+td,
+th {
+  padding: 6px;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: x-large;
+  font-weight: 600;
+}
+
+/* ---------- */
+
+fieldset {
+  margin: 3vh 0;
+  border: 0;
+}
+
+legend {
+  margin: 0 auto;
+  font-size: x-large;
+  font-weight: 600;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  td,
+  th {
+    font-size: medium;
+    font-weight: 400;
+  }
+}

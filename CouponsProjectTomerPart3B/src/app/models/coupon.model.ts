@@ -7,8 +7,8 @@ export class Coupon {
     public category?: string,
     public title?: string,
     public description?: string,
-    public startDate?: string,
-    public endDate?: string,
+    public startDate?: Date,
+    public endDate?: Date,
     public amount?: string,
     public price?: string,
     public image?: string
