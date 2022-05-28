@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import app.core.entities.Company;
 import app.core.entities.Coupon;
 import app.core.entities.Coupon.Category;
-import app.core.exceptions.CouponServiceException;
 import app.core.exceptions.CouponSystemException;
 import app.core.repositories.CompanyRepository;
 import app.core.repositories.CouponRepository;
@@ -79,31 +78,31 @@ public class CompanyService extends ClientService {
 		return coupon.getId();
 	}
 
-	public void updateCoupon(Coupon coupon) throws CouponSystemException {
-		Optional<Coupon> opt = couponRepo.findById(coupon.getId());
+	public Coupon getCouponById(int id) throws CouponSystemException {
+		Optional<Coupon> opt = couponRepo.findById(id);
 		if (opt.isPresent()) {
-			Coupon couponInDb = opt.get();
-			couponInDb.setCategory(coupon.getCategory());
-			couponInDb.setTitle(coupon.getTitle());
-			couponInDb.setDescription(coupon.getDescription());
-			couponInDb.setStartDate(coupon.getStartDate());
-			couponInDb.setEndDate(coupon.getEndDate());
-			couponInDb.setAmount(coupon.getAmount());
-			couponInDb.setPrice(coupon.getPrice());
-			couponInDb.setImage(coupon.getImage());
+			return opt.get();
 		} else {
-			throw new CouponServiceException("coupon with id " + coupon.getId() + " not found");
+			throw new CouponSystemException("coupon with id " + id + " not found");
 		}
 	}
 
+	public void updateCoupon(Coupon coupon) throws CouponSystemException {
+		Coupon c = this.getCouponById(coupon.getId());
+		c.setCategory(coupon.getCategory());
+		c.setTitle(coupon.getTitle());
+		c.setDescription(coupon.getDescription());
+		c.setStartDate(coupon.getStartDate());
+		c.setEndDate(coupon.getEndDate());
+		c.setAmount(coupon.getAmount());
+		c.setPrice(coupon.getPrice());
+		c.setImage(coupon.getImage());
+	}
+
 	public void deleteCoupon(int couponId) throws CouponSystemException {
-		Optional<Coupon> opt = couponRepo.findById(couponId);
-		if (opt.isPresent()) {
-			couponRepo.delete(opt.get());
-			this.company.getCoupons().remove(opt.get());
-		} else {
-			throw new CouponServiceException("coupon with id " + couponId + " not found");
-		}
+		Coupon c = this.getCouponById(couponId);
+		couponRepo.delete(c);
+		this.company.getCoupons().remove(c);
 	}
 
 	/**
