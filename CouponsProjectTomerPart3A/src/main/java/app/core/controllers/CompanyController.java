@@ -81,6 +81,16 @@ public class CompanyController extends ClientController {
 		}
 	}
 
+	@GetMapping("get/coupon/{couponId}")
+	public Coupon getCouponById(@PathVariable int couponId, @RequestHeader String token) {
+		try {
+			this.initCompany(token);
+			return this.service.getCouponById(couponId);
+		} catch (CouponSystemException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+		}
+	}
+
 	@PutMapping("update/coupon")
 	public void updateCoupon(@RequestBody Coupon coupon, @RequestHeader String token) {
 		try {
