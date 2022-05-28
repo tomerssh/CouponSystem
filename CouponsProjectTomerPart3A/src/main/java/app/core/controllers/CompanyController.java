@@ -84,6 +84,7 @@ public class CompanyController extends ClientController {
 	@PutMapping("update/coupon")
 	public void updateCoupon(@RequestBody Coupon coupon, @RequestHeader String token) {
 		try {
+			this.initCompany(token);
 			this.service.updateCoupon(coupon);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
@@ -93,6 +94,7 @@ public class CompanyController extends ClientController {
 	@DeleteMapping("remove/coupon/{couponId}")
 	public void deleteCoupon(@PathVariable int couponId, @RequestHeader String token) {
 		try {
+			this.initCompany(token);
 			this.service.deleteCoupon(couponId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
@@ -102,6 +104,7 @@ public class CompanyController extends ClientController {
 	@GetMapping("get/coupon")
 	public List<Coupon> getCompanyCoupons(@RequestHeader String token) {
 		try {
+			this.initCompany(token);
 			return this.service.getCompanyCoupons();
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -111,6 +114,7 @@ public class CompanyController extends ClientController {
 	@GetMapping("get/coupon/category/{category}")
 	public List<Coupon> getCompanyCoupons(@PathVariable Category category, @RequestHeader String token) {
 		try {
+			this.initCompany(token);
 			return this.service.getCompanyCoupons(category);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -120,6 +124,7 @@ public class CompanyController extends ClientController {
 	@GetMapping("get/coupon/price/{maxPrice}")
 	public List<Coupon> getCompanyCoupons(@PathVariable double maxPrice, @RequestHeader String token) {
 		try {
+			this.initCompany(token);
 			return this.service.getCompanyCoupons(maxPrice);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -129,6 +134,7 @@ public class CompanyController extends ClientController {
 	@GetMapping("get/company")
 	public Company getCompanyDetails(@RequestHeader String token) {
 		try {
+			this.initCompany(token);
 			return this.service.getCompanyDetails();
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());

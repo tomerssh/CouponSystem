@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 
 import app.core.utils.JwtUtil;
 
-// currently listening to /rest endpoints, none of these methods are receiving a token
 public class LoginFilter implements Filter {
 	private JwtUtil jwtUtil;
 
