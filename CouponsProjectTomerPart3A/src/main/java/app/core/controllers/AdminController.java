@@ -22,7 +22,7 @@ import app.core.exceptions.CouponSystemException;
 import app.core.services.AdminService;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("rest/admin")
 @CrossOrigin
 public class AdminController extends ClientController {
 

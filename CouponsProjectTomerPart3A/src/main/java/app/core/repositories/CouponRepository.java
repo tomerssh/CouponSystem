@@ -43,7 +43,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 * @param maxPrice
 	 * @return A list of all coupons by company id and max price
 	 */
-	@Query(value = "from Coupon where company_id=:companyId AND price=:maxPrice")
+	@Query(value = "from Coupon where company_id=:companyId AND price<=:maxPrice")
 	List<Coupon> findAllByCompanyIdAndPrice(int companyId, double maxPrice);
 
 	/**
