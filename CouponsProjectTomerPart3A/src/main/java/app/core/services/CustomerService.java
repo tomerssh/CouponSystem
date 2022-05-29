@@ -3,6 +3,8 @@ package app.core.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -36,6 +38,22 @@ public class CustomerService extends ClientService {
 		super.couponRepo = couponRepo;
 	}
 
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public void setCustomerById(int id) {
+		this.setCustomer(id, this.customerRepo);
+	}
+
+	private void setCustomer(int id, CustomerRepository customerRepo) {
+		this.customer = this.customerRepo.findById(id).get();
+	}
+
 	@Override
 	public boolean login(String email, String password) throws CouponSystemException {
 		Optional<Customer> opt = customerRepo.findByEmailAndPassword(email, password);
@@ -58,16 +76,21 @@ public class CustomerService extends ClientService {
 //			throw new CouponServiceException("no coupons left");
 //		}
 //	}
-	public void addCouponPurchase(int couponId) throws CouponSystemException {
+	public String addCouponPurchase(int couponId) throws CouponSystemException {
+		try {
 		Coupon coupon = couponRepo.getById(couponId);
 		if (coupon.getAmount() > 0) {
 			coupon.setAmount(coupon.getAmount() - 1);
 			this.customer.getCoupons().add(coupon);
 			couponRepo.saveAndFlush(coupon);
 			customerRepo.saveAndFlush(this.customer);
+			return coupon.getTitle();
 		} else {
 			throw new CouponServiceException("no coupons left");
 		}
+	} catch (EntityNotFoundException e) {
+		throw new CouponServiceException("coupon with id " + couponId + " not found");
+	}
 	}
 
 	// doesn't work without native query in couponRepo
@@ -83,6 +106,15 @@ public class CustomerService extends ClientService {
 	public boolean wasCouponPurchased(int couponId) throws CouponSystemException {
 		List<Integer> couponIdList = couponRepo.wasPurchased(this.customerId, couponId);
 		return !couponIdList.isEmpty();
+	}
+
+	public int getCouponPurchaseAmount(int couponId) throws CouponSystemException {
+		List<Integer> couponIdList = couponRepo.wasPurchased(this.customerId, couponId);
+		if (!couponIdList.isEmpty()) {
+			return couponIdList.size();
+		} else {
+			throw new CouponServiceException("coupon was not purchased");
+		}
 	}
 
 	/**
