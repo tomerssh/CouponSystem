@@ -1,1 +1,40 @@
-<p>get-coupons-price works!</p>
+<div class="input">
+  <label for="price">Price</label>
+  <input #price name="price" type="number" id="price" required>
+  <button (click)="handleGetCompanyCouponsByMaxPrice(price.value)">Get Coupons</button>
+</div>
+
+<fieldset>
+  <legend>Coupons</legend>
+  <table *ngIf="coupons && coupons.length != 0">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Category</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Issue Date</th>
+        <th>Expiration Date</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of coupons">
+        <td>{{c.id}}</td>
+        <td>{{c.category}}</td>
+        <td>{{c.title}}</td>
+        <td>{{c.description}}</td>
+        <td>{{c.startDate}}</td>
+        <td>{{c.endDate}}</td>
+        <td>{{c.amount}}</td>
+        <td>{{c.price}}</td>
+        <td><img src="{{c.image}}" alt="{{c.image}}"></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="empty" *ngIf="coupons && coupons.length == 0">
+    <span>You Have No Coupons</span>
+  </div>
+</fieldset>

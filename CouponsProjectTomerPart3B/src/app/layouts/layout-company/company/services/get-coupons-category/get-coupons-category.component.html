@@ -1,1 +1,47 @@
-<p>get-coupons-category works!</p>
+<div class="input">
+  <label for="category">Category</label>
+  <select #category name="category" id="category" required>
+    <option value="FOOD">Food</option>
+    <option value="ELECTRONICS">Electronics</option>
+    <option value="HOME">Home</option>
+    <option value="CLOTHING">Clothing</option>
+    <option value="CAMPING">Camping</option>
+    <option value="VACATION">Vacation</option>
+  </select>
+  <button (click)="handleGetCompanyCouponsByCategory(category.value)">Get Coupons</button>
+</div>
+
+<fieldset>
+  <legend>Coupons</legend>
+  <table *ngIf="coupons && coupons.length != 0">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Category</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Issue Date</th>
+        <th>Expiration Date</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of coupons">
+        <td>{{c.id}}</td>
+        <td>{{c.category}}</td>
+        <td>{{c.title}}</td>
+        <td>{{c.description}}</td>
+        <td>{{c.startDate}}</td>
+        <td>{{c.endDate}}</td>
+        <td>{{c.amount}}</td>
+        <td>{{c.price}}</td>
+        <td><img src="{{c.image}}" alt="{{c.image}}"></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="empty" *ngIf="coupons && coupons.length == 0">
+    <span>You Have No Coupons</span>
+  </div>
+</fieldset>

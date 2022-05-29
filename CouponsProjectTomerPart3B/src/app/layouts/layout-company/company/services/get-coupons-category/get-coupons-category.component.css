@@ -1,0 +1,79 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+label {
+  display: inline-block;
+  margin: 5px auto;
+}
+
+label:hover {
+  cursor: pointer;
+}
+
+select {
+  min-width: 100%;
+}
+
+button {
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+/* Zebra striping */
+tr:nth-of-type(odd) {
+  background: #eee;
+}
+th {
+  background: #333;
+  color: white;
+  font-weight: bold;
+}
+td,
+th {
+  padding: 6px;
+  border: 1px solid #ccc;
+  text-align: left;
+  font-size: larger;
+  font-weight: 500;
+}
+
+/* ---------- */
+
+fieldset {
+  margin: 3vh 0;
+  border: 0;
+}
+
+legend {
+  margin: 0 auto;
+  font-size: larger;
+  font-weight: 600;
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+}
+
+.empty span {
+  margin-bottom: 10px;
+  font-size: larger;
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  td,
+  th,
+  .empty span {
+    font-size: medium;
+    font-weight: 400;
+  }
+}

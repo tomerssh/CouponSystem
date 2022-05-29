@@ -43,6 +43,14 @@ export class CompanyService {
     return this.httpClient.put(url, body, options);
   }
 
+  public removeCoupon(id: number) {
+    let url = this.mainUrl + 'remove/coupon/' + id;
+    let token: any = sessionStorage.getItem('token');
+    let httpHeaders = new HttpHeaders().set('token', token);
+    let options: any = { headers: httpHeaders, responseType: 'text' };
+    return this.httpClient.delete(url, options);
+  }
+
   public getCompanyDetails() {
     let url = this.mainUrl + 'get/company';
     let token: any = sessionStorage.getItem('token');
@@ -53,6 +61,22 @@ export class CompanyService {
 
   public getCompanyCoupons() {
     let url = this.mainUrl + 'get/coupon';
+    let token: any = sessionStorage.getItem('token');
+    let httpHeaders = new HttpHeaders().set('token', token);
+    let options: any = { headers: httpHeaders };
+    return this.httpClient.get<Coupon[]>(url, <Object>options);
+  }
+
+  public getCompanyCouponsByCategory(category: string) {
+    let url = this.mainUrl + 'get/coupon/category/' + category;
+    let token: any = sessionStorage.getItem('token');
+    let httpHeaders = new HttpHeaders().set('token', token);
+    let options: any = { headers: httpHeaders };
+    return this.httpClient.get<Coupon[]>(url, <Object>options);
+  }
+
+  public getCompanyCouponsByMaxPrice(price: number) {
+    let url = this.mainUrl + 'get/coupon/price/' + price;
     let token: any = sessionStorage.getItem('token');
     let httpHeaders = new HttpHeaders().set('token', token);
     let options: any = { headers: httpHeaders };

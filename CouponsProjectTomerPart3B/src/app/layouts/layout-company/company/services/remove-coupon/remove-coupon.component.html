@@ -1,1 +1,19 @@
-<p>remove-coupon works!</p>
+<div class="head">
+  <h3>Remove Coupon</h3>
+</div>
+<div class="content">
+  <form #form="ngForm">
+    <fieldset>
+      <label for="id">Id</label>
+      <br>
+      <input #id name="id" type="number" id="id" [(ngModel)]="coupon.id" required>
+      <br>
+      <div class="btn">
+        <button [disabled]="form.invalid" (click)="handleRemoveCoupon(id.value)">Remove Coupon</button>
+      </div>
+    </fieldset>
+  </form>
+  <div>
+    {{msg}}
+  </div>
+</div>
