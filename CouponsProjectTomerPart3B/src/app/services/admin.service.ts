@@ -7,7 +7,7 @@ import { Customer } from '../models/customer.model';
   providedIn: 'root',
 })
 export class AdminService {
-  private mainUrl: string = 'http://localhost:8080/admin/';
+  private mainUrl: string = 'http://localhost:8080/rest/admin/';
 
   constructor(private httpClient: HttpClient) {}
 

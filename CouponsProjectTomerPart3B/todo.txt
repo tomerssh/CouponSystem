@@ -1,0 +1,3 @@
+remove cross origin from server when done
+set app properties to not delete database when server starts
+on server filter turned off in app.core.application

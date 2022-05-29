@@ -1,15 +1,8 @@
-<div class="input">
-  <label for="price">Max Price</label>
-  <input #price name="price" type="number" id="price" required>
-  <button (click)="handleGetCompanyCouponsByMaxPrice(price.value)">Get Coupons</button>
-</div>
-
 <fieldset>
   <legend>Coupons</legend>
   <table *ngIf="coupons && coupons.length != 0">
     <thead>
       <tr>
-        <th>Id</th>
         <th>Category</th>
         <th>Title</th>
         <th>Description</th>
@@ -22,13 +15,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let c of coupons">
-        <td>{{c.id}}</td>
         <td>{{c.category}}</td>
         <td>{{c.title}}</td>
         <td>{{c.description}}</td>
         <td>{{c.startDate}}</td>
         <td>{{c.endDate}}</td>
-        <td>{{c.amount}}</td>
+        <td>{{customerCouponPurchased[c.id!]}}</td>
         <td>{{c.price}}</td>
         <td><img src="{{c.image}}" alt="{{c.image}}"></td>
       </tr>

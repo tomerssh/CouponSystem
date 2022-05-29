@@ -1,0 +1,19 @@
+<div class="head">
+  <h3>Purchase Coupon</h3>
+</div>
+<div class="content">
+  <form #form="ngForm">
+    <fieldset>
+      <label for="id">Id</label>
+      <br>
+      <input #id name="id" type="text" id="id" [(ngModel)]="coupon.id" (keydown.enter)="handlePurchaseCoupon(id.value)" required>
+      <br>
+      <div class="btn">
+        <button [disabled]="form.invalid" (click)="handlePurchaseCoupon(id.value)">Purchase Coupon</button>
+      </div>
+    </fieldset>
+  </form>
+  <div>
+    {{msg}}
+  </div>
+</div>

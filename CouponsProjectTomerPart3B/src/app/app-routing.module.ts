@@ -18,6 +18,10 @@ import { RemoveCouponComponent } from './layouts/layout-company/company/services
 import { UpdateCouponComponent } from './layouts/layout-company/company/services/update-coupon/update-coupon.component';
 import { DashboardCompanyComponent } from './layouts/layout-company/dashboard-company/dashboard-company.component';
 import { LayoutCompanyComponent } from './layouts/layout-company/layout-company.component';
+import { GetCustomerCouponsCategoryComponent } from './layouts/layout-customer/customer/services/get-customer-coupons-category/get-customer-coupons-category.component';
+import { GetCustomerCouponsPriceComponent } from './layouts/layout-customer/customer/services/get-customer-coupons-price/get-customer-coupons-price.component';
+import { PurchaseCouponComponent } from './layouts/layout-customer/customer/services/purchase-coupon/purchase-coupon.component';
+import { DashboardCustomerComponent } from './layouts/layout-customer/dashboard-customer/dashboard-customer.component';
 import { LayoutCustomerComponent } from './layouts/layout-customer/layout-customer.component';
 import { LayoutDashboardComponent } from './layouts/layout-dashboard/layout-dashboard.component';
 import { LayoutLoginComponent } from './layouts/layout-login/layout-login.component';
@@ -141,6 +145,45 @@ const routes: Routes = [
     path: 'customer',
     component: LayoutCustomerComponent,
     canActivate: [AuthGuard],
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        children: [
+          {
+            path: '',
+            component: DashboardCustomerComponent,
+            outlet: 'customer',
+          },
+        ],
+      },
+      {
+        path: 'purchase/coupon',
+        children: [
+          { path: '', component: PurchaseCouponComponent, outlet: 'customer' },
+        ],
+      },
+      {
+        path: 'get/coupon/category',
+        children: [
+          {
+            path: '',
+            component: GetCustomerCouponsCategoryComponent,
+            outlet: 'customer',
+          },
+        ],
+      },
+      {
+        path: 'get/coupon/price',
+        children: [
+          {
+            path: '',
+            component: GetCustomerCouponsPriceComponent,
+            outlet: 'customer',
+          },
+        ],
+      },
+    ],
   },
   { path: '**', component: LayoutPage404Component },
 ];

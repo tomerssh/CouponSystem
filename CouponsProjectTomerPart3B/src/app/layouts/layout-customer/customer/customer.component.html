@@ -8,11 +8,14 @@
   <aside #sidenav>
     <div class="sidenavFlexContainer">
       <span>Menu</span>
-      <a routerLink="#">Service</a>
+      <a routerLink="/customer/dashboard">Dashboard</a>
+      <a routerLink="/customer/purchase/coupon">Purchase Coupon</a>
+      <a routerLink="/customer/get/coupon/category">Get Coupons By Category</a>
+      <a routerLink="/customer/get/coupon/price">Get Coupons By Max Price</a>
     </div>
   </aside>
 
   <div class="content">
-    <p>content</p>
+    <router-outlet name="customer"></router-outlet>
   </div>
 </div>

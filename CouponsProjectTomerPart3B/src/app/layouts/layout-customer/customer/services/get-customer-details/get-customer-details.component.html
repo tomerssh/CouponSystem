@@ -1,0 +1,27 @@
+<fieldset>
+  <legend>Customer</legend>
+  <div class="flex">
+    <table *ngIf="customer">
+      <tbody>
+        <tr>
+          <th>First Name</th>
+        </tr>
+        <tr>
+          <td>{{customer.firstName}}</td>
+        </tr>
+        <tr>
+          <th>Last Name</th>
+        </tr>
+        <tr>
+          <td>{{customer.lastName}}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+        </tr>
+        <tr>
+          <td>{{customer.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</fieldset>
