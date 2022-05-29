@@ -99,10 +99,11 @@ public class CompanyService extends ClientService {
 		c.setImage(coupon.getImage());
 	}
 
-	public void deleteCoupon(int couponId) throws CouponSystemException {
+	public String deleteCoupon(int couponId) throws CouponSystemException {
 		Coupon c = this.getCouponById(couponId);
 		couponRepo.delete(c);
 		this.company.getCoupons().remove(c);
+		return c.getTitle();
 	}
 
 	/**

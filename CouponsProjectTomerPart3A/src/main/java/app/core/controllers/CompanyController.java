@@ -102,10 +102,10 @@ public class CompanyController extends ClientController {
 	}
 
 	@DeleteMapping("remove/coupon/{couponId}")
-	public void deleteCoupon(@PathVariable int couponId, @RequestHeader String token) {
+	public String deleteCoupon(@PathVariable int couponId, @RequestHeader String token) {
 		try {
 			this.initCompany(token);
-			this.service.deleteCoupon(couponId);
+			return this.service.deleteCoupon(couponId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
