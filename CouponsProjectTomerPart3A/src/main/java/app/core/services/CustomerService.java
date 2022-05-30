@@ -103,6 +103,15 @@ public class CustomerService extends ClientService {
 		customerRepo.saveAndFlush(this.customer);
 	}
 
+	public List<Coupon> getAllCoupons() throws CouponServiceException {
+		List<Coupon> coupons = couponRepo.findAll();
+		if (!coupons.isEmpty()) {
+			return coupons;
+		} else {
+			throw new CouponServiceException("no coupons");
+		}
+	}
+
 	public boolean wasCouponPurchased(int couponId) throws CouponSystemException {
 		List<Integer> couponIdList = couponRepo.wasPurchased(this.customerId, couponId);
 		return !couponIdList.isEmpty();
