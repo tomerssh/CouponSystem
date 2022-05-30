@@ -7,7 +7,7 @@ import { Coupon } from '../models/coupon.model';
   providedIn: 'root',
 })
 export class CompanyService {
-  private mainUrl: string = 'http://localhost:8080/company/';
+  private mainUrl: string = 'http://localhost:8080/rest/company/';
 
   constructor(private httpClient: HttpClient) {}
 

@@ -47,6 +47,14 @@ export class CustomerService {
     return this.httpClient.get<Coupon[]>(url, <Object>options);
   }
 
+  public getAllCoupons() {
+    let url = this.mainUrl + 'get/coupon/all';
+    let token: any = sessionStorage.getItem('token');
+    let httpHeaders = new HttpHeaders().set('token', token);
+    let options: any = { headers: httpHeaders };
+    return this.httpClient.get<Coupon[]>(url, <Object>options);
+  }
+
   public getCustomerCouponsByCategory(category: string) {
     let url = this.mainUrl + 'get/coupon/category/' + category;
     let token: any = sessionStorage.getItem('token');

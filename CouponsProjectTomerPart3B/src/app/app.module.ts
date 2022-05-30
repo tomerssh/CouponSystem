@@ -47,6 +47,7 @@ import { GetCustomerCouponsComponent } from './layouts/layout-customer/customer/
 import { GetCustomerCouponsCategoryComponent } from './layouts/layout-customer/customer/services/get-customer-coupons-category/get-customer-coupons-category.component';
 import { GetCustomerCouponsPriceComponent } from './layouts/layout-customer/customer/services/get-customer-coupons-price/get-customer-coupons-price.component';
 import { GetCustomerDetailsComponent } from './layouts/layout-customer/customer/services/get-customer-details/get-customer-details.component';
+import { GetAllCouponsComponent } from './layouts/layout-customer/customer/services/get-all-coupons/get-all-coupons.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { GetCustomerDetailsComponent } from './layouts/layout-customer/customer/
     GetCustomerCouponsCategoryComponent,
     GetCustomerCouponsPriceComponent,
     GetCustomerDetailsComponent,
+    GetAllCouponsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
