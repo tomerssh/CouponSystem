@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import app.core.entities.Coupon;
 import app.core.entities.Coupon.Category;
 import app.core.entities.Customer;
+import app.core.exceptions.CouponServiceException;
 import app.core.exceptions.CouponSystemException;
 import app.core.services.CustomerService;
 
@@ -76,6 +77,16 @@ public class CustomerController extends ClientController {
 			return this.service.addCouponPurchase(couponId);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
+
+	@GetMapping("get/coupon/all")
+	public List<Coupon> getAllCoupons(@RequestHeader String token) {
+		try {
+			this.initCustomer(token);
+			return this.service.getAllCoupons();
+		} catch (CouponServiceException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 		}
 	}
 
