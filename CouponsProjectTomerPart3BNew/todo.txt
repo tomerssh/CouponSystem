@@ -1,0 +1,4 @@
+-- redux
+-- lazy loading
+-- material ui
+-- module segregation
