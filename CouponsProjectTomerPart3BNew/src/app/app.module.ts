@@ -1,20 +1,29 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeModule } from './features/home/home.module';
+import { Page404Module } from './features/page404/page404.module';
+import { AdminModule } from './features/admin/admin.module';
+import { CompanyModule } from './features/company/company.module';
+import { CustomerModule } from './features/customer/customer.module';
+import { MaterialModule } from './material.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    MaterialModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    HomeModule,
+    Page404Module,
+    AdminModule,
+    CompanyModule,
+    CustomerModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

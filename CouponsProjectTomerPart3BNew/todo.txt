@@ -1,4 +1,5 @@
--- redux
 -- lazy loading
 -- material ui
 -- module segregation
+update and delete without id codes, let user choose from a list
+don't show database id's
