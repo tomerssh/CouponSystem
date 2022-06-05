@@ -1,5 +1,7 @@
 package app.core.tests;
 
+import javax.servlet.http.Cookie;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
@@ -29,6 +31,12 @@ public class JwtTest implements CommandLineRunner {
 		System.out.println("extractIssuedAt: " + jwtUtil.extractIssuedAt(token));
 		System.out.println("extractExpiration: " + jwtUtil.extractExpiration(token));
 		System.out.println("isTokenExpired: " + jwtUtil.isTokenExpired(token));
+		System.out.println("=====================================================");
+		System.out.println("=== COOKIE TEST ========================================");
+		Cookie cookie = new Cookie("token", token);
+		cookie.setHttpOnly(true);
+		System.out.println("name: " + cookie.getName());
+		System.out.println("value: " + cookie.getValue());
 		System.out.println("=====================================================");
 	}
 

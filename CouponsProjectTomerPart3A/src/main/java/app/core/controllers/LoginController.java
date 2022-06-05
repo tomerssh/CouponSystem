@@ -1,5 +1,7 @@
 package app.core.controllers;
 
+import javax.servlet.http.Cookie;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,11 +34,14 @@ public class LoginController {
 	}
 
 	@PostMapping
-	public String login(@RequestParam String email, @RequestParam String password, ClientType clientType) {
+	public Cookie login(@RequestParam String email, @RequestParam String password, ClientType clientType) {
 		try {
 			ClientService service = this.loginManager.login(email, password, clientType);
 			int id = extractId(service);
-			return jwtUtil.generateToken(new ClientDetails(id, email, clientType));
+			String token = jwtUtil.generateToken(new ClientDetails(id, email, clientType));
+			Cookie cookie = new Cookie("token", token);
+			cookie.setHttpOnly(true);
+			return cookie;
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
 		}
