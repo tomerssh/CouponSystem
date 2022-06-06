@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ToggleMenuService } from 'src/app/services/toggleMenu/toggle-menu.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,11 @@ export class HeaderComponent implements OnInit {
   @Input()
   btnUrl: string = '';
 
-  constructor() {}
+  constructor(private toggleMenuService: ToggleMenuService) {}
 
   ngOnInit(): void {}
+
+  toggle() {
+    this.toggleMenuService.toggle();
+  }
 }

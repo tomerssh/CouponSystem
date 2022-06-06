@@ -9,6 +9,6 @@ import { ContentComponent } from './components/content/content.component';
 
 @NgModule({
   declarations: [HomeComponent, ContentComponent],
-  imports: [CommonModule, HomeRoutingModule, MaterialModule, SharedModule],
+  imports: [CommonModule, HomeRoutingModule, SharedModule, MaterialModule],
 })
 export class HomeModule {}

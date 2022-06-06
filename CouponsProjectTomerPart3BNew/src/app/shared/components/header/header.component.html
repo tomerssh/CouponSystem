@@ -1,9 +1,9 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="mat-elevation-z2">
   <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button> -->
-  <button mat-icon-button aria-label="Example icon button with a home icon" routerLink="">
-    <mat-icon>home</mat-icon>
+  <button *ngIf="true" (click)="toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
   </button>
   <span>{{content}}</span>
   <span class="example-spacer"></span>
