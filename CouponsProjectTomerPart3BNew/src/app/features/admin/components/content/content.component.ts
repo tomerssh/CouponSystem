@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ToggleMenuService } from 'src/app/shared/services/toggleMenu/toggle-menu.service';
 
@@ -10,22 +9,20 @@ import { ToggleMenuService } from 'src/app/shared/services/toggleMenu/toggle-men
 })
 export class ContentComponent implements OnInit {
   menuState$: Observable<boolean>;
-  url = this.router.url;
-  links: { name: string; url: string }[] = [];
+  apiUrl: string;
+  links: { name: string; apiUrl: string }[];
 
-  constructor(
-    private toggleMenuService: ToggleMenuService,
-    private router: Router
-  ) {
+  constructor(private toggleMenuService: ToggleMenuService) {
     this.menuState$ = this.toggleMenuService.menu$;
+    this.apiUrl = '/admin';
     this.links = [
       {
         name: 'Dashboard',
-        url: this.url + '/dashboard',
+        apiUrl: this.apiUrl,
       },
       {
         name: 'Add Company',
-        url: this.url + '/add/company',
+        apiUrl: this.apiUrl + '/add/company',
       },
     ];
   }
