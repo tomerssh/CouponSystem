@@ -7,14 +7,16 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ContentComponent } from './components/content/content.component';
 import { MaterialModule } from 'src/app/material.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AddCompanyComponent } from './components/add-company/add-company.component';
+import { DetailsComponent } from './components/dashboard/components/details/details.component';
+import { MainComponent } from './components/dashboard/components/main/main.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     ContentComponent,
     DashboardComponent,
-    AddCompanyComponent,
+    DetailsComponent,
+    MainComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule, MaterialModule],
 })
