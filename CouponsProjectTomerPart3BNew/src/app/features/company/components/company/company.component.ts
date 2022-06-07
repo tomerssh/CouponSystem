@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToggleMenuService } from 'src/app/services/toggleMenu/toggle-menu.service';
+import { ToggleMenuService } from 'src/app/shared/services/toggleMenu/toggle-menu.service';
 
 @Component({
   selector: 'app-company',

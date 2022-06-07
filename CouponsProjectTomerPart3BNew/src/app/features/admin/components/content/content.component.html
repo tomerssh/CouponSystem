@@ -1,8 +1,11 @@
 <mat-sidenav-container (backdropClick)="toggle()">
   <mat-sidenav [opened]="menuState$ | async">
-    Sidenav
+    <mat-nav-list>
+      <a mat-list-item routerLink={{link.url}} *ngFor="let link of links"> {{ link.name }} </a>
+    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    Content
+    content
+    <!-- put dashboard component here or router outlet -->
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ToggleMenuService } from 'src/app/services/toggleMenu/toggle-menu.service';
+import { ToggleMenuService } from '../../services/toggleMenu/toggle-menu.service';
 
 @Component({
   selector: 'app-header',
