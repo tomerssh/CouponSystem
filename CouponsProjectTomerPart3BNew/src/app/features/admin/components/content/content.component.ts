@@ -15,4 +15,8 @@ export class ContentComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  toggle() {
+    this.toggleMenuService.toggle();
+  }
 }

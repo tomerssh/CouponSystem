@@ -1,4 +1,4 @@
-<mat-sidenav-container>
+<mat-sidenav-container (backdropClick)="toggle()">
   <mat-sidenav [opened]="menuState$ | async">
     Sidenav
   </mat-sidenav>
