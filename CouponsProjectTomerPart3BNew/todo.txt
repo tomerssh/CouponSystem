@@ -4,4 +4,5 @@
 update and delete without id codes, let user choose from a list
 don't show database id's
 
-make dialog to show info details instead of on admin page
+add feature to filter table by columns
+add feature to search table

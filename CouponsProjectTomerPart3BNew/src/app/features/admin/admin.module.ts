@@ -7,8 +7,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ContentComponent } from './components/content/content.component';
 import { MaterialModule } from 'src/app/material.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { DetailsComponent } from './components/dashboard/components/details/details.component';
-import { MainComponent } from './components/dashboard/components/main/main.component';
+import { DetailsComponent } from './components/details/details.component';
+import { ModalComponent } from './components/dashboard/components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { MainComponent } from './components/dashboard/components/main/main.compo
     ContentComponent,
     DashboardComponent,
     DetailsComponent,
-    MainComponent,
+    ModalComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule, MaterialModule],
 })

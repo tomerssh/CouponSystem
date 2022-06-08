@@ -20,6 +20,10 @@ export class ContentComponent implements OnInit {
         name: 'Dashboard',
         apiUrl: this.apiUrl,
       },
+      {
+        name: 'Details',
+        apiUrl: this.apiUrl + '/details',
+      },
     ];
   }
 

@@ -8,6 +8,11 @@
   <span>{{content}}</span>
   <span class="example-spacer"></span>
   <!-- <button mat-raised-button routerLink="{{btnUrl}}">{{btn}}</button> -->
+  <button mat-button *ngIf="true" routerLink="details">
+    <mat-icon aria-hidden="false">
+      account_circle
+    </mat-icon>
+  </button>
   <button mat-button routerLink="{{btnUrl}}">
     <mat-icon aria-hidden="false">
       {{btn}}
