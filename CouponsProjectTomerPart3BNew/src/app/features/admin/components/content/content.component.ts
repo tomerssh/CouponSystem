@@ -24,6 +24,14 @@ export class ContentComponent implements OnInit {
         name: 'Details',
         apiUrl: this.apiUrl + '/details',
       },
+      {
+        name: 'Companies',
+        apiUrl: this.apiUrl + '/companies',
+      },
+      {
+        name: 'Customers',
+        apiUrl: this.apiUrl + '/customers',
+      },
     ];
   }
 
