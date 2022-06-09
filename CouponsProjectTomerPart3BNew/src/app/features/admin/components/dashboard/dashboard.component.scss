@@ -1,24 +1,9 @@
-.empty {
-  display: flex;
-  justify-content: center;
-}
-
-table {
-  width: 98vw;
+.example-card {
+  max-width: 400px;
   margin: 2vh auto;
 }
 
-.demo-button-container {
-  display: flex;
-  justify-content: center;
-  margin: 2vh auto;
-}
-
-.mat-row .mat-cell {
-  cursor: pointer;
-}
-
-.mat-row:hover .mat-cell {
-  background-color: #4054b4;
-  color: white;
+.example-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
 }

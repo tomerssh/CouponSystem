@@ -1,8 +1,5 @@
--- lazy loading
--- material ui
--- module segregation
-update and delete without id codes, let user choose from a list
 don't show database id's
 
-add feature to filter table by columns
-add feature to search table
+have in shared modal editable fields
+add modal on top of edit and remove to confirm or cancel
+add form when clicking add button (either modal or new page preferably modal)
