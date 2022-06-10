@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './components/admin/admin.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { ContentComponent } from './components/content/content.component';
-import { MaterialModule } from 'src/app/material.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DetailsComponent } from './components/details/details.component';
-import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { CompaniesComponent } from './components/companies/companies.component';
 import { CustomersComponent } from './components/customers/customers.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { AddCompanyModalComponent } from './components/companies/components/add-company-modal/add-company-modal.component';
+import { ConfirmAddCompanyModalComponent } from './components/companies/components/confirm-add-company-modal/confirm-add-company-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,10 +17,11 @@ import { CustomersComponent } from './components/customers/customers.component';
     ContentComponent,
     DashboardComponent,
     DetailsComponent,
-    ModalComponent,
     CompaniesComponent,
     CustomersComponent,
+    AddCompanyModalComponent,
+    ConfirmAddCompanyModalComponent,
   ],
-  imports: [CommonModule, AdminRoutingModule, SharedModule, MaterialModule],
+  imports: [AdminRoutingModule, SharedModule],
 })
 export class AdminModule {}

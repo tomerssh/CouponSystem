@@ -8,12 +8,10 @@ import { Page404Module } from './features/page404/page404.module';
 import { AdminModule } from './features/admin/admin.module';
 import { CompanyModule } from './features/company/company.module';
 import { CustomerModule } from './features/customer/customer.module';
-import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    MaterialModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,

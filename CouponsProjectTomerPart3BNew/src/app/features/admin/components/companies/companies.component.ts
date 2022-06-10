@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalComponent } from '../../../../shared/components/modal/modal.component';
+import { AddCompanyModalComponent } from './components/add-company-modal/add-company-modal.component';
 
 @Component({
   selector: 'app-companies',
@@ -24,6 +25,10 @@ export class CompaniesComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  openAddCompanyDialog() {
+    this.dialog.open(AddCompanyModalComponent);
   }
 
   openDialog(row: any) {
