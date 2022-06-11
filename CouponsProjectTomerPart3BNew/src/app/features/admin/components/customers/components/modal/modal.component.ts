@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PeriodicElement } from 'src/app/features/admin/components/companies/companies.component';
+import { PeriodicElement } from '../../customers.component';
 import { EditConfirmModalComponent } from '../edit-confirm-modal/edit-confirm-modal.component';
 import { RemoveConfirmModalComponent } from '../remove-confirm-modal/remove-confirm-modal.component';
 
@@ -31,14 +31,8 @@ export class ModalComponent implements OnInit {
       name: [this.elementToEdit.name, [Validators.required]],
       weight: [this.elementToEdit.weight, [Validators.required]],
       symbol: [this.elementToEdit.symbol, [Validators.required]],
-      // [Validators.email]
     });
   }
-
-  // save() {
-  // this.elementToEdit = this.elementForm.value;
-  // this.data = this.elementToEdit;
-  // }
 
   openEditDialog(form: any) {
     this.dialog.open(EditConfirmModalComponent, {

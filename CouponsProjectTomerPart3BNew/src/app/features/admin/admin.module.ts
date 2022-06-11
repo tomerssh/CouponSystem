@@ -8,8 +8,8 @@ import { DetailsComponent } from './components/details/details.component';
 import { CompaniesComponent } from './components/companies/companies.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AddCompanyModalComponent } from './components/companies/components/add-company-modal/add-company-modal.component';
-import { ConfirmAddCompanyModalComponent } from './components/companies/components/confirm-add-company-modal/confirm-add-company-modal.component';
+import { CompaniesModule } from './components/companies/companies.module';
+import { CustomersModule } from './components/customers/customers.module';
 
 @NgModule({
   declarations: [
@@ -19,9 +19,7 @@ import { ConfirmAddCompanyModalComponent } from './components/companies/componen
     DetailsComponent,
     CompaniesComponent,
     CustomersComponent,
-    AddCompanyModalComponent,
-    ConfirmAddCompanyModalComponent,
   ],
-  imports: [AdminRoutingModule, SharedModule],
+  imports: [AdminRoutingModule, SharedModule, CompaniesModule, CustomersModule],
 })
 export class AdminModule {}

@@ -3,7 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { AddCustomerModalComponent } from './components/add-customer-modal/add-customer-modal.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @Component({
   selector: 'app-customers',
@@ -24,6 +25,10 @@ export class CustomersComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  openAddCustomerDialog() {
+    this.dialog.open(AddCustomerModalComponent);
   }
 
   openDialog(row: any) {

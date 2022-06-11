@@ -1,0 +1,29 @@
+<form *ngIf="elementForm" [formGroup]="elementForm">
+  <h1 mat-dialog-title>{{data.name}}</h1>
+  <div mat-dialog-content>
+    <div>No.</div>
+    <span class="errors" *ngIf="elementForm.get('position')?.errors">Required</span>
+    <div class="input">
+      <input formControlName="position">
+    </div>
+    <div>Name</div>
+    <span class="errors" *ngIf="elementForm.get('name')?.errors">Required</span>
+    <div class="input">
+      <input formControlName="name">
+    </div>
+    <div>Weight</div>
+    <span class="errors" *ngIf="elementForm.get('weight')?.errors">Required</span>
+    <div class="input">
+      <input formControlName="weight">
+    </div>
+    <div>Symbol</div>
+    <span class="errors" *ngIf="elementForm.get('symbol')?.errors">Required</span>
+    <div class="input">
+      <input formControlName="symbol">
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close color="primary" [disabled]="elementForm.invalid" (click)="openEditDialog(elementForm)">Edit</button>
+    <button mat-button mat-dialog-close color="primary" [disabled]="elementForm.invalid" (click)="openRemoveDialog(elementForm)">Remove</button>
+  </div>
+</form>

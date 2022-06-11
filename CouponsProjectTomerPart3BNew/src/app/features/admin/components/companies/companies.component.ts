@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ModalComponent } from '../../../../shared/components/modal/modal.component';
 import { AddCompanyModalComponent } from './components/add-company-modal/add-company-modal.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @Component({
   selector: 'app-companies',
