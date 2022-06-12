@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,16 +8,15 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   private isAuthenticateSubject = new BehaviorSubject<boolean>(false);
-  serverUrl = environment.serverUrl;
 
-  get isAuth$(): Observable<boolean> {
-    return this.isAuthenticateSubject.asObservable();
+  get isAuth$() {
+    return this.isAuthenticateSubject;
   }
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(private httpClient: HttpClient) {}
 
   login(email: string, password: string, clientType: string) {
-    let url = `${this.serverUrl}/login`;
+    let url = `${environment.serverUrl}/login`;
     let body =
       'clientType=' + clientType + '&email=' + email + '&password=' + password;
     let httpHeaders = new HttpHeaders().set(
@@ -26,34 +24,14 @@ export class AuthService {
       'application/x-www-form-urlencoded'
     );
     let options: any = { headers: httpHeaders, responseType: 'text' };
-    let obs = this.httpClient.post(url, body, options);
-    obs.subscribe({
-      next: (cookie) => {
-        sessionStorage.setItem('cookie', cookie.toString());
-        this.isAuthenticateSubject.next(true);
-        this.router.navigate([this.navigate(clientType)]);
-      },
-    });
-    return obs;
+    return this.httpClient.post(url, body, options);
   }
 
   logout() {
     if (sessionStorage.getItem('cookie')) {
-      sessionStorage.setItem('cookie', '');
+      sessionStorage.removeItem('cookie');
+      sessionStorage.setItem('isAuth', 'false');
+      this.isAuthenticateSubject.next(false);
     }
-    this.isAuthenticateSubject.next(false);
-  }
-
-  private navigate(clientType: string) {
-    let route = '/admin';
-    switch (clientType) {
-      case 'COMPANY':
-        route = '/company';
-        break;
-      case 'CUSTOMER':
-        route = '/customer';
-        break;
-    }
-    return route;
   }
 }

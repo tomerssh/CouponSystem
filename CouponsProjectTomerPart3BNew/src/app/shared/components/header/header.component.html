@@ -2,13 +2,13 @@
   <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button> -->
-  <button *ngIf="auth$ | async" (click)="toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button *ngIf="isAuth$ | async" (click)="toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
   <span>{{content}}</span>
   <span class="example-spacer"></span>
   <!-- <button mat-raised-button routerLink="{{btnUrl}}">{{btn}}</button> -->
-  <button mat-button *ngIf="auth$ | async" routerLink="details">
+  <button mat-button *ngIf="isAuth$ | async" routerLink="details">
     <mat-icon aria-hidden="false">
       account_circle
     </mat-icon>

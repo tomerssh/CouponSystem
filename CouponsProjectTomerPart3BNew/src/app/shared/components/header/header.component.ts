@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { ToggleMenuService } from '../../services/toggleMenu/toggle-menu.service';
 
@@ -9,7 +9,7 @@ import { ToggleMenuService } from '../../services/toggleMenu/toggle-menu.service
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  auth$: Observable<boolean>;
+  isAuth$: BehaviorSubject<boolean>;
 
   @Input()
   content: string = '';
@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.auth$ = this.authService.isAuth$;
+    this.isAuth$ = this.authService.isAuth$;
   }
 
   toggle() {

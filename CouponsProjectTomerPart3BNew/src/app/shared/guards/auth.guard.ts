@@ -6,14 +6,14 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -23,11 +23,24 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.authService.isAuth$.pipe(
-      map((isAuth) => {
-        if (isAuth) return true;
-        return this.router.parseUrl('/login');
-      })
-    );
+    if (this.isCookieValid()) {
+      this.auth();
+      return true;
+    }
+    this.router.navigate(['/login']);
+    return false;
+  }
+
+  private auth() {
+    if (Boolean(JSON.parse(sessionStorage.getItem('isAuth') || ''))) {
+      this.authService.isAuth$.next(true);
+    } else {
+      this.authService.isAuth$.next(false);
+    }
+  }
+
+  private isCookieValid() {
+    let cookie = sessionStorage.getItem('cookie');
+    return cookie != '' || cookie != null || cookie != undefined;
   }
 }
