@@ -1,6 +1,8 @@
-export interface Company {
-  email: string;
-  id: string;
-  name: string;
-  password: string;
+export class Company {
+  constructor(
+    public email?: string,
+    public id?: string,
+    public name?: string,
+    public password?: string
+  ) {}
 }

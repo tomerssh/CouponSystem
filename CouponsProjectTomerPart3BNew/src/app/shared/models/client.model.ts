@@ -1,5 +1,7 @@
-export interface Client {
-  email: string;
-  password: string;
-  clientType: string;
+export class Client {
+  constructor(
+    public email?: string,
+    public password?: string,
+    public clientType?: string
+  ) {}
 }

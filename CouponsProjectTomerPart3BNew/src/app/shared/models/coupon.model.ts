@@ -1,14 +1,15 @@
 import { Company } from './company.model';
-
-export interface Coupon {
-  id: string;
-  company: Company;
-  category: string;
-  title: string;
-  description: string;
-  startDate: Date;
-  endDate: Date;
-  amount: string;
-  price: string;
-  image: string;
+export class Coupon {
+  constructor(
+    public id?: string,
+    public company?: Company,
+    public category?: string,
+    public title?: string,
+    public description?: string,
+    public startDate?: Date,
+    public endDate?: Date,
+    public amount?: string,
+    public price?: string,
+    public image?: string
+  ) {}
 }
