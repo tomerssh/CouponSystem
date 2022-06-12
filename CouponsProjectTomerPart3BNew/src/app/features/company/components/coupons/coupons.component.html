@@ -1,1 +1,48 @@
-<p>coupons works!</p>
+<div class="demo-button-container">
+  <button mat-raised-button class="demo-button" color="primary" (click)="openAddCouponDialog()">
+    Add Coupon
+  </button>
+</div>
+<div class="input">
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search columns" #input>
+  </mat-form-field>
+</div>
+<div class="mat-elevation-z4">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="noRecord">
+      <td mat-footer-cell *matFooterCellDef>You Have No Coupons</td>
+    </ng-container>
+    <ng-template [ngIf]="dataSource.data.length === 0">
+      <tr mat-footer-row *matFooterRowDef="['noRecord']"></tr>
+    </ng-template>
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row (click)="openDialog(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[10, 25, 50, 100, dataSource.data.length]" showFirstLastButtons aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

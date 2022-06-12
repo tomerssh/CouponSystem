@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{data.name}}</h1>
+<div mat-dialog-content>
+  <span>Price: {{data.weight | currency}}</span>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close color="primary" (click)="openPurchaseDialog(elementForm)">Purchase</button>
+  <button mat-button mat-dialog-close color="primary" (click)="openRemoveDialog(elementForm)">Remove</button>
+</div>

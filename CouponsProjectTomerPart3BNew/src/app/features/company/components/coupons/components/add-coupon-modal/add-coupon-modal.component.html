@@ -1,0 +1,56 @@
+<form *ngIf="elementForm" [formGroup]="elementForm">
+  <h1 mat-dialog-title>Add Coupon</h1>
+  <div mat-dialog-content>
+    <div>Category</div>
+    <span class="errors" *ngIf="elementForm.get('category')?.errors">Required</span>
+    <div class="input">
+      <select name="category" id="category" formControlName="category">
+        <option value="FOOD">Food</option>
+        <option value="ELECTRONICS">Electronics</option>
+        <option value="HOME">Home</option>
+        <option value="CLOTHING">Clothing</option>
+        <option value="CAMPING">Camping</option>
+        <option value="VACATION">Vacation</option>
+      </select>
+    </div>
+    <div>Title</div>
+    <span class="errors" *ngIf="elementForm.get('title')?.errors">Required</span>
+    <div class="input">
+      <input formControlName="title">
+    </div>
+    <div>Description</div>
+    <span class="errors" *ngIf="elementForm.get('description')?.errors">Required</span>
+    <div class="input">
+      <input formControlName="description">
+    </div>
+    <div>Issue Date</div>
+    <span class="errors" *ngIf="elementForm.get('issueDate')?.errors">Required</span>
+    <div class="input">
+      <input type="date" formControlName="issueDate">
+    </div>
+    <div>Expiration Date</div>
+    <span class="errors" *ngIf="elementForm.get('expirationDate')?.errors">Required</span>
+    <div class="input">
+      <input type="date" formControlName="expirationDate">
+    </div>
+    <div>Amount</div>
+    <span class="errors" *ngIf="elementForm.get('amount')?.errors">Required</span>
+    <div class="input">
+      <input formControlName="amount">
+    </div>
+    <div>Price</div>
+    <span class="errors" *ngIf="elementForm.get('price')?.errors">Required</span>
+    <div class="input">
+      <input type="number" formControlName="price">
+    </div>
+    <div>Image</div>
+    <span class="errors" *ngIf="elementForm.get('image')?.errors">Required</span>
+    <div class="input">
+      <input formControlName="image">
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close color="primary" [disabled]="elementForm.invalid" type="submit" (click)="openConfirmAddDialog(elementForm)">Add</button>
+    <button mat-button mat-dialog-close color="primary">Cancel</button>
+  </div>
+</form>

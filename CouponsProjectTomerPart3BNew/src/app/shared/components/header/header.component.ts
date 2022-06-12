@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from '../../services/auth/auth.service';
 import { ToggleMenuService } from '../../services/toggleMenu/toggle-menu.service';
 
 @Component({
@@ -7,6 +9,8 @@ import { ToggleMenuService } from '../../services/toggleMenu/toggle-menu.service
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  auth$: Observable<boolean>;
+
   @Input()
   content: string = '';
   @Input()
@@ -14,11 +18,22 @@ export class HeaderComponent implements OnInit {
   @Input()
   btnUrl: string = '';
 
-  constructor(private toggleMenuService: ToggleMenuService) {}
+  constructor(
+    private toggleMenuService: ToggleMenuService,
+    private authService: AuthService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.auth$ = this.authService.isAuth$;
+  }
 
   toggle() {
     this.toggleMenuService.toggle();
+  }
+
+  logout() {
+    if (this.btn === 'logout') {
+      this.authService.logout();
+    }
   }
 }
