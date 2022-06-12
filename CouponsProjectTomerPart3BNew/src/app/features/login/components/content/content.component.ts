@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 })
 export class ContentComponent implements OnInit {
   elementForm: FormGroup;
-  error?: string;
+  error: string | null;
 
   clients: clientType[] = [
     { value: 'ADMINISTRATOR', viewValue: 'Admin' },
@@ -31,14 +31,13 @@ export class ContentComponent implements OnInit {
   }
 
   login(email: string, password: string, clientType: string) {
-    console.log(this.elementForm.value);
     this.authService.login(email, password, clientType).subscribe({
       error: (e) => {
         let errAsObject = JSON.parse(e.error);
         this.error = errAsObject.message;
       },
       complete: () => {
-        this.error = undefined;
+        this.error = null;
       },
     });
   }
