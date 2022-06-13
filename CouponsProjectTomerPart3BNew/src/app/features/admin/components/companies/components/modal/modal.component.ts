@@ -11,24 +11,30 @@ import { RemoveConfirmModalComponent } from '../remove-confirm-modal/remove-conf
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
-  elementToEdit: Company = {
-    name: this.data.name,
-    email: this.data.email,
-    password: this.data.password,
-  };
+  elementToEdit: Company;
   elementForm: FormGroup;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Company,
     private dialog: MatDialog,
     private formBuilder: FormBuilder
   ) {}
+
   ngOnInit(): void {
+    this.elementToEdit = {
+      name: this.data.name,
+      email: this.data.email,
+      password: this.data.password,
+    };
     this.elementForm = this.formBuilder.group({
       name: [this.elementToEdit.name, [Validators.required]],
-      email: [this.elementToEdit.email, [Validators.required, Validators.email]],
+      email: [
+        this.elementToEdit.email,
+        [Validators.required, Validators.email],
+      ],
       password: [this.elementToEdit.password, [Validators.required]],
     });
   }
+
   openEditDialog(form: any) {
     this.dialog.open(EditConfirmModalComponent, {
       data: {
@@ -36,6 +42,7 @@ export class ModalComponent implements OnInit {
       },
     });
   }
+
   openRemoveDialog(form: any) {
     this.dialog.open(RemoveConfirmModalComponent, {
       data: {

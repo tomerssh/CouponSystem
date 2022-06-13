@@ -23,9 +23,19 @@ export class CompaniesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit(): void {
+    this.dataSource = new MatTableDataSource<Company>();
+    this.getCompanies();
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  async getCompanies() {
     this.adminService.getCompanies().subscribe({
       next: (companies) => {
-        this.dataSource = new MatTableDataSource<Company>(companies);
+        this.dataSource.data = companies;
       },
       error: (e) => {
         let errAsObject = JSON.parse(e.error);
@@ -34,22 +44,21 @@ export class CompaniesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  refresh() {
+    this.getCompanies();
   }
 
   openAddCompanyDialog() {
     this.dialog.open(AddCompanyModalComponent);
   }
 
-  openDialog(row: any) {
+  openDialog(row: Company) {
     this.dialog.open(ModalComponent, {
       data: {
-        position: row.id,
+        id: row.id,
         name: row.name,
-        weight: row.email,
-        symbol: row.pasword,
+        email: row.email,
+        password: row.password,
       },
     });
   }

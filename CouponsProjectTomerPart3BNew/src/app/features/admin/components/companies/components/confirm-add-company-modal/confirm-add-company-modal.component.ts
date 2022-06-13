@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AdminService } from 'src/app/shared/services/admin/admin.service';
 import { Company } from 'src/app/shared/models/company.model';
