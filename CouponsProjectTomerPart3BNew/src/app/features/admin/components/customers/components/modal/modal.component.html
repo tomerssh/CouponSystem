@@ -1,25 +1,16 @@
 <form *ngIf="elementForm" [formGroup]="elementForm">
-  <h1 mat-dialog-title>{{data.name}}</h1>
+  <h1 mat-dialog-title>{{data.firstName}}</h1>
   <div mat-dialog-content>
-    <div>No.</div>
-    <span class="errors" *ngIf="elementForm.get('position')?.errors">Required</span>
+    <div>Email</div>
+    <span class="errors" *ngIf="elementForm.get('email')?.errors?.['required']">Required</span>
+    <span class="errors" *ngIf="elementForm.get('email')?.errors?.['email']">Invalid Email</span>
     <div class="input">
-      <input formControlName="position">
+      <input formControlName="email">
     </div>
-    <div>Name</div>
-    <span class="errors" *ngIf="elementForm.get('name')?.errors">Required</span>
+    <div>Password</div>
+    <span class="errors" *ngIf="elementForm.get('password')?.errors">Required</span>
     <div class="input">
-      <input formControlName="name">
-    </div>
-    <div>Weight</div>
-    <span class="errors" *ngIf="elementForm.get('weight')?.errors">Required</span>
-    <div class="input">
-      <input formControlName="weight">
-    </div>
-    <div>Symbol</div>
-    <span class="errors" *ngIf="elementForm.get('symbol')?.errors">Required</span>
-    <div class="input">
-      <input formControlName="symbol">
+      <input formControlName="password">
     </div>
   </div>
   <div mat-dialog-actions>

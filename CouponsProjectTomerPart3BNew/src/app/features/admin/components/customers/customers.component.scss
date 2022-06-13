@@ -22,3 +22,17 @@ table {
   background-color: #4054b4;
   color: white;
 }
+
+.empty {
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -23,6 +23,13 @@ table {
   color: white;
 }
 
+.empty {
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .spinner {
   height: 75vh;
   display: flex;

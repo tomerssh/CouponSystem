@@ -9,8 +9,6 @@ import { Company } from 'src/app/shared/models/company.model';
   styleUrls: ['./confirm-add-company-modal.component.scss'],
 })
 export class ConfirmAddCompanyModalComponent implements OnInit {
-  msg: string;
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private adminService: AdminService

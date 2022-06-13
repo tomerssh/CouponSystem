@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmAddCompanyModalComponent } from '../../../companies/components/confirm-add-company-modal/confirm-add-company-modal.component';
+import { ConfirmAddCustomerModalComponent } from '../confirm-add-customer-modal/confirm-add-customer-modal.component';
 
 @Component({
   selector: 'app-add-customer-modal',
@@ -15,7 +15,8 @@ export class AddCustomerModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.elementForm = this.formBuilder.group({
-      name: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
@@ -26,7 +27,7 @@ export class AddCustomerModalComponent implements OnInit {
   }
 
   openConfirmAddDialog(form: any) {
-    this.dialog.open(ConfirmAddCompanyModalComponent, {
+    this.dialog.open(ConfirmAddCustomerModalComponent, {
       data: {
         form: form.value,
       },

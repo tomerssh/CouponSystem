@@ -1,11 +1,6 @@
 <form *ngIf="elementForm" [formGroup]="elementForm">
   <h1 mat-dialog-title>{{data.name}}</h1>
   <div mat-dialog-content>
-    <div>Name</div>
-    <span class="errors" *ngIf="elementForm.get('name')?.errors">Required</span>
-    <div class="input">
-      <input formControlName="name">
-    </div>
     <div>Email</div>
     <span class="errors" *ngIf="elementForm.get('email')?.errors?.['required']">Required</span>
     <span class="errors" *ngIf="elementForm.get('email')?.errors?.['email']">Invalid Email</span>

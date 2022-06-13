@@ -1,10 +1,15 @@
 <form *ngIf="elementForm" [formGroup]="elementForm">
-  <h1 mat-dialog-title>Add Company</h1>
+  <h1 mat-dialog-title>Add Customer</h1>
   <div mat-dialog-content>
-    <div>Name</div>
-    <span class="errors" *ngIf="elementForm.get('name')?.errors">Required</span>
+    <div>First Name</div>
+    <span class="errors" *ngIf="elementForm.get('firstName')?.errors">Required</span>
     <div class="input">
-      <input formControlName="name">
+      <input formControlName="firstName">
+    </div>
+    <div>Last Name</div>
+    <span class="errors" *ngIf="elementForm.get('lastName')?.errors">Required</span>
+    <div class="input">
+      <input formControlName="lastName">
     </div>
     <div>Email</div>
     <span class="errors" *ngIf="elementForm.get('email')?.errors?.['required']">Required</span>

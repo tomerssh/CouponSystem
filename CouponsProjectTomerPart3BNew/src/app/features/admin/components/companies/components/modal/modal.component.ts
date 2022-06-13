@@ -21,12 +21,12 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.elementToEdit = {
+      id: this.data.id,
       name: this.data.name,
       email: this.data.email,
       password: this.data.password,
     };
     this.elementForm = this.formBuilder.group({
-      name: [this.elementToEdit.name, [Validators.required]],
       email: [
         this.elementToEdit.email,
         [Validators.required, Validators.email],
@@ -38,6 +38,7 @@ export class ModalComponent implements OnInit {
   openEditDialog(form: any) {
     this.dialog.open(EditConfirmModalComponent, {
       data: {
+        element: this.elementToEdit,
         form: form.value,
       },
     });
@@ -46,6 +47,7 @@ export class ModalComponent implements OnInit {
   openRemoveDialog(form: any) {
     this.dialog.open(RemoveConfirmModalComponent, {
       data: {
+        element: this.elementToEdit,
         form: form.value,
       },
     });
