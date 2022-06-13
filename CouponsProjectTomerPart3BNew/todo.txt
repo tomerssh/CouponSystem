@@ -1,5 +1,1 @@
 don't show database id's
-
-have in shared modal editable fields
-add modal on top of edit and remove to confirm or cancel
-add form when clicking add button (either modal or new page preferably modal)

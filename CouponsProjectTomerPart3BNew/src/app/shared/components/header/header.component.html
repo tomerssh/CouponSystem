@@ -2,18 +2,18 @@
   <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button> -->
-  <button *ngIf="true" (click)="toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button *ngIf="isAuth$ | async" (click)="toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
   <span>{{content}}</span>
   <span class="example-spacer"></span>
   <!-- <button mat-raised-button routerLink="{{btnUrl}}">{{btn}}</button> -->
-  <button mat-button *ngIf="true" routerLink="details">
+  <button mat-button *ngIf="isAuth$ | async" routerLink="details">
     <mat-icon aria-hidden="false">
       account_circle
     </mat-icon>
   </button>
-  <button mat-button routerLink="{{btnUrl}}">
+  <button mat-button routerLink="{{btnUrl}}" (click)="logout()">
     <mat-icon aria-hidden="false">
       {{btn}}
     </mat-icon>

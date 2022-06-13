@@ -9,9 +9,26 @@ import { ToggleMenuService } from 'src/app/shared/services/toggleMenu/toggle-men
 })
 export class ContentComponent implements OnInit {
   menuState$: Observable<boolean>;
+  apiUrl: string;
+  links: { name: string; apiUrl: string }[];
 
   constructor(private toggleMenuService: ToggleMenuService) {
     this.menuState$ = this.toggleMenuService.menu$;
+    this.apiUrl = '/customer';
+    this.links = [
+      {
+        name: 'Dashboard',
+        apiUrl: this.apiUrl,
+      },
+      {
+        name: 'Details',
+        apiUrl: this.apiUrl + '/details',
+      },
+      {
+        name: 'Coupons',
+        apiUrl: this.apiUrl + '/coupons',
+      },
+    ];
   }
 
   ngOnInit(): void {}

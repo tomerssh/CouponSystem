@@ -1,20 +1,41 @@
-<div class="container">
-  <h2 mat-dialog-title>Login</h2>
-  <mat-dialog-content>
-    <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
-      <input matInput type="email">
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
-      <input matInput type="password">
-    </mat-form-field>
-  </mat-dialog-content>
-  <mat-dialog-actions>
-    <button mat-raised-button color="primary" type="submit">Login</button>
-    <button mat-raised-button color="primary" routerLink="/admin">Admin</button>
-    <button mat-raised-button color="primary" routerLink="/company">Company</button>
-    <button mat-raised-button color="primary" routerLink="/customer">Customer</button>
-  </mat-dialog-actions>
-</div>
+<form *ngIf="elementForm" [formGroup]="elementForm" (ngSubmit)="login(elementForm.value.email, elementForm.value.password, elementForm.value.clientType)">
+  <div class="container">
+    <h2 mat-dialog-title>Login</h2>
+    <mat-dialog-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Client Type</mat-label>
+        <mat-select formControlName="clientType">
+          <mat-option *ngFor="let client of clients" [value]="client.value">
+            {{client.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="elementForm.controls?.['clientType']?.touched && elementForm.controls?.['clientType']?.invalid">
+          <span *ngIf="elementForm.controls?.['clientType']?.errors?.['required']">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email">
+        <mat-error *ngIf="elementForm.controls?.['email']?.touched && elementForm.controls?.['email']?.invalid">
+          <span *ngIf="elementForm.controls?.['email']?.errors?.['required']">This field is mandatory.</span>
+          <span *ngIf="elementForm.controls?.['email']?.errors?.['email']">This field is invalid.</span>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+        <mat-error *ngIf="elementForm.controls?.['password']?.touched && elementForm.controls?.['password']?.invalid">
+          <span *ngIf="elementForm.controls?.['password']?.errors?.['required']">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-raised-button color="primary" type="submit">Login</button>
+    </mat-dialog-actions>
+    <mat-error>
+      <span>{{error}}</span>
+    </mat-error>
+  </div>
+</form>
