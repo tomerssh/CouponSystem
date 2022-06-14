@@ -72,10 +72,10 @@ public class CompanyController extends ClientController {
 	}
 
 	@PostMapping("add/coupon")
-	public void addCoupon(@RequestBody Coupon coupon, @RequestHeader String token) {
+	public int addCoupon(@RequestBody Coupon coupon, @RequestHeader String token) {
 		try {
 			this.initCompany(token);
-			this.service.addCoupon(coupon);
+			return this.service.addCoupon(coupon);
 		} catch (CouponSystemException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
