@@ -24,12 +24,20 @@ export class CustomerService {
     return this.httpClient.post(url, body, <Object>options);
   }
 
+  public removeCouponPurchase(id: number) {
+    let url = this.mainUrl + 'remove/coupon/' + id;
+    let token: any = JSON.parse(sessionStorage.getItem('cookie') || '').value;
+    let httpHeaders = new HttpHeaders().set('token', token);
+    let options: any = { headers: httpHeaders, responseType: 'text' };
+    return this.httpClient.delete(url, options);
+  }
+
   public getCouponPurchaseAmount(couponId: number) {
     let url = this.mainUrl + 'get/coupon/amount/' + couponId;
     let token: any = JSON.parse(sessionStorage.getItem('cookie') || '').value;
     let httpHeaders = new HttpHeaders().set('token', token);
     let options: any = { headers: httpHeaders, responseType: 'text' };
-    return this.httpClient.get(url, <Object>options);
+    return this.httpClient.get<number>(url, <Object>options);
   }
 
   public getCustomerDetails() {

@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.isCookieValid()) {
+    if (sessionStorage.getItem('cookie')) {
       this.auth();
       return true;
     }
@@ -32,15 +32,12 @@ export class AuthGuard implements CanActivate {
   }
 
   private auth() {
-    if (Boolean(JSON.parse(sessionStorage.getItem('isAuth') || ''))) {
-      this.authService.isAuth$.next(true);
-    } else {
+    if (
+      Boolean(JSON.parse(sessionStorage.getItem('isAuth') || '') === 'false')
+    ) {
       this.authService.isAuth$.next(false);
+    } else {
+      this.authService.isAuth$.next(true);
     }
-  }
-
-  private isCookieValid() {
-    let cookie = sessionStorage.getItem('cookie');
-    return cookie != '' || cookie != null || cookie != undefined;
   }
 }

@@ -4,6 +4,7 @@ import { CouponsComponent } from './components/coupons/coupons.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DetailsComponent } from './components/details/details.component';
+import { MyCouponsComponent } from './components/my-coupons/my-coupons.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'coupons',
         component: CouponsComponent,
+      },
+      {
+        path: 'my-coupons',
+        component: MyCouponsComponent,
       },
     ],
   },

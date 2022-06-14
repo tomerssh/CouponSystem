@@ -28,6 +28,10 @@ export class ContentComponent implements OnInit {
         name: 'Coupons',
         apiUrl: this.apiUrl + '/coupons',
       },
+      {
+        name: 'My Coupons',
+        apiUrl: this.apiUrl + '/my-coupons',
+      },
     ];
   }
 

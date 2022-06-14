@@ -7,12 +7,24 @@ import { ContentComponent } from './components/content/content.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DetailsComponent } from './components/details/details.component';
 import { CouponsComponent } from './components/coupons/coupons.component';
-import { ModalComponent } from './components/coupons/components/modal/modal.component';
-import { PurchaseConfirmModalComponent } from './components/coupons/components/purchase-confirm-modal/purchase-confirm-modal.component';
-import { RemoveConfirmModalComponent } from './components/coupons/components/remove-confirm-modal/remove-confirm-modal.component';
+import { MyCouponsComponent } from './components/my-coupons/my-coupons.component';
+import { CouponsModule } from './components/coupons/coupons.module';
+import { MyCouponsModule } from './components/my-coupons/my-coupons.module';
 
 @NgModule({
-  declarations: [CustomerComponent, ContentComponent, DashboardComponent, DetailsComponent, CouponsComponent, ModalComponent, PurchaseConfirmModalComponent, RemoveConfirmModalComponent],
-  imports: [CustomerRoutingModule, SharedModule],
+  declarations: [
+    CustomerComponent,
+    ContentComponent,
+    DashboardComponent,
+    DetailsComponent,
+    CouponsComponent,
+    MyCouponsComponent,
+  ],
+  imports: [
+    CustomerRoutingModule,
+    SharedModule,
+    CouponsModule,
+    MyCouponsModule,
+  ],
 })
 export class CustomerModule {}

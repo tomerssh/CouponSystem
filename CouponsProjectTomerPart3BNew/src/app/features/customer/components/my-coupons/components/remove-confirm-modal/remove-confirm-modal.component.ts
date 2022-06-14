@@ -4,11 +4,11 @@ import { CustomerCouponService } from 'src/app/shared/services/customer/customer
 import { CustomerService } from 'src/app/shared/services/customer/customer.service';
 
 @Component({
-  selector: 'app-purchase-confirm-modal',
-  templateUrl: './purchase-confirm-modal.component.html',
-  styleUrls: ['./purchase-confirm-modal.component.scss'],
+  selector: 'app-remove-confirm-modal',
+  templateUrl: './remove-confirm-modal.component.html',
+  styleUrls: ['./remove-confirm-modal.component.scss'],
 })
-export class PurchaseConfirmModalComponent implements OnInit {
+export class RemoveConfirmModalComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private customerService: CustomerService,
@@ -17,14 +17,14 @@ export class PurchaseConfirmModalComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  purchase() {
-    this.customerService.purchaseCoupon(this.data.element.id).subscribe({
+  remove() {
+    this.customerService.removeCouponPurchase(this.data.element.id).subscribe({
       error: (e) => {
         let errAsObject = JSON.parse(e.error);
         alert(errAsObject.message);
       },
       complete: () => {
-        alert(this.data.element.title + ' purchased successfully');
+        alert(this.data.element.title + ' removed successfully');
         this.customerCouponService.updateCouponPurchaseAmount(
           this.data.element.id
         );

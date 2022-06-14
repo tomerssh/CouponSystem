@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Coupon } from 'src/app/shared/models/coupon.model';
-import { PurchaseConfirmModalComponent } from '../purchase-confirm-modal/purchase-confirm-modal.component';
+import { RemoveConfirmModalComponent } from '../remove-confirm-modal/remove-confirm-modal.component';
 
 @Component({
   selector: 'app-modal',
@@ -30,8 +30,8 @@ export class ModalComponent implements OnInit {
     };
   }
 
-  openPurchaseDialog() {
-    this.dialog.open(PurchaseConfirmModalComponent, {
+  openRemoveDialog() {
+    this.dialog.open(RemoveConfirmModalComponent, {
       data: {
         element: this.element,
       },

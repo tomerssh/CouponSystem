@@ -1,18 +1,19 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Coupon } from 'src/app/shared/models/coupon.model';
+import { CustomerCouponService } from 'src/app/shared/services/customer/customer-coupon.service';
 import { CustomerService } from 'src/app/shared/services/customer/customer.service';
 import { ModalComponent } from './components/modal/modal.component';
 
 @Component({
-  selector: 'app-coupons',
-  templateUrl: './coupons.component.html',
-  styleUrls: ['./coupons.component.scss'],
+  selector: 'app-my-coupons',
+  templateUrl: './my-coupons.component.html',
+  styleUrls: ['./my-coupons.component.scss'],
 })
-export class CouponsComponent implements OnInit, AfterViewInit {
+export class MyCouponsComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
     'category',
@@ -25,10 +26,12 @@ export class CouponsComponent implements OnInit, AfterViewInit {
     'image',
   ];
   dataSource: MatTableDataSource<Coupon>;
+  customerCouponPurchased: any = {};
 
   constructor(
     private dialog: MatDialog,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private customerCouponService: CustomerCouponService
   ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -45,9 +48,14 @@ export class CouponsComponent implements OnInit, AfterViewInit {
   }
 
   async getCoupons() {
-    this.customerService.getAllCoupons().subscribe({
+    this.customerService.getCustomerCoupons().subscribe({
       next: (coupons) => {
         this.dataSource.data = coupons;
+        for (let c of coupons) {
+          this.customerCouponService.updateCouponPurchaseAmount(c.id!);
+        }
+        this.customerCouponPurchased =
+          this.customerCouponService.customerCouponPurchaseMap;
       },
       error: (e) => {
         let errAsObject = JSON.parse(e.error);
