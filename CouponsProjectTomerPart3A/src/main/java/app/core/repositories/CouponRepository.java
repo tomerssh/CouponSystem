@@ -109,7 +109,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 */
 	@Transactional
 	@Modifying
-	@Query(nativeQuery = true, value = "delete from customer_coupon where customer_id=:customerId and coupon_id=:couponId")
+	@Query(nativeQuery = true, value = "delete from customer_coupon where customer_id=:customerId and coupon_id=:couponId limit 1")
 	void deleteCouponPurchase(int customerId, int couponId) throws CouponSystemException;
 
 	/**
