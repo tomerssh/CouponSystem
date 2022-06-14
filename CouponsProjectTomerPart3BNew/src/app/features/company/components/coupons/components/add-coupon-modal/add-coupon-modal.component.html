@@ -24,19 +24,19 @@
       <input formControlName="description">
     </div>
     <div>Issue Date</div>
-    <span class="errors" *ngIf="elementForm.get('issueDate')?.errors">Required</span>
+    <span class="errors" *ngIf="elementForm.get('startDate')?.errors">Required</span>
     <div class="input">
-      <input type="date" formControlName="issueDate">
+      <input type="date" formControlName="startDate">
     </div>
     <div>Expiration Date</div>
-    <span class="errors" *ngIf="elementForm.get('expirationDate')?.errors">Required</span>
+    <span class="errors" *ngIf="elementForm.get('endDate')?.errors">Required</span>
     <div class="input">
-      <input type="date" formControlName="expirationDate">
+      <input type="date" formControlName="endDate">
     </div>
     <div>Amount</div>
     <span class="errors" *ngIf="elementForm.get('amount')?.errors">Required</span>
     <div class="input">
-      <input formControlName="amount">
+      <input type="number" formControlName="amount">
     </div>
     <div>Price</div>
     <span class="errors" *ngIf="elementForm.get('price')?.errors">Required</span>

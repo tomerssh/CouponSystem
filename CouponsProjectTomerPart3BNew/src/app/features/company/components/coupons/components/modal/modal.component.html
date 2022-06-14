@@ -1,25 +1,52 @@
 <form *ngIf="elementForm" [formGroup]="elementForm">
-  <h1 mat-dialog-title>{{data.name}}</h1>
+  <h1 mat-dialog-title>{{data.title}}</h1>
   <div mat-dialog-content>
-    <div>No.</div>
-    <span class="errors" *ngIf="elementForm.get('position')?.errors">Required</span>
+    <div>Category</div>
+    <span class="errors" *ngIf="elementForm.get('category')?.errors">Required</span>
     <div class="input">
-      <input formControlName="position">
+      <select name="category" id="category" formControlName="category">
+        <option value="FOOD">Food</option>
+        <option value="ELECTRONICS">Electronics</option>
+        <option value="HOME">Home</option>
+        <option value="CLOTHING">Clothing</option>
+        <option value="CAMPING">Camping</option>
+        <option value="VACATION">Vacation</option>
+      </select>
     </div>
-    <div>Name</div>
-    <span class="errors" *ngIf="elementForm.get('name')?.errors">Required</span>
+    <div>Title</div>
+    <span class="errors" *ngIf="elementForm.get('title')?.errors">Required</span>
     <div class="input">
-      <input formControlName="name">
+      <input formControlName="title">
     </div>
-    <div>Weight</div>
-    <span class="errors" *ngIf="elementForm.get('weight')?.errors">Required</span>
+    <div>Description</div>
+    <span class="errors" *ngIf="elementForm.get('description')?.errors">Required</span>
     <div class="input">
-      <input formControlName="weight">
+      <input formControlName="description">
     </div>
-    <div>Symbol</div>
-    <span class="errors" *ngIf="elementForm.get('symbol')?.errors">Required</span>
+    <div>Issue Date</div>
+    <span class="errors" *ngIf="elementForm.get('startDate')?.errors">Required</span>
     <div class="input">
-      <input formControlName="symbol">
+      <input type="date" formControlName="startDate">
+    </div>
+    <div>Expiration Date</div>
+    <span class="errors" *ngIf="elementForm.get('endDate')?.errors">Required</span>
+    <div class="input">
+      <input type="date" formControlName="endDate">
+    </div>
+    <div>Amount</div>
+    <span class="errors" *ngIf="elementForm.get('amount')?.errors">Required</span>
+    <div class="input">
+      <input type="number" formControlName="amount">
+    </div>
+    <div>Price</div>
+    <span class="errors" *ngIf="elementForm.get('price')?.errors">Required</span>
+    <div class="input">
+      <input type="number" formControlName="price">
+    </div>
+    <div>Image</div>
+    <span class="errors" *ngIf="elementForm.get('image')?.errors">Required</span>
+    <div class="input">
+      <input formControlName="image">
     </div>
   </div>
   <div mat-dialog-actions>

@@ -31,6 +31,7 @@ export class AuthService {
     if (sessionStorage.getItem('cookie')) {
       sessionStorage.removeItem('cookie');
       sessionStorage.setItem('isAuth', 'false');
+      sessionStorage.setItem('client', '');
       this.isAuthenticateSubject.next(false);
     }
   }
